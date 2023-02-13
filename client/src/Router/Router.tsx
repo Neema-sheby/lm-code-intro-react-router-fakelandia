@@ -1,0 +1,20 @@
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import LayOut from "../Layout/Layout";
+import Home from "../Pages/Home";
+import Misdemeanours from "../Pages/Misdemeanours";
+import Confession from "../Pages/Confession";
+
+const Router = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<LayOut />}>
+        <Route index element={<Home />} />
+        <Route path="misdemeanours" element={<Misdemeanours />} />
+        <Route path="confession" element={<Confession />} />
+      </Route>
+    </Routes>
+  );
+};
+
+export default Router;
