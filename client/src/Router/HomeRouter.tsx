@@ -5,7 +5,7 @@ import Home from "../Pages/Home";
 import Misdemeanours from "../Pages/Misdemeanours";
 import Confession from "../Pages/Confession";
 
-const Router = () => {
+const HomeRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<LayOut />}>
@@ -17,4 +17,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default HomeRouter;

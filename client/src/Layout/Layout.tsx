@@ -5,13 +5,13 @@ import Footer from "./Footer";
 
 const Layout: React.FC = () => {
   return (
-    <>
+    <div className="container">
       <Header />
-      <main>
+      <main className="main">
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

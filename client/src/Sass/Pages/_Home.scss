@@ -1,0 +1,14 @@
+.home {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+
+  h1 {
+    font-size: 4rem;
+    color: $color-white;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}

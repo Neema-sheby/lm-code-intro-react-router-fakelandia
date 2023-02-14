@@ -1,0 +1,18 @@
+.nav {
+  width: 50%;
+  display: flex;
+  align-items: center;
+
+  &__list {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &__item {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $color-purple;
+  }
+}
