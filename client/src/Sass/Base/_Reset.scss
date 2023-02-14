@@ -23,7 +23,7 @@ body {
   align-items: center;
   background: linear-gradient(
       360deg,
-      hsla(208, 100%, 50%, 0.958) 0%,
+      rgba(209, 204, 192, 0.6) 0%,
       hsla(0, 0%, 0%, 1) 93%,
       hsla(0, 0%, 0%, 1) 99%
     ),
@@ -31,6 +31,6 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 8rem 0;
+  padding: 12rem 0;
   margin-top: 1rem;
 }
