@@ -8,11 +8,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   padding: 12rem;
-  border-radius: 3rem;
-  -webkit-border-radius: 3rem;
-  -moz-border-radius: 3rem;
-  -ms-border-radius: 3rem;
-  -o-border-radius: 3rem;
+  border-radius: $border-radius;
+  -webkit-border-radius: $border-radius;
+  -moz-border-radius: $border-radius;
+  -ms-border-radius: $border-radius;
+  -o-border-radius: $border-radius;
   h1 {
     font-size: 3.5rem;
     color: $color-white;

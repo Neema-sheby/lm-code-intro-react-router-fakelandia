@@ -24,7 +24,7 @@ const Misdemeanours = () => {
     <div className="table__container">
       <table className="table">
         <thead className="table__header">
-          <tr className="table__row">
+          <tr className="table__header-row">
             <th>Citizen Id</th>
             <th>Date</th>
             <th>Misdemeanour</th>
