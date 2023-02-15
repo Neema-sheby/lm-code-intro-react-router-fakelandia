@@ -1,42 +1,23 @@
 import { useEffect, useState } from "react";
-import { Misdemeanour, MISDEMEANOURS } from "../types/misdemeanours.types";
-
-const defaultMisdemeanours: Misdemeanour = {
-  citizenId: 0,
-  misdemeanour: MISDEMEANOURS[0],
-  date: "",
-};
+import { Misdemeanour } from "../types/misdemeanours.types";
+import { fetchData } from "../Components/Fetch";
+import {
+  MISDEMEANOUR_NUM,
+  IMAGE_WIDTH,
+  IMAGE_HEIGHT,
+} from "../Configuration/Config";
 
 const Misdemeanours = () => {
-  const [dataMisdemeanours, setDataMisdemeanours] =
-    useState<Misdemeanour>(defaultMisdemeanours);
-
-  const getErrorMessage = ({ message }: { message: string }) => {
-    console.error(message);
-  };
-
+  const [dataMisdemeanours, setDataMisdemeanours] = useState<
+    Array<Misdemeanour>
+  >([]);
+  const [punishment, setPunishment] = useState<Array<string>>([]);
+  //
   useEffect(() => {
-    const fetchMisdemeanours = async (number: number) => {
-      try {
-        const response = await fetch(
-          `http://localhost:8080/api/misdemeanours/${number}`
-        );
-
-        if (!response.ok)
-          throw new Error("Something went wrong in fetching data!");
-
-        const { misdemeanours } = await response.json();
-        console.log(misdemeanours);
-        setDataMisdemeanours(misdemeanours);
-
-        // setData(json.data);
-      } catch (err: unknown) {
-        let message: string = "unknown error";
-        if (err instanceof Error) message = err.message;
-        getErrorMessage({ message });
-      }
-    };
-    fetchMisdemeanours(50);
+    fetchData(
+      `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`,
+      setDataMisdemeanours
+    );
   }, []);
 
   return (
@@ -51,12 +32,21 @@ const Misdemeanours = () => {
           </tr>
         </thead>
         <tbody className="table__body">
-          {/* {dataMisdemeanours.forEach((midemeanour) => {})} */}
-          <tr className="table__row">
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-          </tr>
+          {dataMisdemeanours.map((misdemeanour, i) => {
+            return (
+              <tr key={i + "midemeanour"} className="table__row">
+                <td>{misdemeanour.citizenId}</td>
+                <td>{misdemeanour.date}</td>
+                <td>{misdemeanour.misdemeanour}</td>
+                <td>
+                  <img
+                    src={`https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}?random&cb=${i}`}
+                    alt="Some Random Picsum Image"
+                  />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
