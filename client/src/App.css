@@ -47,9 +47,15 @@ body {
     align-items: center; }
     .table__row td,
     .table__row th {
+      width: 25%;
       border: 1px solid #dddddd;
       text-align: left;
       padding: 8px; }
+      .table__row td:last-child,
+      .table__row th:last-child {
+        text-align: center; }
+  .table td img {
+    width: 100%; }
 
 .footer {
   width: 100%;
