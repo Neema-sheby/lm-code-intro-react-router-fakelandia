@@ -46,18 +46,18 @@
       -o-transform: scale(1.05);
 
       &:first-of-type {
-        border: 3px solid $color-brown-light;
+        border: 3px solid $color-brown--light;
       }
 
       &:hover::after {
         content: "";
         width: 100%;
         height: 2px;
-        background-color: $color-brown-light;
+        background-color: $color-brown--light;
       }
     }
   }
 }
 .active {
-  color: $color-brown-dark;
+  color: $color-brown--dark;
 }
