@@ -1,6 +1,6 @@
 import React from "react";
-import ErrorMessage from "../ErrorHandler/Error";
-import { ConfessionFormProperties } from "../../Pages/Confession/Confession.types";
+import ErrorComponent from "../ErrorHandler/ErrorComponent";
+import { ErrorMsg } from "../ErrorHandler/ErrorMessages";
 
 interface InputFieldProp {
   ContainerClassName: string;
@@ -9,7 +9,7 @@ interface InputFieldProp {
   value: string;
   placeholder: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onValidation: Error;
+  onValidation: Array<ErrorMsg>;
 }
 
 const InputField: React.FC<InputFieldProp> = ({
@@ -35,7 +35,7 @@ const InputField: React.FC<InputFieldProp> = ({
           onChange={onChange}
         />
       </div>
-      <ErrorMessage error={onValidation} />
+      <ErrorComponent errorMessage={onValidation} />
     </>
   );
 };

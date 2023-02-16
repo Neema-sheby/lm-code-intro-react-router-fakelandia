@@ -1,10 +1,5 @@
 import { MisdemeanourKind } from "../../Pages/Misdemeanour/Misdemeanours.types";
-
-import {
-  errMsgSubject,
-  errMsgReason,
-  errMsgDetailsTxtArea,
-} from "./ErrorMessages";
+import { errMsgSubject, errMsgReason, errMsgText } from "./ErrorMessages";
 
 import {
   MIN_SUB_CHAR,
@@ -60,15 +55,15 @@ export const validateReasonSelection = (
 };
 
 /// validate details entered in text area
-export const validateDetails = (data: string): Array<string> => {
+export const validateText = (data: string): Array<string> => {
   let error = [];
 
   if (!data) {
-    error.push(errMsgDetailsTxtArea.errEmpty);
+    error.push(errMsgText.errEmpty);
   }
 
   if (!checkNumCharacters(MIN_TXTAREA_CHAR, MAX_TXTAREA_CHAR, data)) {
-    error.push(errMsgDetailsTxtArea.errCharCount);
+    error.push(errMsgText.errCharCount);
   }
   return error;
 };

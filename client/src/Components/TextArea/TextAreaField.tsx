@@ -1,5 +1,7 @@
 import React from "react";
 import { ConfessionFormProperties } from "../../Pages/Confession/Confession.types";
+import ErrorComponent from "../ErrorHandler/ErrorComponent";
+import { ErrorMsg } from "../ErrorHandler/ErrorMessages";
 
 interface TextAreaFieldProp {
   ContainerClassName: string;
@@ -8,6 +10,7 @@ interface TextAreaFieldProp {
   value: string | ConfessionFormProperties["text"];
   placeholder: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onValidation: Array<ErrorMsg>;
 }
 
 const TextareaField: React.FC<TextAreaFieldProp> = ({
@@ -17,20 +20,24 @@ const TextareaField: React.FC<TextAreaFieldProp> = ({
   value,
   placeholder,
   onChange,
+  onValidation,
 }) => {
   return (
-    <div className={ContainerClassName}>
-      <label htmlFor={id} className="textarea__label">
-        {label}
-      </label>
-      <textarea
-        id={id}
-        className="textarea"
-        value={value}
-        placeholder={placeholder}
-        onChange={onChange}
-      ></textarea>
-    </div>
+    <>
+      <div className={ContainerClassName}>
+        <label htmlFor={id} className="textarea__label">
+          {label}
+        </label>
+        <textarea
+          id={id}
+          className="textarea"
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
+        ></textarea>
+      </div>
+      <ErrorComponent errorMessage={onValidation} />
+    </>
   );
 };
 

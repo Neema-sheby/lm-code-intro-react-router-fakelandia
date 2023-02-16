@@ -1,7 +1,28 @@
-export type Error = string;
+export type ErrorMsg = string;
+
+export interface ErrorLogs {
+  subject: Array<ErrorMsg>;
+  reason: Array<ErrorMsg>;
+  text: Array<ErrorMsg>;
+}
+
+interface ErrMsgSubject {
+  errEmpty: ErrorMsg;
+  errCharCount: ErrorMsg;
+  errValidString: ErrorMsg;
+}
+
+interface ErrMsgReason {
+  errNotSelected: ErrorMsg;
+}
+
+interface ErrMsgText {
+  errEmpty: ErrorMsg;
+  errCharCount: ErrorMsg;
+}
 
 // Error messages for subject input field
-export const errMsgSubject = {
+export const errMsgSubject: ErrMsgSubject = {
   errEmpty: "⛔️ Error : Field is empty ! ",
   errCharCount:
     "⛔️ Error : Number of Characters must be between 10 and 50 characters !",
@@ -9,12 +30,12 @@ export const errMsgSubject = {
 };
 
 // Error messages for select input field
-export const errMsgReason = {
+export const errMsgReason: ErrMsgReason = {
   errNotSelected: "⛔️ Error : Please select an option !",
 };
 
 // Error messages for textarea input field
-export const errMsgDetailsTxtArea = {
+export const errMsgText: ErrMsgText = {
   errEmpty: "⛔️ Error : Field is empty !",
   errCharCount:
     "⛔️ Error : Number of Characters must be between 100 and 200 !",

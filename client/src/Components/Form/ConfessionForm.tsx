@@ -4,6 +4,12 @@ import ConfessionSelect from "../Select/ConfessionSelect";
 import { ConfessionFormProperties } from "../../Pages/Confession/Confession.types";
 import TextareaField from "../TextArea/TextAreaField";
 import Button from "../Button";
+import { ErrorLogs } from "../ErrorHandler/ErrorMessages";
+import {
+  validateSubject,
+  validateReasonSelection,
+  validateText,
+} from "../ErrorHandler/ErrorValidation";
 
 const initialConfessionFormDetail = {
   subject: "",
@@ -11,10 +17,17 @@ const initialConfessionFormDetail = {
   text: "",
 };
 
+const initialErrorLog: ErrorLogs = {
+  subject: [],
+  reason: [],
+  text: [],
+};
+
 const ConfessionForm = () => {
   const [value, setValue] = useState<ConfessionFormProperties>(
     initialConfessionFormDetail
   );
+  const [error, setError] = useState<ErrorLogs>(initialErrorLog);
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -28,7 +41,11 @@ const ConfessionForm = () => {
         label="subject"
         value={value.subject}
         placeholder="Input"
-        onChange={(e) => setValue({ ...value, subject: e.target.value })}
+        onChange={(e) => {
+          setError({ ...error, subject: validateSubject(e.target.value) });
+          setValue({ ...value, subject: e.target.value });
+        }}
+        onValidation={error.subject}
       />
       <ConfessionSelect
         setReason={(reason) => setValue({ ...value, reason: reason })}
@@ -39,7 +56,11 @@ const ConfessionForm = () => {
         label=""
         value={value.text}
         placeholder="textarea"
-        onChange={(e) => setValue({ ...value, text: e.target.value })}
+        onChange={(e) => {
+          setError({ ...error, text: validateText(e.target.value) });
+          setValue({ ...value, text: e.target.value });
+        }}
+        onValidation={error.text}
       />
       <Button className="button__form" name="Confess" />
     </form>
