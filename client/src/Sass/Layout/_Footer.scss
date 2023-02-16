@@ -1,6 +1,6 @@
 .footer {
   width: 100%;
-  background-color: $color-brown-light;
+  background-color: $color-white--light;
   margin-top: 3rem;
   padding: 2rem;
   display: flex;
@@ -17,10 +17,6 @@
     width: 8rem;
     height: 8rem;
     border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
     box-shadow: $box-shadow--medium;
   }
 
