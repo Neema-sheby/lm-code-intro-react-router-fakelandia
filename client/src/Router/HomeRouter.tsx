@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import LayOut from "../Layout/Layout";
 import Home from "../Pages/Home";
-import Misdemeanours from "../Pages/Misdemeanours";
+import Misdemeanours from "../Pages/Misdemeanour/Misdemeanours";
 import Confession from "../Pages/Confession";
 
 const HomeRouter = () => {
