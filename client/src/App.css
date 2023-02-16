@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box; }
 
+body {
+  background: linear-gradient(360deg, rgba(209, 204, 192, 0.6) 0%, rgba(255, 255, 255, 0.8) 100%), url(../../../public/Images/backgroundImg-2.jpg); }
+
 #root {
   width: 100%; }
 
@@ -34,13 +37,14 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  background-color: rgba(209, 204, 192, 0.6);
-  padding: 5rem;
-  border-radius: 3rem;
-  -webkit-border-radius: 3rem;
-  -moz-border-radius: 3rem;
-  -ms-border-radius: 3rem;
-  -o-border-radius: 3rem; }
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5rem 3rem;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+  box-shadow: 0 0 0.7rem 0.2rem rgba(0, 0, 0, 0.5); }
   .table__container {
     width: 100%;
     display: flex;
@@ -55,10 +59,10 @@ body {
   .table__row, .table__header-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     color: #bf9e66;
-    padding: 0 1rem; }
+    padding: 1.5rem 1rem; }
   .table__row {
+    align-items: center;
     background-color: #ffffff; }
     .table__row:nth-child(even) {
       background-color: rgba(209, 204, 192, 0.6);
@@ -66,19 +70,74 @@ body {
     .table__row td,
     .table__row th {
       width: 25%;
-      text-align: left; }
+      text-align: left;
+      font-size: 1.1rem; }
+      .table__row td:not(:last-child),
+      .table__row th:not(:last-child) {
+        padding: 1rem 0;
+        border-bottom: 1.5px solid #bf9e66;
+        border-top: 1.5px solid #bf9e66; }
       .table__row td:last-child,
       .table__row th:last-child {
         text-align: center; }
   .table th {
-    color: #ffffff;
-    font-size: 1.2rem; }
+    color: #ffffff; }
+    .table th p {
+      margin-bottom: 0.5rem; }
   .table td img {
-    width: 100%; }
+    width: 100%;
+    border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem; }
+  .table__dropdown-container {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    z-index: 10;
+    border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem; }
+    .table__dropdown-container::after {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 3rem;
+      height: 100%;
+      line-height: 3rem;
+      content: "\2228";
+      text-align: center;
+      color: #bf9e66;
+      font-size: 1rem;
+      z-index: -1; }
+  .table__dropdown {
+    border: none;
+    outline: none;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 1rem 3rem 1rem 1rem;
+    font-size: inherit;
+    color: #bf9e66;
+    z-index: -1; }
 
 .footer {
   width: 100%;
-  background-color: rgba(209, 204, 192, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
   margin-top: 3rem;
   padding: 2rem;
   display: flex;
@@ -92,10 +151,6 @@ body {
     width: 8rem;
     height: 8rem;
     border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
     box-shadow: 0 0 0.7rem 0.2rem rgba(0, 0, 0, 0.5); }
   .footer p {
     width: 20%; }
@@ -179,11 +234,11 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   padding: 12rem;
-  border-radius: 3rem;
-  -webkit-border-radius: 3rem;
-  -moz-border-radius: 3rem;
-  -ms-border-radius: 3rem;
-  -o-border-radius: 3rem; }
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem; }
   .home h1 {
     font-size: 3.5rem;
     color: #ffffff;
