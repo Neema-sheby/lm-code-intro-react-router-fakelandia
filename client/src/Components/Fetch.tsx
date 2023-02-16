@@ -1,11 +1,11 @@
 // Fetch Misdemeanours
-import { Misdemeanour } from "../types/misdemeanours.types";
+import { Misdemeanour } from "../Pages/Misdemeanour/Misdemeanours.types";
 
 const getErrorMessage = ({ message }: { message: string }) => {
   console.error(message);
 };
 
-export const fetchData = async (url: string, callBack: (T: any) => void) => {
+export const fetchData = async (url: string) => {
   try {
     const response = await fetch(url);
 
@@ -13,7 +13,7 @@ export const fetchData = async (url: string, callBack: (T: any) => void) => {
 
     const { misdemeanours } = await response.json();
     console.log(misdemeanours);
-    callBack(misdemeanours);
+    return misdemeanours;
 
     // setData(json.data);
   } catch (err: unknown) {
