@@ -90,7 +90,7 @@ it("displays error message for typing more than 30 characters in the subject fie
   //user types in input field
   await user.type(
     textBoxes[0],
-    "I behaved rudely to a citzen in Fakelandia. I will make sure I don't do it next time."
+    "I behaved rudely to a citzen in Fakelandia. I will not do it next time."
   );
 
   const errorMsgItem = screen.getByRole("listitem");

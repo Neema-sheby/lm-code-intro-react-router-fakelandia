@@ -1,5 +1,5 @@
 import { matchPath, NavLink, useLocation } from "react-router-dom";
-import NavItem from "../Components/NavItem";
+import NavItem from "./NavItem";
 
 const Nav = () => {
   return (

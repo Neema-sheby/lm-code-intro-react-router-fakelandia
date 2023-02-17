@@ -8,8 +8,8 @@ export const fetchData = async (url: string) => {
 
     if (!response.ok) throw new Error("Something went wrong in fetching data!");
 
-    const { misdemeanours } = await response.json();
-    return misdemeanours;
+    const data = await response.json();
+    return data;
   } catch (err: unknown) {
     let message: string = "unknown error";
     if (err instanceof Error) message = err.message;
