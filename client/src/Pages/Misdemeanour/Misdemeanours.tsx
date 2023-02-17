@@ -16,13 +16,23 @@ const Misdemeanours = () => {
   const [filteredCriminals, setFilteredCriminals] = useState<
     Array<Misdemeanour>
   >([]);
+  const [error, setError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getCrimeData = async () => {
+    setError("");
+    setIsLoading(true);
     const crimeData = await fetchData(
-      `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`
+      `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`,
+      setError
     );
-    setCriminals(crimeData.misdemeanours);
-    setFilteredCriminals(crimeData.misdemeanours);
+    if (crimeData) {
+      setIsLoading(false);
+      setCriminals(crimeData.misdemeanours);
+      setFilteredCriminals(crimeData.misdemeanours);
+    } else {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -31,7 +41,7 @@ const Misdemeanours = () => {
 
   return (
     <MisdemeanourContext.Provider value={criminals}>
-      <div className="table__container">
+      <div className="table__container" aria-label="misdemeanour-page">
         <table className="table">
           <thead className="table__header">
             <tr className="table__header-row">
@@ -48,6 +58,16 @@ const Misdemeanours = () => {
             </tr>
           </thead>
           <tbody className="table__body">
+            {isLoading && (
+              <div className="table_loading" aria-label="misdemeanour-loading">
+                Loading ...
+              </div>
+            )}
+            {error && (
+              <div className="table_error" aria-label="misdemeanour-error">
+                {error}
+              </div>
+            )}
             {filteredCriminals.map((criminal, i) => {
               return (
                 <tr key={i + "midemeanour"} className="table__row">
