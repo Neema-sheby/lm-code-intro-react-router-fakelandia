@@ -7,8 +7,6 @@ import {
   errMsgReason,
   errMsgText,
 } from "../ErrorHandler/ErrorMessages";
-import InputField from "../Input/InputField";
-import { debug } from "console";
 
 //-------------------Test data
 
@@ -51,7 +49,7 @@ it("inputfield, selectfield and textarea set to default values after submitting 
   //user types in input field
   await user.type(textBoxes[0], testData1.subject);
 
-  //user selects from select field
+  //user selects an option
   await user.selectOptions(selectField, testData1.reason);
 
   //user types in textarea
@@ -287,6 +285,6 @@ it("has button disabled if the fields has errors", async () => {
   expect(errorMsgItem[0]).toHaveTextContent(errMsgSubject.errCharCount);
   expect(errorMsgItem[1]).toHaveTextContent(errMsgReason.errNotSelected);
   expect(errorMsgItem[2]).toHaveTextContent(errMsgText.errCharCount);
-  screen.debug();
+  // screen.debug();
   expect(button).toBeDisabled();
 });
