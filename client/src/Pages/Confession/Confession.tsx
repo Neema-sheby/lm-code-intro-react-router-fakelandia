@@ -2,7 +2,7 @@ import ConfessionForm from "../../Components/Form/ConfessionForm";
 
 const Confession = () => {
   return (
-    <div>
+    <div aria-label="confession-page" className="confession">
       <p>
         It's very difficult to catch people committing misdemeanours so we
         appreciate it when citizens confess to us directly.
