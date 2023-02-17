@@ -1,0 +1,292 @@
+import { screen, render } from "@testing-library/react";
+import ConfessionForm from "./ConfessionForm";
+import userEvent from "@testing-library/user-event";
+
+import {
+  errMsgSubject,
+  errMsgReason,
+  errMsgText,
+} from "../ErrorHandler/ErrorMessages";
+import InputField from "../Input/InputField";
+import { debug } from "console";
+
+//-------------------Test data
+
+const testData1 = {
+  subject: "confession",
+  reason: "rudeness",
+  text: "I behaved rudely to a citzen in Fakelandia. I will make sure I don't do it next time. I will be kind to all the people of Fakelandia",
+};
+
+//-------------------
+
+it("renders the form element", () => {
+  render(<ConfessionForm />);
+
+  const form = screen.getByRole("form", { name: /form-confession/i });
+  expect(form).toHaveClass("form");
+});
+
+it("have one input field, one select field, one text area and a button", () => {
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+  const selectField = screen.getByRole("combobox");
+  const button = screen.getByRole("button");
+
+  expect(textBoxes[0]).toHaveClass("input");
+  expect(textBoxes[1]).toHaveClass("textarea");
+  expect(selectField).toHaveClass("select__dropdown");
+  expect(button).toHaveClass("button__form");
+});
+
+it("inputfield, selectfield and textarea set to default values after submitting form", async () => {
+  const user = userEvent.setup();
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+  const selectField = screen.getByRole("combobox");
+  const button = screen.getByRole("button");
+
+  //user types in input field
+  await user.type(textBoxes[0], testData1.subject);
+
+  //user selects from select field
+  await user.selectOptions(selectField, testData1.reason);
+
+  //user types in textarea
+  await user.type(textBoxes[1], testData1.text);
+
+  //user clicks on button
+  await user.click(button);
+
+  expect(textBoxes[0]).toHaveValue("");
+  expect(selectField).toHaveValue("");
+  expect(textBoxes[1]).toHaveValue("");
+});
+
+//-------------------subject field test
+
+it("displays error message for typing less than 10 characters subject field", async () => {
+  const user = userEvent.setup();
+
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+
+  //user types in input field
+  await user.type(textBoxes[0], "I");
+
+  const errorMsgItem = screen.getByRole("listitem");
+
+  expect(errorMsgItem).toHaveTextContent(errMsgSubject.errCharCount);
+});
+
+it("displays error message for typing more than 30 characters in the subject field", async () => {
+  const user = userEvent.setup();
+
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+
+  //user types in input field
+  await user.type(
+    textBoxes[0],
+    "I behaved rudely to a citzen in Fakelandia. I will make sure I don't do it next time."
+  );
+
+  const errorMsgItem = screen.getByRole("listitem");
+
+  expect(errorMsgItem).toHaveTextContent(errMsgSubject.errCharCount);
+});
+
+it("displays error messages for clearing the subject field after typing", async () => {
+  const user = userEvent.setup();
+
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+
+  //user types in input field
+  await user.type(textBoxes[0], "Forgive me ?");
+
+  //user clears input field
+  await user.clear(textBoxes[0]);
+
+  const errorMsgItems = screen.getAllByRole("listitem");
+
+  expect(errorMsgItems[0]).toHaveTextContent(errMsgSubject.errEmpty);
+  expect(errorMsgItems[1]).toHaveTextContent(errMsgSubject.errCharCount);
+});
+
+it("displays error message for typing back slash in the subject field", async () => {
+  const user = userEvent.setup();
+
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+
+  //user types in input field
+  await user.type(textBoxes[0], "neem/");
+
+  const errorMsgItem = screen.getByRole("listitem");
+
+  expect(errorMsgItem).toHaveTextContent(errMsgSubject.errValidString);
+});
+
+it("has button disabled for errors in subject field or leaving the field empty", async () => {
+  const user = userEvent.setup();
+
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+
+  //user types in input field
+  await user.type(textBoxes[0], "neem/");
+
+  const errorMsgItem = screen.getByRole("listitem");
+  const button = screen.getByRole("button");
+
+  expect(errorMsgItem).toHaveTextContent(errMsgSubject.errValidString);
+  expect(button).toBeDisabled();
+});
+
+//-------------------select field test
+
+it("displays error message for not selecting an option", async () => {
+  const user = userEvent.setup();
+
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+
+  const selectField = screen.getByRole("combobox");
+
+  //user clicks on select
+  await user.click(selectField);
+
+  //user selects an option
+  await user.selectOptions(selectField, "");
+
+  const errorMsgItem = screen.getByRole("listitem");
+
+  expect(errorMsgItem).toHaveTextContent(errMsgReason.errNotSelected);
+});
+
+it("has button disabled for not selecting an option", async () => {
+  const user = userEvent.setup();
+
+  render(<ConfessionForm />);
+
+  const selectField = screen.getByRole("combobox");
+
+  //user clicks on select field
+  await user.click(selectField);
+
+  //user selects an option
+  await user.selectOptions(selectField, "");
+
+  const errorMsgItem = screen.getByRole("listitem");
+  const button = screen.getByRole("button");
+
+  expect(errorMsgItem).toHaveTextContent(errMsgReason.errNotSelected);
+  expect(button).toBeDisabled();
+});
+//-------------------textarea field test
+
+it("displays error message for typing less than 20 characters in the textarea", async () => {
+  const user = userEvent.setup();
+
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+
+  //user types in textarea field
+  await user.type(textBoxes[1], "Sorry");
+
+  const errorMsgItem = screen.getByRole("listitem");
+
+  expect(errorMsgItem).toHaveTextContent(errMsgText.errCharCount);
+});
+
+it("displays error message for typing more than 200 characters in the textarea", async () => {
+  const user = userEvent.setup();
+
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+
+  //user types in textarea field
+  await user.type(
+    textBoxes[1],
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  );
+
+  const errorMsgItem = screen.getByRole("listitem");
+
+  expect(errorMsgItem).toHaveTextContent(errMsgText.errCharCount);
+});
+
+it("displays error messages for clearing the textarea after typing", async () => {
+  const user = userEvent.setup();
+
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+
+  //user types in textarea field
+  await user.type(textBoxes[1], "Forgive me please. I will not repeat");
+
+  //user clears textarea field
+  await user.clear(textBoxes[1]);
+
+  const errorMsgItems = screen.getAllByRole("listitem");
+
+  expect(errorMsgItems[0]).toHaveTextContent(errMsgText.errEmpty);
+  expect(errorMsgItems[1]).toHaveTextContent(errMsgText.errCharCount);
+});
+
+it("has button disabled if textarea values has errors", async () => {
+  const user = userEvent.setup();
+
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+
+  //user types in textarea field
+  await user.type(textBoxes[1], "we");
+
+  const errorMsgItem = screen.getByRole("listitem");
+
+  const button = screen.getByRole("button");
+
+  expect(errorMsgItem).toHaveTextContent(errMsgText.errCharCount);
+  expect(button).toBeDisabled();
+});
+
+//-------------------All fields
+it("has button disabled if the fields has errors", async () => {
+  const user = userEvent.setup();
+  render(<ConfessionForm />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+  const selectField = screen.getByRole("combobox");
+  const button = screen.getByRole("button");
+
+  //user types in input field
+  await user.type(textBoxes[0], "we");
+
+  //user selects from select field
+  await user.selectOptions(selectField, "");
+
+  //user types in textarea
+  await user.type(textBoxes[1], "I");
+
+  const errorMsgItem = screen.getAllByRole("listitem");
+
+  expect(errorMsgItem[0]).toHaveTextContent(errMsgSubject.errCharCount);
+  expect(errorMsgItem[1]).toHaveTextContent(errMsgReason.errNotSelected);
+  expect(errorMsgItem[2]).toHaveTextContent(errMsgText.errCharCount);
+  screen.debug();
+  expect(button).toBeDisabled();
+});
