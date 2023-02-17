@@ -17,7 +17,7 @@ it("renders the input component", () => {
     />
   );
 
-  const subjectField = screen.getByRole("textbox");
+  const subjectField = screen.getByRole("textbox", { name: /subject/i });
 
   expect(subjectField).toBeInTheDocument();
 });
