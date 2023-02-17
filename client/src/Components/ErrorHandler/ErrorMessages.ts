@@ -39,3 +39,11 @@ export const errMsgText: ErrMsgText = {
   errEmpty: "⛔️ Error : Field is empty !",
   errCharCount: "⛔️ Error : Number of Characters must be between 20 and 200 !",
 };
+
+// Error messages based on response from API
+export const ErrorMessagesAPI = {
+  error404: "Error: 404 url not found! 🤕",
+  error500: "Error: 500 🤕",
+  error418: "Error: 418 😁",
+  errorFetch: "Error: Oops... something went wrong in fetching data 🤕",
+};
