@@ -2,27 +2,22 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 interface NavProp {
-  activeClassName: string;
-  inactiveClassName: string;
   to: string;
   content: React.ReactNode;
 }
 
-const NavItem: React.FC<NavProp> = ({
-  activeClassName,
-  inactiveClassName,
-  to,
-  content,
-}) => {
+const NavItem: React.FC<NavProp> = ({ to, content }) => {
   return (
-    <NavLink
-      className={({ isActive }) =>
-        isActive ? activeClassName : inactiveClassName
-      }
-      to={to}
-    >
-      {content}
-    </NavLink>
+    <li>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "nav__item active" : "nav__item"
+        }
+        to={to}
+      >
+        {content}
+      </NavLink>
+    </li>
   );
 };
 
