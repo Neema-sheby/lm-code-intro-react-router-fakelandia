@@ -3,7 +3,7 @@ import InputField from "../Input/InputField";
 import ConfessionSelect from "../Select/ConfessionSelect";
 import { ConfessionFormDataType } from "../../Pages/Confession/Confession.types";
 import TextareaField from "../TextArea/TextAreaField";
-import Button from "../Button";
+import Button from "../Button/Button";
 import { ErrorLogs } from "../ErrorHandler/ErrorMessages";
 import {
   validateSubject,
