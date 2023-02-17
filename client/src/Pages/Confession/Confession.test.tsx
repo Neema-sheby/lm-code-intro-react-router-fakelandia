@@ -4,7 +4,7 @@ import Confession from "./Confession";
 it("renders confession page", () => {
   render(<Confession />);
 
-  const confessionPage = screen.getByRole("textbox", { name: /subject/i });
+  const confessionPage = screen.getByLabelText("confession-page");
 
   expect(confessionPage).toBeInTheDocument();
 });
