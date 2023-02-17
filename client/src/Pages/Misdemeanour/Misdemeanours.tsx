@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MisdemeanourContext } from "./MisdemeanourContext";
 import { Misdemeanour } from "./Misdemeanours.types";
 import { MisdemeanourEmoji } from "./MisdemeanourEmoji";
-import { fetchData } from "../../Components/Fetch";
+import { fetchData } from "../../Components/FetchData/Fetch";
 import MisdemeanourSelect from "../../Components/Select/MisdemeanourSelect";
 
 import {
@@ -21,8 +21,8 @@ const Misdemeanours = () => {
     const crimeData = await fetchData(
       `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`
     );
-    setCriminals(crimeData);
-    setFilteredCriminals(crimeData);
+    setCriminals(crimeData.misdemeanours);
+    setFilteredCriminals(crimeData.misdemeanours);
   };
 
   useEffect(() => {
