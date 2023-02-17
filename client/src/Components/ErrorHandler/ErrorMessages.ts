@@ -23,9 +23,9 @@ interface ErrMsgText {
 
 // Error messages for subject input field
 export const errMsgSubject: ErrMsgSubject = {
-  errEmpty: "⛔️ Error : Field is empty ! ",
+  errEmpty: "⛔️ Error : Field is empty !",
   errCharCount:
-    "⛔️ Error : Number of Characters must be between 10 and 50 characters !",
+    "⛔️ Error : Number of Characters must be between 10 and 30 characters !",
   errValidString: "⛔️ Error : Please enter a valid string !",
 };
 
@@ -37,6 +37,5 @@ export const errMsgReason: ErrMsgReason = {
 // Error messages for textarea input field
 export const errMsgText: ErrMsgText = {
   errEmpty: "⛔️ Error : Field is empty !",
-  errCharCount:
-    "⛔️ Error : Number of Characters must be between 100 and 200 !",
+  errCharCount: "⛔️ Error : Number of Characters must be between 20 and 200 !",
 };
