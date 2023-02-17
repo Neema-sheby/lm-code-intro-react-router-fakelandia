@@ -12,7 +12,7 @@ it("renders the input component", () => {
       label="subject"
       value="Confession"
       placeholder="Input"
-      onChange={(e) => {}}
+      onChange={() => {}}
       onValidation={[]}
     />
   );
