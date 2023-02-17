@@ -4,7 +4,7 @@ import ConfessionSelect from "../Select/ConfessionSelect";
 import { ConfessionFormProperties } from "../../Pages/Confession/Confession.types";
 import TextareaField from "../TextArea/TextAreaField";
 import Button from "../Button";
-import { ErrorLogs } from "../ErrorHandler/ErrorMessages";
+import { errMsgReason, ErrorLogs } from "../ErrorHandler/ErrorMessages";
 import {
   validateSubject,
   validateReasonSelection,
@@ -48,7 +48,14 @@ const ConfessionForm = () => {
         onValidation={error.subject}
       />
       <ConfessionSelect
-        setReason={(reason) => setValue({ ...value, reason: reason })}
+        setReason={(reason) => {
+          setError({
+            ...error,
+            reason: validateReasonSelection(reason),
+          });
+          setValue({ ...value, reason: reason });
+        }}
+        onValidation={error.reason}
       />
       <TextareaField
         id="confession-textarea"
@@ -62,7 +69,17 @@ const ConfessionForm = () => {
         }}
         onValidation={error.text}
       />
-      <Button className="button__form" name="Confess" />
+      <Button
+        className="button__form"
+        name="Confess"
+        disabled={
+          error.subject.length === 0 &&
+          error.reason.length === 0 &&
+          error.text.length === 0
+            ? false
+            : true
+        }
+      />
     </form>
   );
 };

@@ -6,7 +6,15 @@ interface ErrorProp {
 }
 
 const ErrorComponent: React.FC<ErrorProp> = ({ errorMessage }) => {
-  return <div className="error-message">{errorMessage}</div>;
+  return (
+    <ul className="error__container">
+      {errorMessage.map((err, i) => (
+        <li key={i + 1 + "err"} className="error__message">
+          {err}
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default ErrorComponent;
