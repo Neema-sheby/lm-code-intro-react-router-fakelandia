@@ -181,6 +181,8 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center; }
+    .nav__list li {
+      list-style: none; }
   .nav__item {
     text-decoration: none;
     font-size: 1.2rem;
