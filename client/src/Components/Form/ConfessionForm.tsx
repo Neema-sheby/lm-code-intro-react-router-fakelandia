@@ -4,7 +4,7 @@ import ConfessionSelect from "../Select/ConfessionSelect";
 import { ConfessionFormDataType } from "../../Pages/Confession/Confession.types";
 import TextareaField from "../TextArea/TextAreaField";
 import Button from "../Button";
-import { errMsgReason, ErrorLogs } from "../ErrorHandler/ErrorMessages";
+import { ErrorLogs } from "../ErrorHandler/ErrorMessages";
 import {
   validateSubject,
   validateReasonSelection,
@@ -17,7 +17,7 @@ const defaultConfessionFormData = {
   text: "",
 };
 
-const initialErrorLog: ErrorLogs = {
+const defaultErrorLog: ErrorLogs = {
   subject: [],
   reason: [],
   text: [],
@@ -27,12 +27,15 @@ const ConfessionForm = () => {
   const [value, setValue] = useState<ConfessionFormDataType>(
     defaultConfessionFormData
   );
-  const [error, setError] = useState<ErrorLogs>(initialErrorLog);
-  const [submitted, setsubmitted] = useState<boolean>(false);
+  const [error, setError] = useState<ErrorLogs>(defaultErrorLog);
+  const [submitted, setSubmitted] = useState<boolean>(false);
 
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setsubmitted(true);
+    setSubmitted(true);
+
+    //clear Error messages
+    setError(defaultErrorLog);
 
     //reset inputfield, selectfield and textarea
     setValue(defaultConfessionFormData);
@@ -48,6 +51,7 @@ const ConfessionForm = () => {
           value={value.subject}
           placeholder="Input"
           onChange={(e) => {
+            setSubmitted(false);
             setError({ ...error, subject: validateSubject(e.target.value) });
             setValue({ ...value, subject: e.target.value });
           }}
@@ -55,7 +59,14 @@ const ConfessionForm = () => {
         />
         <ConfessionSelect
           value={value.reason}
+          onClick={() =>
+            setError({
+              ...error,
+              reason: validateReasonSelection(value.reason),
+            })
+          }
           onChange={(e) => {
+            setSubmitted(false);
             setError({
               ...error,
               reason: validateReasonSelection(e.target.value),
@@ -71,6 +82,7 @@ const ConfessionForm = () => {
           value={value.text}
           placeholder="textarea"
           onChange={(e) => {
+            setSubmitted(false);
             setError({ ...error, text: validateText(e.target.value) });
             setValue({ ...value, text: e.target.value });
           }}
@@ -80,6 +92,9 @@ const ConfessionForm = () => {
           className="button__form"
           name="Confess"
           disabled={
+            value.subject &&
+            value.reason &&
+            value.text &&
             error.subject.length === 0 &&
             error.reason.length === 0 &&
             error.text.length === 0
