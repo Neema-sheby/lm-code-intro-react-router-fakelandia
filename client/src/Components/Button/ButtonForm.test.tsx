@@ -9,3 +9,11 @@ it("renders the button", () => {
 
   expect(button).toBeInTheDocument();
 });
+
+it("Check if button is disabled", () => {
+  render(<Button className="button__form" name="Confess" disabled={true} />);
+
+  const button = screen.getByRole("button");
+
+  expect(button).toBeDisabled();
+});
