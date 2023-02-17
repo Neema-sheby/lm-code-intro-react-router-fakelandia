@@ -13,26 +13,16 @@ const isMisdemeanourKind = (data: string): data is MisdemeanourKind => {
 };
 
 interface ConfessionSelectProp {
-  setReason: (T: string | MisdemeanourKind | "I just want to talk") => void;
+  value: string | MisdemeanourKind | "I just want to talk";
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onValidation: Array<ErrorMsg>;
 }
 
 const ConfessionSelect: React.FC<ConfessionSelectProp> = ({
-  setReason,
+  value,
+  onChange,
   onValidation,
 }) => {
-  const [value, setValue] = useState<
-    string | MisdemeanourKind | "I just want to talk"
-  >("");
-
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setValue(e.target.value);
-
-    if (isMisdemeanourKind(e.target.value)) setReason(e.target.value);
-    else if (isMisdemeanourKind("")) setReason(e.target.value);
-    else setReason("I just want to talk");
-  };
-
   return (
     <>
       <div className="select__dropdown-container">
