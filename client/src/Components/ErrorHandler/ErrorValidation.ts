@@ -30,7 +30,7 @@ export const validateSubject = (data: string): Array<string> => {
     error.push(errMsgSubject.errEmpty);
   }
 
-  if (data.match(/[^$A-Za-z]/g)) {
+  if (data.match(/[^$A-Za-z-.,;"'\s()?!:_&%$£@=#]/g)) {
     error.push(errMsgSubject.errValidString);
   } else {
     isString = true;
