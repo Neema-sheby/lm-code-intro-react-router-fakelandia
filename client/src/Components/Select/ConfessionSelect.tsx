@@ -15,18 +15,25 @@ const isMisdemeanourKind = (data: string): data is MisdemeanourKind => {
 interface ConfessionSelectProp {
   value: string | MisdemeanourKind | "I just want to talk";
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onClick: () => void;
   onValidation: Array<ErrorMsg>;
 }
 
 const ConfessionSelect: React.FC<ConfessionSelectProp> = ({
   value,
   onChange,
+  onClick,
   onValidation,
 }) => {
   return (
     <>
       <div className="select__dropdown-container">
-        <select className="select__dropdown" value={value} onChange={onChange}>
+        <select
+          className="select__dropdown"
+          value={value}
+          onChange={onChange}
+          onClick={onClick}
+        >
           {
             <>
               <Option value="" label="Select" />
