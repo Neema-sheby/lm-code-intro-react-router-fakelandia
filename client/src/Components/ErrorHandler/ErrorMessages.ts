@@ -3,7 +3,7 @@ export type ErrorMsg = string;
 export interface ErrorLogs {
   subject: Array<ErrorMsg>;
   reason: Array<ErrorMsg>;
-  text: Array<ErrorMsg>;
+  details: Array<ErrorMsg>;
 }
 
 interface ErrMsgSubject {

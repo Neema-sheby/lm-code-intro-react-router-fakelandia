@@ -14,13 +14,13 @@ import {
 const defaultConfessionFormData = {
   subject: "",
   reason: "",
-  text: "",
+  details: "",
 };
 
 const defaultErrorLog: ErrorLogs = {
   subject: [],
   reason: [],
-  text: [],
+  details: [],
 };
 
 const ConfessionForm = () => {
@@ -79,14 +79,14 @@ const ConfessionForm = () => {
           id="confession-textarea"
           ContainerClassName="=textarea__confession-container"
           label=""
-          value={value.text}
+          value={value.details}
           placeholder="textarea"
           onChange={(e) => {
             setSubmitted(false);
-            setError({ ...error, text: validateText(e.target.value) });
-            setValue({ ...value, text: e.target.value });
+            setError({ ...error, details: validateText(e.target.value) });
+            setValue({ ...value, details: e.target.value });
           }}
-          onValidation={error.text}
+          onValidation={error.details}
         />
         <Button
           className="button__form"
@@ -94,10 +94,10 @@ const ConfessionForm = () => {
           disabled={
             value.subject &&
             value.reason &&
-            value.text &&
+            value.details &&
             error.subject.length === 0 &&
             error.reason.length === 0 &&
-            error.text.length === 0
+            error.details.length === 0
               ? false
               : true
           }
