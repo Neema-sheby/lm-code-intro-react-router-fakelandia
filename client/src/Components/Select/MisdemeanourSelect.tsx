@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import Option from "../Option/Option";
 import { MisdemeanourContext } from "../../Pages/Misdemeanour/MisdemeanourContext";
 import {
-  Misdemeanour,
+  Criminal,
   MISDEMEANOURS,
 } from "../../Pages/Misdemeanour/Misdemeanours.types";
 import { MisdemeanourEmoji } from "../../Pages/Misdemeanour/MisdemeanourEmoji";
 
 interface SelectProp {
-  setFilteredCriminals: (T: Array<Misdemeanour>) => void;
+  setFilteredCriminals: (T: Array<Criminal>) => void;
 }
 
 const MisdemeanourSelect: React.FC<SelectProp> = ({ setFilteredCriminals }) => {
@@ -22,11 +22,9 @@ const MisdemeanourSelect: React.FC<SelectProp> = ({ setFilteredCriminals }) => {
     setMisdemeanourValue(e.target.value);
 
     if (e.target.value) {
-      const listCriminal = criminals.filter((criminal: Misdemeanour, i) => {
-        const crime =
-          criminal.misdemeanour +
-          " " +
-          MisdemeanourEmoji(criminal.misdemeanour);
+      const listCriminal = criminals.filter((criminal: Criminal, i) => {
+        const { misdemeanour } = criminal.misdemeanours;
+        const crime = misdemeanour + " " + MisdemeanourEmoji(misdemeanour);
         return crime === e.target.value;
       });
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MisdemeanourContext } from "./MisdemeanourContext";
-import { Misdemeanour } from "./Misdemeanours.types";
+import { Misdemeanour, Criminal } from "./Misdemeanours.types";
 import { MisdemeanourEmoji } from "./MisdemeanourEmoji";
 import { fetchData } from "../../Components/GetPostData/Fetch";
 import MisdemeanourSelect from "../../Components/Select/MisdemeanourSelect";
@@ -12,24 +12,38 @@ import {
 } from "../../Configuration/Config";
 
 const Misdemeanours = () => {
-  const [criminals, setCriminals] = useState<Array<Misdemeanour>>([]);
-  const [filteredCriminals, setFilteredCriminals] = useState<
-    Array<Misdemeanour>
-  >([]);
+  const [criminals, setCriminals] = useState<Array<Criminal>>([]);
+  const [filteredCriminals, setFilteredCriminals] = useState<Array<Criminal>>(
+    []
+  );
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getCrimeData = async () => {
     setError("");
     setIsLoading(true);
-    const crimeData = await fetchData(
-      `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`,
-      setError
-    );
+    const crimeData: { misdemeanours: Array<Misdemeanour> } | undefined =
+      await fetchData(
+        `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`,
+        setError
+      );
     if (crimeData) {
       setIsLoading(false);
-      setCriminals(crimeData.misdemeanours);
-      setFilteredCriminals(crimeData.misdemeanours);
+      const dataArr: Array<Criminal> = crimeData.misdemeanours.map((mis, i) => {
+        return {
+          misdemeanours: {
+            citizenId: mis.citizenId,
+            date: mis.date,
+            misdemeanour: mis.misdemeanour,
+          },
+          punishment: {
+            src: `https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}?random&cb=${i}`,
+            alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
+          },
+        };
+      });
+      setCriminals(dataArr);
+      setFilteredCriminals(dataArr);
     } else {
       setIsLoading(false);
     }
@@ -59,20 +73,17 @@ const Misdemeanours = () => {
           </thead>
           <tbody className="table__body">
             {filteredCriminals.map((criminal, i) => {
+              const { citizenId, date, misdemeanour } = criminal.misdemeanours;
+              const { src, alt } = criminal.punishment;
               return (
                 <tr key={i + "midemeanour"} className="table__row">
-                  <td>{criminal.citizenId}</td>
-                  <td>{criminal.date}</td>
+                  <td>{citizenId}</td>
+                  <td>{date}</td>
                   <td>
-                    {criminal.misdemeanour +
-                      " " +
-                      MisdemeanourEmoji(criminal.misdemeanour)}
+                    {misdemeanour + " " + MisdemeanourEmoji(misdemeanour)}
                   </td>
                   <td>
-                    <img
-                      src={`https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}?random&cb=${i}`}
-                      alt="Some Random Picsum Image"
-                    />
+                    <img src={src} alt={alt} />
                   </td>
                 </tr>
               );

@@ -1,3 +1,3 @@
-import { Misdemeanour } from "../../Pages/Misdemeanour/Misdemeanours.types";
+import { Criminal } from "../../Pages/Misdemeanour/Misdemeanours.types";
 import { createContext } from "react";
-export const MisdemeanourContext = createContext<Array<Misdemeanour>>([]);
+export const MisdemeanourContext = createContext<Array<Criminal>>([]);
