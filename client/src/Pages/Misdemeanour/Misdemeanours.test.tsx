@@ -97,7 +97,7 @@ it("renders 500 error status message", async () => {
   ).toHaveTextContent(ErrorMessagesAPI.error500);
 });
 
-it("renders 404 error message when error status is 404", async () => {
+it("renders 404 error status message", async () => {
   server.use(
     rest.get(
       `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`,
