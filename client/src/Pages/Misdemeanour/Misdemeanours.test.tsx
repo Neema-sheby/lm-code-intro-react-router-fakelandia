@@ -75,7 +75,7 @@ it("filers the content in the table when an option is selected", async () => {
   });
 });
 
-it("renders 500 error message when error status is 500", async () => {
+it("renders 500 error status message", async () => {
   server.use(
     rest.get(
       `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`,
@@ -123,7 +123,7 @@ it("renders 404 error message when error status is 404", async () => {
   ).toHaveTextContent(ErrorMessagesAPI.error404);
 });
 
-it("renders 418 error message when error status is 418", async () => {
+it("renders 418 error status message", async () => {
   server.use(
     rest.get(
       `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`,
