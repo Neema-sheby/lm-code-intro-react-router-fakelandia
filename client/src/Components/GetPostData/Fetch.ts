@@ -1,13 +1,14 @@
+import { Misdemeanour } from "../../Pages/Misdemeanour/Misdemeanours.types";
 import { ErrorMessagesAPI } from "../ErrorHandler/ErrorMessages";
 
 const getErrorMessage = ({ message }: { message: string }) => {
   console.error(message);
 };
 
-export const fetchData = async (
+export const fetchData = async <T>(
   url: string,
   callbackError: (T: string) => void
-) => {
+): Promise<{ misdemeanours: Array<T> } | undefined> => {
   try {
     const response = await fetch(url);
 
@@ -23,8 +24,8 @@ export const fetchData = async (
       }
     }
 
-    const data = await response.json();
-    return data;
+    const result = await response.json();
+    return result;
   } catch (err: unknown) {
     let message: string = "unknown error";
     if (err instanceof Error) message = err.message;
