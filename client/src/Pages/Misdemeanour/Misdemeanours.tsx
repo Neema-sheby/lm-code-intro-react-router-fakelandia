@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MisdemeanourContext } from "./MisdemeanourContext";
 import { Misdemeanour, Criminal } from "./Misdemeanours.types";
 import { MisdemeanourEmoji } from "./MisdemeanourEmoji";
 import { fetchData } from "../../Components/GetPostData/Fetch";
 import MisdemeanourSelect from "../../Components/Select/MisdemeanourSelect";
+import { HomeRouterContext } from "../../Router/HomeRouterContext";
 
 import {
   MISDEMEANOUR_NUM,
@@ -12,6 +13,11 @@ import {
 } from "../../Configuration/Config";
 
 const Misdemeanours = () => {
+  const postData = useContext(HomeRouterContext);
+  if (postData) {
+    console.log(postData);
+  }
+
   const [criminals, setCriminals] = useState<Array<Criminal>>([]);
   const [filteredCriminals, setFilteredCriminals] = useState<Array<Criminal>>(
     []
