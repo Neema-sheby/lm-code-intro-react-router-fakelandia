@@ -1,7 +1,7 @@
 import { screen, render, within } from "@testing-library/react";
 import ErrorComponent from "./ErrorComponent";
 
-it("renders the error component", () => {
+it("is rendered in the document", () => {
   render(
     <ErrorComponent
       errorMessage={[

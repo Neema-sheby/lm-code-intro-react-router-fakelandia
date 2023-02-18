@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import Nav from "./Navigation";
 
-it("renders navigation component", () => {
+it("is rendered in the document", () => {
   render(
     <BrowserRouter>
       <Nav />

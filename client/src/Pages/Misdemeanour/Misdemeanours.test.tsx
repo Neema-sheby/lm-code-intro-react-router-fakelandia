@@ -33,7 +33,7 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-it("renders misdemeanours page", () => {
+it("is rendered in the document", () => {
   render(<Misdemeanours />);
 
   const misdemeanoursPage = screen.getByLabelText("misdemeanour-page");

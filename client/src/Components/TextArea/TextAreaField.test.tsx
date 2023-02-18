@@ -4,7 +4,7 @@ import TextareaField from "./TextAreaField";
 
 import { errMsgText } from "../ErrorHandler/ErrorMessages";
 
-it("renders the textarea component", () => {
+it("is rendered in the document", () => {
   render(
     <TextareaField
       id="confession-textarea"

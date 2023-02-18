@@ -1,7 +1,7 @@
 import { screen, render } from "@testing-library/react";
 import Confession from "./Confession";
 
-it("renders confession page", () => {
+it("is rendered in the document", () => {
   render(<Confession />);
 
   const confessionPage = screen.getByLabelText("confession-page");

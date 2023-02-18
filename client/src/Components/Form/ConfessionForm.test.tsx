@@ -18,7 +18,7 @@ const testData1 = {
 
 //-------------------
 
-it("renders the form element", () => {
+it("is rendered in the document", () => {
   render(<ConfessionForm />);
 
   const form = screen.getByRole("form", { name: /form-confession/i });

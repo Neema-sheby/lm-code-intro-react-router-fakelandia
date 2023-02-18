@@ -4,7 +4,7 @@ import InputField from "./InputField";
 
 import { errMsgSubject } from "../ErrorHandler/ErrorMessages";
 
-it("renders the input component", () => {
+it("is rendered in the document", () => {
   render(
     <InputField
       id="confession-subject"

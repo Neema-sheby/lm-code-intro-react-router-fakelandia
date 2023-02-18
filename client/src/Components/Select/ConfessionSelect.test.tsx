@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import ConfessionSelect from "./ConfessionSelect";
 import { errMsgReason } from "../ErrorHandler/ErrorMessages";
 
-it("renders the confessionSelect component", () => {
+it("is rendered in the document", () => {
   render(
     <ConfessionSelect
       value="rudeness"

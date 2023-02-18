@@ -1,7 +1,7 @@
 import { screen, render } from "@testing-library/react";
 import Option from "./Option";
 
-it("renders the option component", () => {
+it("is rendered in the document", () => {
   render(<Option value="I just want to talk" label="I just want to talk" />);
 
   const option = screen.getByRole("option");

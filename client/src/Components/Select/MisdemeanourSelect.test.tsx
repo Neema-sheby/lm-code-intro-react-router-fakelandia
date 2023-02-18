@@ -2,7 +2,7 @@ import { screen, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import MisdemeanourSelect from "./MisdemeanourSelect";
 
-it("renders the MisdemeanourSelect component", () => {
+it("is rendered in the document", () => {
   render(<MisdemeanourSelect setFilteredCriminals={() => {}} />);
 
   const selectFieldMisdemeanour = screen.getByRole("combobox");
