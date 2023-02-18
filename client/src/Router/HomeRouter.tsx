@@ -4,14 +4,16 @@ import LayOut from "../Layout/Layout";
 import Home from "../Pages/Home/Home";
 import Misdemeanours from "../Pages/Misdemeanour/Misdemeanours";
 import Confession from "../Pages/Confession/Confession";
+import NotFound from "../Pages/NotFound/NotFound";
 
 const HomeRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<LayOut />}>
-        <Route index element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="misdemeanours" element={<Misdemeanours />} />
         <Route path="confession" element={<Confession />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
