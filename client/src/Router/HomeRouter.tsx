@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import LayOut from "../Layout/Layout";
-import Home from "../Pages/Home";
+import Home from "../Pages/Home/Home";
 import Misdemeanours from "../Pages/Misdemeanour/Misdemeanours";
 import Confession from "../Pages/Confession/Confession";
 
