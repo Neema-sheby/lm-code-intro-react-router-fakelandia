@@ -7,14 +7,19 @@ const Nav: React.FC = () => {
       <ul className="nav__list">
         <NavItem
           to="/"
+          ariaLabel="home"
           content={
             <svg className="icon icon-home-outline">
               <use xlinkHref="../../public/Svg/home-outline.svg#icon-home-outline"></use>
             </svg>
           }
         />
-        <NavItem to="/misdemeanours" content="Misdemeanours" />
-        <NavItem to="/confession" content="Confession" />
+        <NavItem
+          to="/misdemeanours"
+          ariaLabel="misdemeanours"
+          content="Misdemeanours"
+        />
+        <NavItem to="/confession" ariaLabel="confession" content="Confession" />
       </ul>
     </nav>
   );
