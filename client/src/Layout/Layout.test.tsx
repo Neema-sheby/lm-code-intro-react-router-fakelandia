@@ -9,7 +9,7 @@ it("is rendered in the document", () => {
     </BrowserRouter>
   );
 
-  const layout = screen.getByLabelText("layout");
+  const container = screen.getByLabelText("container");
 
-  expect(layout).toBeInTheDocument();
+  expect(container).toBeInTheDocument();
 });
