@@ -1,5 +1,4 @@
 import React from "react";
-import { matchPath, NavLink, useLocation } from "react-router-dom";
 import NavItem from "./NavItem";
 
 const Nav: React.FC = () => {
