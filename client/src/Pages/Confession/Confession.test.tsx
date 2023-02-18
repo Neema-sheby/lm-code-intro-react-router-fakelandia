@@ -2,7 +2,7 @@ import { screen, render } from "@testing-library/react";
 import Confession from "./Confession";
 
 it("is rendered in the document", () => {
-  render(<Confession />);
+  render(<Confession setPostData={() => {}} />);
 
   const confessionPage = screen.getByLabelText("confession-page");
 
@@ -10,7 +10,7 @@ it("is rendered in the document", () => {
 });
 
 it("renders form in the confession page", () => {
-  render(<Confession />);
+  render(<Confession setPostData={() => {}} />);
 
   const confessionForm = screen.getByRole("form");
 

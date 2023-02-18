@@ -1,6 +1,8 @@
+import React, { useState } from "react";
 import ConfessionForm from "../../Components/Form/ConfessionForm";
+import { ConfessionProp } from "./Confession.types";
 
-const Confession = () => {
+const Confession: React.FC<ConfessionProp> = ({ setPostData }) => {
   return (
     <div aria-label="confession-page" className="confession">
       <p>
@@ -11,7 +13,7 @@ const Confession = () => {
         However, if you're just having a hard day and need to vent then, you're
         welcome to contact us here too. Up to you !
       </p>
-      <ConfessionForm />
+      <ConfessionForm setPostData={setPostData} />
     </div>
   );
 };
