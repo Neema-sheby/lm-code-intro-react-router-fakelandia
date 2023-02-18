@@ -1,6 +1,6 @@
 const HomeRoute = () => {
   return (
-    <div className="home">
+    <div className="home" aria-label="home-page">
       <h1>Welcome to the home of the Justice Department of Fakelandia</h1>
       <p>
         Here you can browse a list of recent misdemeanours commited by our
