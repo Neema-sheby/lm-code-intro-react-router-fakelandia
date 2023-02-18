@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MisdemeanourContext } from "./MisdemeanourContext";
 import { Misdemeanour } from "./Misdemeanours.types";
 import { MisdemeanourEmoji } from "./MisdemeanourEmoji";
-import { fetchData } from "../../Components/FetchData/Fetch";
+import { fetchData } from "../../Components/GetPostData/Fetch";
 import MisdemeanourSelect from "../../Components/Select/MisdemeanourSelect";
 
 import {
