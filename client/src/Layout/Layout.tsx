@@ -5,7 +5,7 @@ import Footer from "./Footer/Footer";
 
 const Layout: React.FC = () => {
   return (
-    <div className="container">
+    <div className="container" aria-label="layout">
       <Header />
       <main className="main">
         <Outlet />
