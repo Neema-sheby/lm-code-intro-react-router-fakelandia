@@ -58,16 +58,6 @@ const Misdemeanours = () => {
             </tr>
           </thead>
           <tbody className="table__body">
-            {isLoading && (
-              <div className="table_loading" aria-label="misdemeanour-loading">
-                Loading ...
-              </div>
-            )}
-            {error && (
-              <div className="table_error" aria-label="misdemeanour-error">
-                {error}
-              </div>
-            )}
             {filteredCriminals.map((criminal, i) => {
               return (
                 <tr key={i + "midemeanour"} className="table__row">
@@ -89,6 +79,16 @@ const Misdemeanours = () => {
             })}
           </tbody>
         </table>
+        {isLoading && (
+          <div className="table_loading" aria-label="misdemeanour-loading">
+            Loading ...
+          </div>
+        )}
+        {error && (
+          <div className="table_error" aria-label="misdemeanour-error">
+            {error}
+          </div>
+        )}
       </div>
     </MisdemeanourContext.Provider>
   );
