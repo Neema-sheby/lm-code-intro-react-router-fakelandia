@@ -88,14 +88,12 @@ it("renders 500 error status message", async () => {
 
   const misdemeanoursPage = screen.getByLabelText("misdemeanour-page");
 
-  const tableBody = within(misdemeanoursPage).getAllByRole("rowgroup");
-
   await waitFor(() =>
-    within(tableBody[1]).getByLabelText("misdemeanour-error")
+    within(misdemeanoursPage).getByLabelText("misdemeanour-error")
   );
 
   expect(
-    within(tableBody[1]).getByLabelText("misdemeanour-error")
+    within(misdemeanoursPage).getByLabelText("misdemeanour-error")
   ).toHaveTextContent(ErrorMessagesAPI.error500);
 });
 
@@ -112,14 +110,12 @@ it("renders 404 error message when error status is 404", async () => {
 
   const misdemeanoursPage = screen.getByLabelText("misdemeanour-page");
 
-  const tableBody = within(misdemeanoursPage).getAllByRole("rowgroup");
-
   await waitFor(() =>
-    within(tableBody[1]).getByLabelText("misdemeanour-error")
+    within(misdemeanoursPage).getByLabelText("misdemeanour-error")
   );
 
   expect(
-    within(tableBody[1]).getByLabelText("misdemeanour-error")
+    within(misdemeanoursPage).getByLabelText("misdemeanour-error")
   ).toHaveTextContent(ErrorMessagesAPI.error404);
 });
 
@@ -136,13 +132,55 @@ it("renders 418 error status message", async () => {
 
   const misdemeanoursPage = screen.getByLabelText("misdemeanour-page");
 
-  const tableBody = within(misdemeanoursPage).getAllByRole("rowgroup");
-
   await waitFor(() =>
-    within(tableBody[1]).getByLabelText("misdemeanour-error")
+    within(misdemeanoursPage).getByLabelText("misdemeanour-error")
   );
 
   expect(
-    within(tableBody[1]).getByLabelText("misdemeanour-error")
+    within(misdemeanoursPage).getByLabelText("misdemeanour-error")
   ).toHaveTextContent(ErrorMessagesAPI.error418);
+});
+
+it("renders the Loading... message before fetching data and disappears after fetching data", async () => {
+  render(<Misdemeanours />);
+
+  const user = userEvent.setup();
+
+  const misdemeanoursPage = screen.getByLabelText("misdemeanour-page");
+  const tableBody = within(misdemeanoursPage).getAllByRole("rowgroup");
+  const loading = screen.getByLabelText("misdemeanour-loading");
+
+  expect(loading).toBeInTheDocument();
+  expect(loading).toHaveTextContent("Loading ...");
+
+  await waitFor(() => within(tableBody[1]).getAllByRole("row"));
+
+  expect(loading).not.toBeInTheDocument();
+});
+
+it("renders the Loading... message before fetching data and disappears when error appears", async () => {
+  server.use(
+    rest.get(
+      `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`,
+      (req, res, ctx) => {
+        return res(ctx.status(404));
+      }
+    )
+  );
+  render(<Misdemeanours />);
+
+  const misdemeanoursPage = screen.getByLabelText("misdemeanour-page");
+  const loading = screen.getByLabelText("misdemeanour-loading");
+
+  expect(loading).toBeInTheDocument();
+  expect(loading).toHaveTextContent("Loading ...");
+
+  await waitFor(() =>
+    within(misdemeanoursPage).getByLabelText("misdemeanour-error")
+  );
+
+  expect(loading).not.toBeInTheDocument();
+  expect(
+    within(misdemeanoursPage).getByLabelText("misdemeanour-error")
+  ).toHaveTextContent(ErrorMessagesAPI.error404);
 });
