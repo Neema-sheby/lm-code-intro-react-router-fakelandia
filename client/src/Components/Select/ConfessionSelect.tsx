@@ -44,7 +44,7 @@ const ConfessionSelect: React.FC<ConfessionSelectProp> = ({
                   label={misdemeanour}
                 />
               ))}
-              <Option value="I just want to talk" label="I just want to talk" />
+              <Option value="just-talk" label="I just want to talk" />
             </>
           }
         </select>
