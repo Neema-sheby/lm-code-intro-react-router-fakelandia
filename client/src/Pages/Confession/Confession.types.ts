@@ -1,4 +1,5 @@
 import { MisdemeanourKind } from "../Misdemeanour/Misdemeanours.types";
+import { PostResponseDataType } from "../../Components/GetPostData/DefaultPostData";
 
 export type ConfessionFormDataType = {
   subject: string;
@@ -6,12 +7,6 @@ export type ConfessionFormDataType = {
   details: string;
 };
 
-export type PostResponseDataType = {
-  success: boolean;
-  justTalked: boolean;
-  message: string;
-};
-
 export interface ConfessionProp {
-  setPostData: (T: Array<PostResponseDataType>) => void;
+  setPostData: (T: PostResponseDataType) => void;
 }

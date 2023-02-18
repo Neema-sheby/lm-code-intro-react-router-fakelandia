@@ -1,3 +1,7 @@
 import { createContext } from "react";
-import { PostResponseDataType } from "../Pages/Confession/Confession.types";
-export const HomeRouterContext = createContext<Array<PostResponseDataType>>([]);
+import {
+  PostResponseDataType,
+  defaultPostData,
+} from "../Components/GetPostData/DefaultPostData";
+export const HomeRouterContext =
+  createContext<PostResponseDataType>(defaultPostData);

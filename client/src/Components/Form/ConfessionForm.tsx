@@ -3,8 +3,12 @@ import InputField from "../Input/InputField";
 import ConfessionSelect from "../Select/ConfessionSelect";
 import {
   ConfessionFormDataType,
-  PostResponseDataType,
+  ConfessionProp,
 } from "../../Pages/Confession/Confession.types";
+import {
+  PostResponseDataType,
+  defaultPostData,
+} from "../GetPostData/DefaultPostData";
 import TextareaField from "../TextArea/TextAreaField";
 import Button from "../Button/ButtonForm";
 import { ErrorLogs } from "../ErrorHandler/ErrorMessages";
@@ -14,7 +18,6 @@ import {
   validateText,
 } from "../ErrorHandler/ErrorValidation";
 import { postData } from "../GetPostData/Post";
-import { ConfessionProp } from "../../Pages/Confession/Confession.types";
 
 const defaultConfessionFormData = {
   subject: "",
@@ -37,6 +40,7 @@ const ConfessionForm: React.FC<ConfessionProp> = ({ setPostData }) => {
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const getPostData = async () => {
+    setPostData(defaultPostData);
     const postResponse = await postData(
       "http://localhost:8080/api/confess",
       value,
@@ -46,7 +50,6 @@ const ConfessionForm: React.FC<ConfessionProp> = ({ setPostData }) => {
     if (postResponse) {
       setPostData(postResponse);
       setSubmitted(true);
-      console.log(postResponse);
     } else {
       setSubmitted(false);
     }

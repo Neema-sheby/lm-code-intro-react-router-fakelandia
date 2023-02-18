@@ -5,11 +5,15 @@ import Home from "../Pages/Home/Home";
 import Misdemeanours from "../Pages/Misdemeanour/Misdemeanours";
 import Confession from "../Pages/Confession/Confession";
 import NotFound from "../Pages/NotFound/NotFound";
-import { PostResponseDataType } from "../Pages/Confession/Confession.types";
+import {
+  PostResponseDataType,
+  defaultPostData,
+} from "../Components/GetPostData/DefaultPostData";
 import { HomeRouterContext } from "./HomeRouterContext";
 
 const HomeRouter = () => {
-  const [postData, setPostData] = useState<Array<PostResponseDataType>>([]);
+  const [postData, setPostData] =
+    useState<PostResponseDataType>(defaultPostData);
 
   return (
     <HomeRouterContext.Provider value={postData}>

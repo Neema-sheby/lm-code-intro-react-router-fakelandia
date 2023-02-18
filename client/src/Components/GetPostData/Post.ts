@@ -1,8 +1,6 @@
 import { ErrorMessagesAPI } from "../ErrorHandler/ErrorMessages";
-import {
-  PostResponseDataType,
-  ConfessionFormDataType,
-} from "../../Pages/Confession/Confession.types";
+import { PostResponseDataType } from "./DefaultPostData";
+import { ConfessionFormDataType } from "../../Pages/Confession/Confession.types";
 
 const getErrorMessage = ({ message }: { message: string }) => {
   console.error(message);
@@ -12,7 +10,7 @@ export const postData = async (
   url: string,
   data: ConfessionFormDataType,
   callbackError: (U: string) => void
-): Promise<Array<PostResponseDataType> | undefined> => {
+): Promise<PostResponseDataType | undefined> => {
   const postRequestOptions: RequestInit = {
     method: "POST",
     headers: {
