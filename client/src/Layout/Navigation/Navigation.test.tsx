@@ -22,7 +22,9 @@ it("it renders home page when user clicks on home navigation link and an `active
   );
   const user = userEvent.setup();
   const navListLinks = screen.getAllByRole("listitem");
-  const homePageLink = within(navListLinks[0]).getByRole("link");
+  const homePageLink = within(navListLinks[0]).getByRole("link", {
+    name: /home/i,
+  });
 
   // user clicks on the home page link
   await user.click(homePageLink);
@@ -41,7 +43,9 @@ it("it renders misdemeanours page when user clicks on misdemeanours navigation l
   );
   const user = userEvent.setup();
   const navListLinks = screen.getAllByRole("listitem");
-  const misdemeanoursPageLink = within(navListLinks[1]).getByRole("link");
+  const misdemeanoursPageLink = within(navListLinks[1]).getByRole("link", {
+    name: /misdemeanours/i,
+  });
 
   expect(misdemeanoursPageLink).not.toHaveClass("active");
 
@@ -62,7 +66,9 @@ it("it renders confession page when user clicks on confession navigation link an
   );
   const user = userEvent.setup();
   const navListLinks = screen.getAllByRole("listitem");
-  const confessionPageLink = within(navListLinks[2]).getByRole("link");
+  const confessionPageLink = within(navListLinks[2]).getByRole("link", {
+    name: /confession/i,
+  });
 
   expect(confessionPageLink).not.toHaveClass("active");
 
