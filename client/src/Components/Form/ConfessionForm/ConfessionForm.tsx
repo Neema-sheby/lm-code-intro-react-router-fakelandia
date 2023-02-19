@@ -5,14 +5,13 @@ import {
   ConfessionFormDataType,
   ConfessionProp,
 } from "./ConfessionFormDataType.types";
-import { defaultPostData } from "../../GetPostData/DefaultPostData";
 import TextareaField from "../../TextArea/TextAreaField";
 import Button from "../../Button/ButtonForm";
 import { ErrorLogs } from "../../ErrorHandler/ErrorMessages";
 import {
   validateSubject,
   validateReasonSelection,
-  validateText,
+  validateTextArea,
 } from "../../ErrorHandler/ErrorValidation";
 import { postData } from "../../GetPostData/Post";
 import { defaultConfessionFormData } from "./ConfessionFormDataType.types";
@@ -42,7 +41,7 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
     );
 
     if (postResponse) {
-      addNewMisdemeanourData(postResponse);
+      addNewMisdemeanourData(value);
       setSubmitted(true);
     } else {
       setSubmitted(false);
@@ -104,7 +103,7 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
           placeholder="textarea"
           onChange={(e) => {
             setSubmitted(false);
-            setError({ ...error, details: validateText(e.target.value) });
+            setError({ ...error, details: validateTextArea(e.target.value) });
             setValue({ ...value, details: e.target.value });
           }}
           onValidation={error.details}
@@ -124,7 +123,10 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
           }
         />
       </form>
-      <div className="form__submitted-msg">{submitted && "Message Send"}</div>
+      <div className="form__submitted-msg">
+        {submitted && <div>Message Send</div>}
+        {postResponseError && <div>{postResponseError}</div>}
+      </div>
     </>
   );
 };
