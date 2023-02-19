@@ -5,25 +5,27 @@ import Home from "../Pages/Home/Home";
 import Misdemeanours from "../Pages/Misdemeanour/Misdemeanours";
 import Confession from "../Pages/Confession/Confession";
 import NotFound from "../Pages/NotFound/NotFound";
-import {
-  PostResponseDataType,
-  defaultPostData,
-} from "../Components/GetPostData/DefaultPostData";
+import { defaultConfessionFormData } from "../Components/Form/ConfessionForm/ConfessionFormDataType.types";
 import { HomeRouterContext } from "./HomeRouterContext";
+import { ConfessionFormDataType } from "../Components/Form/ConfessionForm/ConfessionFormDataType.types";
 
 const HomeRouter = () => {
-  const [postData, setPostData] =
-    useState<PostResponseDataType>(defaultPostData);
+  const [newMisdemeanourData, addNewMisdemeanourData] =
+    useState<ConfessionFormDataType>(defaultConfessionFormData);
 
   return (
-    <HomeRouterContext.Provider value={postData}>
+    <HomeRouterContext.Provider value={newMisdemeanourData}>
       <Routes>
         <Route path="/" element={<LayOut />}>
           <Route path="/" element={<Home />} />
           <Route path="misdemeanours" element={<Misdemeanours />} />
           <Route
             path="confession"
-            element={<Confession setPostData={(data) => setPostData(data)} />}
+            element={
+              <Confession
+                addNewMisdemeanourData={(data) => addNewMisdemeanourData(data)}
+              />
+            }
           />
           <Route path="*" element={<NotFound />} />
         </Route>

@@ -1,29 +1,21 @@
 import React, { useState } from "react";
-import InputField from "../Input/InputField";
-import ConfessionSelect from "../Select/ConfessionSelect";
+import InputField from "../../Input/InputField";
+import ConfessionSelect from "../../Select/ConfessionSelect";
 import {
   ConfessionFormDataType,
   ConfessionProp,
-} from "../../Pages/Confession/Confession.types";
-import {
-  PostResponseDataType,
-  defaultPostData,
-} from "../GetPostData/DefaultPostData";
-import TextareaField from "../TextArea/TextAreaField";
-import Button from "../Button/ButtonForm";
-import { ErrorLogs } from "../ErrorHandler/ErrorMessages";
+} from "./ConfessionFormDataType.types";
+import { defaultPostData } from "../../GetPostData/DefaultPostData";
+import TextareaField from "../../TextArea/TextAreaField";
+import Button from "../../Button/ButtonForm";
+import { ErrorLogs } from "../../ErrorHandler/ErrorMessages";
 import {
   validateSubject,
   validateReasonSelection,
   validateText,
-} from "../ErrorHandler/ErrorValidation";
-import { postData } from "../GetPostData/Post";
-
-const defaultConfessionFormData = {
-  subject: "",
-  reason: "",
-  details: "",
-};
+} from "../../ErrorHandler/ErrorValidation";
+import { postData } from "../../GetPostData/Post";
+import { defaultConfessionFormData } from "./ConfessionFormDataType.types";
 
 const defaultErrorLog: ErrorLogs = {
   subject: [],
@@ -31,7 +23,9 @@ const defaultErrorLog: ErrorLogs = {
   details: [],
 };
 
-const ConfessionForm: React.FC<ConfessionProp> = ({ setPostData }) => {
+const ConfessionForm: React.FC<ConfessionProp> = ({
+  addNewMisdemeanourData,
+}) => {
   const [value, setValue] = useState<ConfessionFormDataType>(
     defaultConfessionFormData
   );
@@ -40,7 +34,7 @@ const ConfessionForm: React.FC<ConfessionProp> = ({ setPostData }) => {
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const getPostData = async () => {
-    setPostData(defaultPostData);
+    addNewMisdemeanourData(defaultConfessionFormData);
     const postResponse = await postData(
       "http://localhost:8080/api/confess",
       value,
@@ -48,7 +42,7 @@ const ConfessionForm: React.FC<ConfessionProp> = ({ setPostData }) => {
     );
 
     if (postResponse) {
-      setPostData(postResponse);
+      addNewMisdemeanourData(postResponse);
       setSubmitted(true);
     } else {
       setSubmitted(false);
