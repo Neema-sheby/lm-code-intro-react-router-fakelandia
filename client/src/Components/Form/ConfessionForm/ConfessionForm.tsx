@@ -15,6 +15,13 @@ import {
 } from "../../ErrorHandler/ErrorValidation";
 import { postData } from "../../GetPostData/Post";
 import { defaultConfessionFormData } from "./ConfessionFormDataType.types";
+import {
+  Misdemeanour,
+  MisdemeanourKind,
+  defaultMisdemeanour,
+} from "../../../Pages/Misdemeanour/Misdemeanours.types";
+
+import { getNumber } from "../../ErrorHandler/ErrorValidation";
 
 const defaultErrorLog: ErrorLogs = {
   subject: [],
@@ -32,8 +39,18 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
   const [postResponseError, setPostResponseError] = useState<string>("");
   const [submitted, setSubmitted] = useState<boolean>(false);
 
+  //typeguard
+  const isMisdemeanour = (value: string): value is MisdemeanourKind => {
+    return (
+      value === "rudeness" ||
+      value === "vegetables" ||
+      value === "lift" ||
+      value === "united"
+    );
+  };
+
   const getPostData = async () => {
-    addNewMisdemeanourData(defaultConfessionFormData);
+    addNewMisdemeanourData(defaultMisdemeanour);
     const postResponse = await postData(
       "http://localhost:8080/api/confess",
       value,
@@ -41,8 +58,17 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
     );
 
     if (postResponse) {
-      addNewMisdemeanourData(value);
-      setSubmitted(true);
+      if (isMisdemeanour(value.reason)) {
+        console.log("hfdhdfhdh");
+        const data: Misdemeanour = {
+          citizenId: getNumber(value.details),
+          misdemeanour: value.reason,
+          date: new Date().toLocaleDateString(),
+        };
+
+        addNewMisdemeanourData(data);
+        setSubmitted(true);
+      }
     } else {
       setSubmitted(false);
     }
