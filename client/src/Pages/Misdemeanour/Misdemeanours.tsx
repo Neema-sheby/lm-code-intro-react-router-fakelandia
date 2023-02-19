@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MisdemeanourContext } from "./MisdemeanourContext";
 import { Misdemeanour, Criminal } from "./Misdemeanours.types";
 import { MisdemeanourEmoji } from "./MisdemeanourEmoji";
@@ -12,18 +12,16 @@ import {
   IMAGE_HEIGHT,
 } from "../../Configuration/Config";
 
-const Misdemeanours = () => {
-  const postData = useContext(HomeRouterContext);
-  if (postData) {
-    console.log(postData);
-  }
-
+const Misdemeanours: React.FC = () => {
   const [criminals, setCriminals] = useState<Array<Criminal>>([]);
   const [filteredCriminals, setFilteredCriminals] = useState<Array<Criminal>>(
     []
   );
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // Add the confession data to the list of misdemeanourse
+  const newMisdemeanourData = useContext(HomeRouterContext);
 
   const getCrimeData = async () => {
     setError("");
@@ -33,6 +31,7 @@ const Misdemeanours = () => {
         `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`,
         setError
       );
+
     if (crimeData) {
       setIsLoading(false);
       const dataArr: Array<Criminal> = crimeData.misdemeanours.map((mis, i) => {
@@ -50,6 +49,29 @@ const Misdemeanours = () => {
       });
       setCriminals(dataArr);
       setFilteredCriminals(dataArr);
+
+      const { citizenId, misdemeanour, date } = newMisdemeanourData;
+
+      if (citizenId && misdemeanour && date) {
+        console.log(newMisdemeanourData);
+        const newListOfCriminals = [
+          {
+            misdemeanours: {
+              citizenId: citizenId,
+              misdemeanour: misdemeanour,
+              date: date,
+            },
+            punishment: {
+              src: `https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}`,
+              alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
+            },
+          },
+          ...dataArr,
+        ];
+
+        //setCriminals(newListOfCriminals);
+        setFilteredCriminals(newListOfCriminals);
+      }
     } else {
       setIsLoading(false);
     }

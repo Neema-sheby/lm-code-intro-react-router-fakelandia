@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import InputField from "../../Input/InputField";
 import ConfessionSelect from "../../Select/ConfessionSelect";
 import {
@@ -22,6 +22,7 @@ import {
 } from "../../../Pages/Misdemeanour/Misdemeanours.types";
 
 import { getNumber } from "../../ErrorHandler/ErrorValidation";
+import { HomeRouterContext } from "../../../Router/HomeRouterContext";
 
 const defaultErrorLog: ErrorLogs = {
   subject: [],
@@ -38,6 +39,8 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
   const [error, setError] = useState<ErrorLogs>(defaultErrorLog);
   const [postResponseError, setPostResponseError] = useState<string>("");
   const [submitted, setSubmitted] = useState<boolean>(false);
+
+  const context = useContext(HomeRouterContext);
 
   //typeguard
   const isMisdemeanour = (value: string): value is MisdemeanourKind => {
@@ -57,15 +60,17 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
       setPostResponseError
     );
 
-    if (postResponse) {
+    if (
+      postResponse &&
+      postResponse.success === true &&
+      postResponse.justTalked === false
+    ) {
       if (isMisdemeanour(value.reason)) {
-        console.log("hfdhdfhdh");
         const data: Misdemeanour = {
           citizenId: getNumber(value.details),
           misdemeanour: value.reason,
-          date: new Date().toLocaleDateString(),
+          date: new Date().toLocaleDateString("en-US"),
         };
-
         addNewMisdemeanourData(data);
         setSubmitted(true);
       }
