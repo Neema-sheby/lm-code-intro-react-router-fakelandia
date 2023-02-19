@@ -5,13 +5,15 @@ import Home from "../Pages/Home/Home";
 import Misdemeanours from "../Pages/Misdemeanour/Misdemeanours";
 import Confession from "../Pages/Confession/Confession";
 import NotFound from "../Pages/NotFound/NotFound";
-import { defaultConfessionFormData } from "../Components/Form/ConfessionForm/ConfessionFormDataType.types";
 import { HomeRouterContext } from "./HomeRouterContext";
-import { ConfessionFormDataType } from "../Components/Form/ConfessionForm/ConfessionFormDataType.types";
+import {
+  Misdemeanour,
+  defaultMisdemeanour,
+} from "../Pages/Misdemeanour/Misdemeanours.types";
 
 const HomeRouter = () => {
   const [newMisdemeanourData, addNewMisdemeanourData] =
-    useState<ConfessionFormDataType>(defaultConfessionFormData);
+    useState<Misdemeanour>(defaultMisdemeanour);
 
   return (
     <HomeRouterContext.Provider value={newMisdemeanourData}>

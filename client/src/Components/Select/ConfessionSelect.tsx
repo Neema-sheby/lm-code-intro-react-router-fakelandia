@@ -8,10 +8,6 @@ import {
 } from "../../Pages/Misdemeanour/Misdemeanours.types";
 import { MisdemeanourEmoji } from "../../Pages/Misdemeanour/MisdemeanourEmoji";
 
-const isMisdemeanourKind = (data: string): data is MisdemeanourKind => {
-  return (data as MisdemeanourKind) !== undefined;
-};
-
 interface ConfessionSelectProp {
   value: string | MisdemeanourKind | "I just want to talk";
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
