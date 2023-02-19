@@ -21,6 +21,12 @@ const checkNumCharacters = (
   }
 };
 
+export const getNumber = (data: string) => {
+  let num: string = "";
+  if (data.match(/^\d+$/g)) num = data;
+  return parseInt(num);
+};
+
 // validate input entered in subject
 export const validateSubject = (data: string): Array<string> => {
   let error = [];
