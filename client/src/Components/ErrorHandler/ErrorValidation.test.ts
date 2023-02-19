@@ -1,8 +1,8 @@
-import { errMsgSubject, errMsgReason, errMsgText } from "./ErrorMessages";
+import { errMsgSubject, errMsgReason, errMsgTextArea } from "./ErrorMessages";
 import {
   validateSubject,
   validateReasonSelection,
-  validateText,
+  validateTextArea,
 } from "./ErrorValidation";
 
 describe("Checking the data entered in the subject field", () => {
@@ -89,30 +89,30 @@ describe("Checking select field of confession form", () => {
 });
 
 describe("Checking the data entered in the textarea", () => {
-  test(`returns [${errMsgText.errCharCount}] for entering less than 20 characters`, () => {
-    expect(validateText("Sorry")).toStrictEqual([errMsgText.errCharCount]);
+  test(`returns [${errMsgTextArea.errDigitCount}] for number of digits less than two`, () => {
+    expect(validateTextArea("1")).toStrictEqual([errMsgTextArea.errDigitCount]);
   });
 
-  test(`returns [${errMsgText.errCharCount}] for entering more than 200 characters`, () => {
-    expect(
-      validateText(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      )
-    ).toStrictEqual([errMsgText.errCharCount]);
-  });
-
-  test(`returns [${errMsgText.errEmpty},${errMsgText.errCharCount}] for not entering any details in the textarea`, () => {
-    expect(validateText("")).toStrictEqual([
-      errMsgText.errEmpty,
-      errMsgText.errCharCount,
+  test(`returns [${errMsgTextArea.errValidNumber}] for entering alphabets`, () => {
+    expect(validateTextArea("sorry")).toStrictEqual([
+      errMsgTextArea.errValidNumber,
     ]);
   });
 
-  test("returns an empty array for entering text in textarea", () => {
-    expect(
-      validateText(
-        "I behaved rudely to a citzen in Fakelandia. I will make sure I don't do it next time. I will be kind to all the people of Fakelandia"
-      )
-    ).toStrictEqual([]);
+  test(`returns [${errMsgTextArea.errValidNumber}] for entering special characters`, () => {
+    expect(validateTextArea("1234/")).toStrictEqual([
+      errMsgTextArea.errValidNumber,
+    ]);
+  });
+
+  test(`returns [${errMsgTextArea.errEmpty},${errMsgTextArea.errValidNumber}] for not entering any number`, () => {
+    expect(validateTextArea("")).toStrictEqual([
+      errMsgTextArea.errEmpty,
+      errMsgTextArea.errValidNumber,
+    ]);
+  });
+
+  test("returns an empty array for number of digits greater than or equal to two", () => {
+    expect(validateTextArea("123456")).toStrictEqual([]);
   });
 });

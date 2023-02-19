@@ -1,11 +1,10 @@
 import { MisdemeanourKind } from "../../Pages/Misdemeanour/Misdemeanours.types";
-import { errMsgSubject, errMsgReason, errMsgText } from "./ErrorMessages";
+import { errMsgSubject, errMsgReason, errMsgTextArea } from "./ErrorMessages";
 
 import {
   MIN_SUB_CHAR,
   MAX_SUB_CHAR,
   MIN_TXTAREA_CHAR,
-  MAX_TXTAREA_CHAR,
 } from "../../Configuration/Config";
 
 // check character count
@@ -55,15 +54,22 @@ export const validateReasonSelection = (
 };
 
 /// validate details entered in text area
-export const validateText = (data: string): Array<string> => {
+export const validateTextArea = (data: string): Array<string> => {
   let error = [];
+  let isValidNumber: boolean = false;
 
   if (!data) {
-    error.push(errMsgText.errEmpty);
+    error.push(errMsgTextArea.errEmpty);
   }
 
-  if (!checkNumCharacters(MIN_TXTAREA_CHAR, MAX_TXTAREA_CHAR, data)) {
-    error.push(errMsgText.errCharCount);
+  if (!data.match(/^\d+$/g)) {
+    error.push(errMsgTextArea.errValidNumber);
+  } else {
+    isValidNumber = true;
+  }
+
+  if (isValidNumber && data.length < 2) {
+    error.push(errMsgTextArea.errDigitCount);
   }
   return error;
 };
