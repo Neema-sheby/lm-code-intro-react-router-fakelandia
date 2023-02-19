@@ -2,7 +2,7 @@ import { screen, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TextareaField from "./TextAreaField";
 
-import { errMsgText } from "../ErrorHandler/ErrorMessages";
+import { errMsgTextArea } from "../ErrorHandler/ErrorMessages";
 
 it("is rendered in the document", () => {
   render(
@@ -33,7 +33,7 @@ it("calls it's onChange function", async () => {
       value=""
       placeholder="textarea"
       onChange={mock}
-      onValidation={[errMsgText.errCharCount]}
+      onValidation={[]}
     />
   );
 
@@ -74,14 +74,14 @@ it("displays the error message passed through props", () => {
       id="confession-textarea"
       ContainerClassName="=textarea__confession-container"
       label=""
-      value="Sorry"
+      value="A"
       placeholder="textarea"
       onChange={() => {}}
-      onValidation={[errMsgText.errCharCount]}
+      onValidation={[errMsgTextArea.errValidNumber]}
     />
   );
 
   const errorMsgItem = screen.getByRole("listitem");
 
-  expect(errorMsgItem).toHaveTextContent(errMsgText.errCharCount);
+  expect(errorMsgItem).toHaveTextContent(errMsgTextArea.errValidNumber);
 });

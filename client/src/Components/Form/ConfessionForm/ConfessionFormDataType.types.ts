@@ -1,4 +1,7 @@
-import { MisdemeanourKind } from "../../../Pages/Misdemeanour/Misdemeanours.types";
+import {
+  MisdemeanourKind,
+  Misdemeanour,
+} from "../../../Pages/Misdemeanour/Misdemeanours.types";
 
 export const defaultConfessionFormData = {
   subject: "",
@@ -13,5 +16,5 @@ export type ConfessionFormDataType = {
 };
 
 export interface ConfessionProp {
-  addNewMisdemeanourData: (T: ConfessionFormDataType) => void;
+  addNewMisdemeanourData: (T: Misdemeanour) => void;
 }
