@@ -74,14 +74,14 @@ it("displays the error message passed through props", () => {
       id="confession-textarea"
       ContainerClassName="=textarea__confession-container"
       label=""
-      value="A"
+      value="Sorry"
       placeholder="textarea"
       onChange={() => {}}
-      onValidation={[errMsgTextArea.errValidNumber]}
+      onValidation={[errMsgTextArea.errCharCount]}
     />
   );
 
   const errorMsgItem = screen.getByRole("listitem");
 
-  expect(errorMsgItem).toHaveTextContent(errMsgTextArea.errValidNumber);
+  expect(errorMsgItem).toHaveTextContent(errMsgTextArea.errCharCount);
 });

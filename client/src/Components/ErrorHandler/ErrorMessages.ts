@@ -18,8 +18,7 @@ interface ErrMsgReason {
 
 interface ErrMsgTextArea {
   errEmpty: ErrorMsg;
-  errValidNumber: ErrorMsg;
-  errDigitCount: ErrorMsg;
+  errCharCount: ErrorMsg;
 }
 
 // Error messages for subject input field
@@ -37,10 +36,8 @@ export const errMsgReason: ErrMsgReason = {
 
 // Error messages for textarea input field
 export const errMsgTextArea: ErrMsgTextArea = {
-  errEmpty: "⛔️ Error : Field is empty ! Please enter a citizen id!",
-  errValidNumber: "⛔️ Error : Please enter a valid number for citizen id!",
-  errDigitCount:
-    "⛔️ Error : Number of digits of citizen id must be greater than or equal to 2 !",
+  errEmpty: "⛔️ Error : Field is empty !",
+  errCharCount: "⛔️ Error : Number of Characters must be between 20 and 100 !",
 };
 
 // Error messages based on response from API

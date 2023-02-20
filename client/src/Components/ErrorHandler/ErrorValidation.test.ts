@@ -89,30 +89,32 @@ describe("Checking select field of confession form", () => {
 });
 
 describe("Checking the data entered in the textarea", () => {
-  test(`returns [${errMsgTextArea.errDigitCount}] for number of digits less than two`, () => {
-    expect(validateTextArea("1")).toStrictEqual([errMsgTextArea.errDigitCount]);
-  });
-
-  test(`returns [${errMsgTextArea.errValidNumber}] for entering alphabets`, () => {
-    expect(validateTextArea("sorry")).toStrictEqual([
-      errMsgTextArea.errValidNumber,
+  test(`returns [${errMsgTextArea.errCharCount}] for entering less than 20 characters`, () => {
+    expect(validateTextArea("Sorry")).toStrictEqual([
+      errMsgTextArea.errCharCount,
     ]);
   });
 
-  test(`returns [${errMsgTextArea.errValidNumber}] for entering special characters`, () => {
-    expect(validateTextArea("1234/")).toStrictEqual([
-      errMsgTextArea.errValidNumber,
-    ]);
+  test(`returns [${errMsgTextArea.errCharCount}] for entering more than 100 characters`, () => {
+    expect(
+      validateTextArea(
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      )
+    ).toStrictEqual([errMsgTextArea.errCharCount]);
   });
 
-  test(`returns [${errMsgTextArea.errEmpty},${errMsgTextArea.errValidNumber}] for not entering any number`, () => {
+  test(`returns [${errMsgTextArea.errEmpty},${errMsgTextArea.errCharCount}] for not entering any details in the textarea`, () => {
     expect(validateTextArea("")).toStrictEqual([
       errMsgTextArea.errEmpty,
-      errMsgTextArea.errValidNumber,
+      errMsgTextArea.errCharCount,
     ]);
   });
 
-  test("returns an empty array for number of digits greater than or equal to two", () => {
-    expect(validateTextArea("123456")).toStrictEqual([]);
+  test("returns an empty array for entering text in textarea", () => {
+    expect(
+      validateTextArea(
+        "I behaved rudely to a citzen in Fakelandia. I will make sure I don't do it next time."
+      )
+    ).toStrictEqual([]);
   });
 });

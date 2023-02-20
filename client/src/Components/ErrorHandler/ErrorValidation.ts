@@ -5,6 +5,7 @@ import {
   MIN_SUB_CHAR,
   MAX_SUB_CHAR,
   MIN_TXTAREA_CHAR,
+  MAX_TXTAREA_CHAR,
 } from "../../Configuration/Config";
 
 // check character count
@@ -62,20 +63,13 @@ export const validateReasonSelection = (
 /// validate details entered in text area
 export const validateTextArea = (data: string): Array<string> => {
   let error = [];
-  let isValidNumber: boolean = false;
 
   if (!data) {
     error.push(errMsgTextArea.errEmpty);
   }
 
-  if (!data.match(/^\d+$/g)) {
-    error.push(errMsgTextArea.errValidNumber);
-  } else {
-    isValidNumber = true;
-  }
-
-  if (isValidNumber && data.length < MIN_TXTAREA_CHAR) {
-    error.push(errMsgTextArea.errDigitCount);
+  if (!checkNumCharacters(MIN_TXTAREA_CHAR, MAX_TXTAREA_CHAR, data)) {
+    error.push(errMsgTextArea.errCharCount);
   }
   return error;
 };

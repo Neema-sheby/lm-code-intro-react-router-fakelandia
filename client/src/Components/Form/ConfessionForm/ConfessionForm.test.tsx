@@ -37,7 +37,8 @@ const mock = jest.fn();
 const testData1 = {
   subject: "confession",
   reason: "rudeness",
-  details: "12345678",
+  details:
+    "I behaved rudely to a citzen in Fakelandia. I will make sure I don't do it next time.",
 };
 
 //-------------------
@@ -223,7 +224,7 @@ it("has button disabled for not selecting an option", async () => {
 });
 //-------------------textarea field test
 
-it("displays error message for entering a single digit number in textarea", async () => {
+it("displays error message for typing less than 20 characters in the textarea", async () => {
   const user = userEvent.setup();
 
   render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
@@ -231,14 +232,14 @@ it("displays error message for entering a single digit number in textarea", asyn
   const textBoxes = screen.getAllByRole("textbox");
 
   //user types in textarea field
-  await user.type(textBoxes[1], "6");
+  await user.type(textBoxes[1], "Sorry");
 
   const errorMsgItem = screen.getByRole("listitem");
 
-  expect(errorMsgItem).toHaveTextContent(errMsgTextArea.errDigitCount);
+  expect(errorMsgItem).toHaveTextContent(errMsgTextArea.errCharCount);
 });
 
-it("displays error message for typing an alphabet in the textarea", async () => {
+it("displays error message for typing more than 100 characters in the textarea", async () => {
   const user = userEvent.setup();
 
   render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
@@ -246,11 +247,14 @@ it("displays error message for typing an alphabet in the textarea", async () => 
   const textBoxes = screen.getAllByRole("textbox");
 
   //user types in textarea field
-  await user.type(textBoxes[1], "A");
+  await user.type(
+    textBoxes[1],
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  );
 
   const errorMsgItem = screen.getByRole("listitem");
 
-  expect(errorMsgItem).toHaveTextContent(errMsgTextArea.errValidNumber);
+  expect(errorMsgItem).toHaveTextContent(errMsgTextArea.errCharCount);
 });
 
 it("displays error messages for clearing the textarea after typing", async () => {
@@ -261,7 +265,7 @@ it("displays error messages for clearing the textarea after typing", async () =>
   const textBoxes = screen.getAllByRole("textbox");
 
   //user types in textarea field
-  await user.type(textBoxes[1], "1112");
+  await user.type(textBoxes[1], "Forgive me please. I will not repeat");
 
   //user clears textarea field
   await user.clear(textBoxes[1]);
@@ -269,10 +273,10 @@ it("displays error messages for clearing the textarea after typing", async () =>
   const errorMsgItems = screen.getAllByRole("listitem");
 
   expect(errorMsgItems[0]).toHaveTextContent(errMsgTextArea.errEmpty);
-  expect(errorMsgItems[1]).toHaveTextContent(errMsgTextArea.errValidNumber);
+  expect(errorMsgItems[1]).toHaveTextContent(errMsgTextArea.errCharCount);
 });
 
-it("has button disabled if data entered in textarea has errors", async () => {
+it("has button disabled if textarea values has errors", async () => {
   const user = userEvent.setup();
 
   render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
@@ -280,13 +284,13 @@ it("has button disabled if data entered in textarea has errors", async () => {
   const textBoxes = screen.getAllByRole("textbox");
 
   //user types in textarea field
-  await user.type(textBoxes[1], "w");
+  await user.type(textBoxes[1], "we");
 
   const errorMsgItem = screen.getByRole("listitem");
 
   const button = screen.getByRole("button");
 
-  expect(errorMsgItem).toHaveTextContent(errMsgTextArea.errValidNumber);
+  expect(errorMsgItem).toHaveTextContent(errMsgTextArea.errCharCount);
   expect(button).toBeDisabled();
 });
 
@@ -306,13 +310,16 @@ it("has button disabled if data entered in all the fields has errors", async () 
   await user.selectOptions(selectField, "");
 
   //user types in textarea
-  await user.type(textBoxes[1], "1");
+  await user.type(
+    textBoxes[1],
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  );
 
   const errorMsgItem = screen.getAllByRole("listitem");
 
   expect(errorMsgItem[0]).toHaveTextContent(errMsgSubject.errCharCount);
   expect(errorMsgItem[1]).toHaveTextContent(errMsgReason.errNotSelected);
-  expect(errorMsgItem[2]).toHaveTextContent(errMsgTextArea.errDigitCount);
+  expect(errorMsgItem[2]).toHaveTextContent(errMsgTextArea.errCharCount);
   // screen.debug();
   expect(button).toBeDisabled();
 });
@@ -326,13 +333,13 @@ it("has button enabled if the data entered in all the fields has no errors", asy
   const button = screen.getByRole("button");
 
   //user types in input field
-  await user.type(textBoxes[0], " behaved rudely to a citizen !");
+  await user.type(textBoxes[0], testData1.subject);
 
   //user selects from select field
-  await user.selectOptions(selectField, "rudeness");
+  await user.selectOptions(selectField, testData1.reason);
 
   //user types in textarea
-  await user.type(textBoxes[1], "100054");
+  await user.type(textBoxes[1], testData1.details);
 
   expect(button).not.toBeDisabled();
 });
