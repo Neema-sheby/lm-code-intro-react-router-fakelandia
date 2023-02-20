@@ -1,6 +1,7 @@
 import {
   MisdemeanourKind,
   Misdemeanour,
+  SelfConfessionMisdemeanour,
 } from "../../../Pages/Misdemeanour/Misdemeanours.types";
 
 export const defaultConfessionFormData = {
@@ -16,5 +17,5 @@ export type ConfessionFormDataType = {
 };
 
 export interface ConfessionProp {
-  setNewMisdemeanourOfMisdemeanant: (T: Misdemeanour) => void;
+  setNewMisdemeanourOfMisdemeanant: (T: SelfConfessionMisdemeanour) => void;
 }

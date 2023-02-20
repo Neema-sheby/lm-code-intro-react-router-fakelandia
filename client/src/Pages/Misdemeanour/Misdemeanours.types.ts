@@ -28,4 +28,19 @@ export type Misdemeanant = {
     alt: string;
   };
   selfConfession: boolean;
+  confessionDetails: string;
+};
+
+export type SelfConfessionMisdemeanour = {
+  misdemeanourInfo: Misdemeanour;
+  confessionDetails: string;
+};
+
+export const defaultSelfConfessionMisdemeanour: SelfConfessionMisdemeanour = {
+  misdemeanourInfo: {
+    citizenId: 0,
+    misdemeanour: "rudeness",
+    date: "",
+  },
+  confessionDetails: "",
 };

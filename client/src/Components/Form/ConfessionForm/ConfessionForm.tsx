@@ -16,12 +16,11 @@ import {
 import { postData } from "../../GetPostData/Post";
 import { defaultConfessionFormData } from "./ConfessionFormDataType.types";
 import {
-  Misdemeanour,
   MisdemeanourKind,
-  defaultMisdemeanour,
+  SelfConfessionMisdemeanour,
+  defaultSelfConfessionMisdemeanour,
 } from "../../../Pages/Misdemeanour/Misdemeanours.types";
 
-import { getNumber } from "../../ErrorHandler/ErrorValidation";
 import { MISDEMEANOUR_NUM } from "../../../Configuration/Config";
 
 const defaultErrorLog: ErrorLogs = {
@@ -63,19 +62,22 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
       postResponse.justTalked === false
     ) {
       if (isMisdemeanour(value.reason)) {
-        const newMisdamenourData: Misdemeanour = {
-          citizenId: Math.floor(
-            MISDEMEANOUR_NUM + Math.random() * 37 * (Math.random() * 967)
-          ),
-          misdemeanour: value.reason,
-          date: new Date().toLocaleDateString("en-US"),
+        const newMisdamenourData: SelfConfessionMisdemeanour = {
+          misdemeanourInfo: {
+            citizenId: Math.floor(
+              MISDEMEANOUR_NUM + Math.random() * 37 * (Math.random() * 967)
+            ),
+            misdemeanour: value.reason,
+            date: new Date().toLocaleDateString("en-US"),
+          },
+          confessionDetails: value.details,
         };
         setSubmitted(true);
         setNewMisdemeanourOfMisdemeanant(newMisdamenourData);
       }
     } else {
       setSubmitted(false);
-      setNewMisdemeanourOfMisdemeanant(defaultMisdemeanour);
+      setNewMisdemeanourOfMisdemeanant(defaultSelfConfessionMisdemeanour);
     }
   };
 

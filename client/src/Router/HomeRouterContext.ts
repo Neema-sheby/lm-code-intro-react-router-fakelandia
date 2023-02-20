@@ -1,8 +1,9 @@
 import { createContext } from "react";
 import {
-  Misdemeanour,
-  defaultMisdemeanour,
+  SelfConfessionMisdemeanour,
+  defaultSelfConfessionMisdemeanour,
 } from "../Pages/Misdemeanour/Misdemeanours.types";
 
-export const HomeRouterContext =
-  createContext<Misdemeanour>(defaultMisdemeanour);
+export const HomeRouterContext = createContext<SelfConfessionMisdemeanour>(
+  defaultSelfConfessionMisdemeanour
+);

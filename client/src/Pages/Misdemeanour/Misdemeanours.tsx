@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MisdemeanourContext } from "./MisdemeanourContext";
-import { Misdemeanour, Misdemeanant } from "./Misdemeanours.types";
+import {
+  Misdemeanour,
+  Misdemeanant,
+  SelfConfessionMisdemeanour,
+} from "./Misdemeanours.types";
 import { MisdemeanourEmoji } from "./MisdemeanourEmoji";
 import { fetchData } from "../../Components/GetPostData/Fetch";
 import MisdemeanourSelect from "../../Components/Select/MisdemeanourSelect";
@@ -54,6 +58,7 @@ const Misdemeanours: React.FC = () => {
               alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
             },
             selfConfession: false,
+            confessionDetails: "",
           };
         });
       setMisdemeanants(dataArr);
@@ -66,10 +71,11 @@ const Misdemeanours: React.FC = () => {
 
   // updates list of misdemeanours after user adds new misdemeanour data from confession page
   const updateListOfMisdemeanants = (
-    misdemeanours: Misdemeanour,
+    misdemeanours: SelfConfessionMisdemeanour,
     misdemeanants: Array<Misdemeanant>
   ) => {
-    const { citizenId, misdemeanour, date } = misdemeanours;
+    const { misdemeanourInfo, confessionDetails } = misdemeanours;
+    const { citizenId, misdemeanour, date } = misdemeanourInfo;
 
     if (citizenId && misdemeanour && date) {
       let newListOfMisdemeanants: Array<Misdemeanant> = [];
@@ -86,6 +92,7 @@ const Misdemeanours: React.FC = () => {
             alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
           },
           selfConfession: true,
+          confessionDetails: confessionDetails,
         },
         ...misdemeanants,
       ];
@@ -124,13 +131,14 @@ const Misdemeanours: React.FC = () => {
                 />
               </th>
               <th>Punishment Idea</th>
+              <th>Confession Details</th>
             </tr>
           </thead>
           <tbody className="table__body">
             {filteredMisdemeanants.map((misdem, i) => {
               const { citizenId, date, misdemeanour } = misdem.misdemeanours;
               const { src, alt } = misdem.punishment;
-              const { selfConfession } = misdem;
+              const { selfConfession, confessionDetails } = misdem;
               return (
                 <tr
                   key={i + "midemeanour"}
@@ -148,6 +156,7 @@ const Misdemeanours: React.FC = () => {
                   <td>
                     <img src={src} alt={alt} />
                   </td>
+                  <td>{confessionDetails}</td>
                 </tr>
               );
             })}

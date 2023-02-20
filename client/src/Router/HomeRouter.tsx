@@ -7,13 +7,13 @@ import Confession from "../Pages/Confession/Confession";
 import NotFound from "../Pages/NotFound/NotFound";
 import { HomeRouterContext } from "./HomeRouterContext";
 import {
-  Misdemeanour,
-  defaultMisdemeanour,
+  SelfConfessionMisdemeanour,
+  defaultSelfConfessionMisdemeanour,
 } from "../Pages/Misdemeanour/Misdemeanours.types";
 
 const HomeRouter: React.FC = () => {
   const [newMisdemeanourOfMisdemeanant, setNewMisdemeanourOfMisdemeanant] =
-    useState<Misdemeanour>(defaultMisdemeanour);
+    useState<SelfConfessionMisdemeanour>(defaultSelfConfessionMisdemeanour);
 
   return (
     <HomeRouterContext.Provider value={newMisdemeanourOfMisdemeanant}>
