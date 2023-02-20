@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import ConfessionForm from "../../Components/Form/ConfessionForm/ConfessionForm";
 import { ConfessionProp } from "../../Components/Form/ConfessionForm/ConfessionFormDataType.types";
-const Confession: React.FC<ConfessionProp> = ({ addNewMisdemeanourData }) => {
+const Confession: React.FC<ConfessionProp> = ({
+  setNewMisdemeanourOfMisdemeanant,
+}) => {
   return (
     <div aria-label="confession-page" className="confession">
       <p>
@@ -12,7 +14,9 @@ const Confession: React.FC<ConfessionProp> = ({ addNewMisdemeanourData }) => {
         However, if you're just having a hard day and need to vent then, you're
         welcome to contact us here too. Up to you !
       </p>
-      <ConfessionForm addNewMisdemeanourData={addNewMisdemeanourData} />
+      <ConfessionForm
+        setNewMisdemeanourOfMisdemeanant={setNewMisdemeanourOfMisdemeanant}
+      />
     </div>
   );
 };

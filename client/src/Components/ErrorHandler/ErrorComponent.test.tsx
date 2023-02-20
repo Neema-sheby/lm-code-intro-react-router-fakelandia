@@ -1,4 +1,4 @@
-import { screen, render, within } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 import ErrorComponent from "./ErrorComponent";
 
 it("is rendered in the document", () => {

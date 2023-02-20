@@ -74,7 +74,7 @@ export const validateTextArea = (data: string): Array<string> => {
     isValidNumber = true;
   }
 
-  if (isValidNumber && data.length < 2) {
+  if (isValidNumber && data.length < MIN_TXTAREA_CHAR) {
     error.push(errMsgTextArea.errDigitCount);
   }
   return error;

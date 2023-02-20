@@ -11,12 +11,12 @@ import {
   defaultMisdemeanour,
 } from "../Pages/Misdemeanour/Misdemeanours.types";
 
-const HomeRouter = () => {
-  const [newMisdemeanourData, addNewMisdemeanourData] =
+const HomeRouter: React.FC = () => {
+  const [newMisdemeanourOfMisdemeanant, setNewMisdemeanourOfMisdemeanant] =
     useState<Misdemeanour>(defaultMisdemeanour);
 
   return (
-    <HomeRouterContext.Provider value={newMisdemeanourData}>
+    <HomeRouterContext.Provider value={newMisdemeanourOfMisdemeanant}>
       <Routes>
         <Route path="/" element={<LayOut />}>
           <Route path="/" element={<Home />} />
@@ -25,7 +25,9 @@ const HomeRouter = () => {
             path="confession"
             element={
               <Confession
-                addNewMisdemeanourData={(data) => addNewMisdemeanourData(data)}
+                setNewMisdemeanourOfMisdemeanant={
+                  setNewMisdemeanourOfMisdemeanant
+                }
               />
             }
           />

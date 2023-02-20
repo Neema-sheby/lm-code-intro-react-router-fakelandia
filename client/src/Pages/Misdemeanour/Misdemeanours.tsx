@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MisdemeanourContext } from "./MisdemeanourContext";
-import { Misdemeanour, Criminal } from "./Misdemeanours.types";
+import { Misdemeanour, Misdemeanant } from "./Misdemeanours.types";
 import { MisdemeanourEmoji } from "./MisdemeanourEmoji";
 import { fetchData } from "../../Components/GetPostData/Fetch";
 import MisdemeanourSelect from "../../Components/Select/MisdemeanourSelect";
@@ -13,76 +13,87 @@ import {
 } from "../../Configuration/Config";
 
 const Misdemeanours: React.FC = () => {
-  const [criminals, setCriminals] = useState<Array<Criminal>>([]);
-  const [filteredCriminals, setFilteredCriminals] = useState<Array<Criminal>>(
-    []
-  );
+  const [misdemeanants, setMisdemeanants] = useState<Array<Misdemeanant>>([]);
+  const [filteredMisdemeanants, setFilteredMisdemeanants] = useState<
+    Array<Misdemeanant>
+  >([]);
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Add the confession data to the list of misdemeanourse
-  const newMisdemeanourData = useContext(HomeRouterContext);
+  const newMisdemeanourOfMisdemeanant = useContext(HomeRouterContext);
 
-  const getCrimeData = async () => {
+  useEffect(() => {
+    getMisdemeanours();
+  }, []);
+
+  //get Misdemeanours data fron API
+  const getMisdemeanours = async () => {
     setError("");
     setIsLoading(true);
-    const crimeData: { misdemeanours: Array<Misdemeanour> } | undefined =
-      await fetchData(
-        `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`,
-        setError
-      );
+    const misdemeanourFetchData:
+      | { misdemeanours: Array<Misdemeanour> }
+      | undefined = await fetchData(
+      `http://localhost:8080/api/misdemeanours/${MISDEMEANOUR_NUM}`,
+      setError
+    );
 
-    if (crimeData) {
+    if (misdemeanourFetchData) {
       setIsLoading(false);
-      const dataArr: Array<Criminal> = crimeData.misdemeanours.map((mis, i) => {
-        return {
-          misdemeanours: {
-            citizenId: mis.citizenId,
-            date: mis.date,
-            misdemeanour: mis.misdemeanour,
-          },
-          punishment: {
-            src: `https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}?random&cb=${i}`,
-            alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
-          },
-        };
-      });
-      setCriminals(dataArr);
-      setFilteredCriminals(dataArr);
-
-      const { citizenId, misdemeanour, date } = newMisdemeanourData;
-
-      if (citizenId && misdemeanour && date) {
-        console.log(newMisdemeanourData);
-        const newListOfCriminals = [
-          {
+      const dataArr: Array<Misdemeanant> =
+        misdemeanourFetchData.misdemeanours.map((mis, i) => {
+          return {
             misdemeanours: {
-              citizenId: citizenId,
-              misdemeanour: misdemeanour,
-              date: date,
+              citizenId: mis.citizenId,
+              date: mis.date,
+              misdemeanour: mis.misdemeanour,
             },
             punishment: {
-              src: `https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}`,
+              src: `https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}?random&cb=${i}`,
               alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
             },
-          },
-          ...dataArr,
-        ];
-
-        //setCriminals(newListOfCriminals);
-        setFilteredCriminals(newListOfCriminals);
-      }
+          };
+        });
+      setMisdemeanants(dataArr);
+      setFilteredMisdemeanants(dataArr);
+      updateListOfMisdemeanants(newMisdemeanourOfMisdemeanant, dataArr);
     } else {
       setIsLoading(false);
     }
   };
 
-  useEffect(() => {
-    getCrimeData();
-  }, []);
+  // updates list of misdemeanours after user adds new misdemeanour data from confession page
+  const updateListOfMisdemeanants = (
+    misdamenours: Misdemeanour,
+    misdemeanants: Array<Misdemeanant>
+  ) => {
+    const { citizenId, misdemeanour, date } = misdamenours;
+
+    if (citizenId && misdemeanour && date) {
+      let newListOfMisdemeanants: Array<Misdemeanant> = [];
+
+      newListOfMisdemeanants = [
+        {
+          misdemeanours: {
+            citizenId: citizenId,
+            misdemeanour: misdemeanour,
+            date: date,
+          },
+          punishment: {
+            src: `https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}`,
+            alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
+          },
+        },
+        ...misdemeanants,
+      ];
+      console.log(newListOfMisdemeanants);
+      setMisdemeanants(newListOfMisdemeanants);
+      setFilteredMisdemeanants(newListOfMisdemeanants);
+    }
+  };
 
   return (
-    <MisdemeanourContext.Provider value={criminals}>
+    <MisdemeanourContext.Provider value={misdemeanants}>
       <div className="table__container" aria-label="misdemeanour-page">
         <table className="table">
           <thead className="table__header">
@@ -93,16 +104,18 @@ const Misdemeanours: React.FC = () => {
                 <p> Misdemeanour </p>
 
                 <MisdemeanourSelect
-                  setFilteredCriminals={(data) => setFilteredCriminals(data)}
+                  setFilteredMisdemeanants={(data) => {
+                    setFilteredMisdemeanants(data);
+                  }}
                 />
               </th>
               <th>Punishment Idea</th>
             </tr>
           </thead>
           <tbody className="table__body">
-            {filteredCriminals.map((criminal, i) => {
-              const { citizenId, date, misdemeanour } = criminal.misdemeanours;
-              const { src, alt } = criminal.punishment;
+            {filteredMisdemeanants.map((misdem, i) => {
+              const { citizenId, date, misdemeanour } = misdem.misdemeanours;
+              const { src, alt } = misdem.punishment;
               return (
                 <tr key={i + "midemeanour"} className="table__row">
                   <td>{citizenId}</td>

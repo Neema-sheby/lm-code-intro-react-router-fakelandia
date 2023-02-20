@@ -16,5 +16,5 @@ export type ConfessionFormDataType = {
 };
 
 export interface ConfessionProp {
-  addNewMisdemeanourData: (T: Misdemeanour) => void;
+  setNewMisdemeanourOfMisdemeanant: (T: Misdemeanour) => void;
 }

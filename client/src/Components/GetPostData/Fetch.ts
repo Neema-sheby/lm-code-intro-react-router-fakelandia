@@ -1,4 +1,3 @@
-import { Misdemeanour } from "../../Pages/Misdemeanour/Misdemeanours.types";
 import { ErrorMessagesAPI } from "../ErrorHandler/ErrorMessages";
 
 const getErrorMessage = ({ message }: { message: string }) => {

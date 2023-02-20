@@ -1,36 +1,43 @@
 import React, { useContext, useState } from "react";
 import Option from "../Option/Option";
-import { MisdemeanourContext } from "../../Pages/Misdemeanour/MisdemeanourContext";
 import {
-  Criminal,
+  Misdemeanant,
   MISDEMEANOURS,
 } from "../../Pages/Misdemeanour/Misdemeanours.types";
+
 import { MisdemeanourEmoji } from "../../Pages/Misdemeanour/MisdemeanourEmoji";
+import { MisdemeanourContext } from "../../Pages/Misdemeanour/MisdemeanourContext";
 
 interface SelectProp {
-  setFilteredCriminals: (T: Array<Criminal>) => void;
+  setFilteredMisdemeanants: (T: Array<Misdemeanant>) => void;
 }
 
-const MisdemeanourSelect: React.FC<SelectProp> = ({ setFilteredCriminals }) => {
+const MisdemeanourSelect: React.FC<SelectProp> = ({
+  setFilteredMisdemeanants,
+}) => {
   const [misdemeanourValue, setMisdemeanourValue] = useState<string>(
     MISDEMEANOURS[0]
   );
 
-  const criminals = useContext(MisdemeanourContext);
+  //Context data to filter misdemeanours
+  const misdemeanants = useContext(MisdemeanourContext);
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setMisdemeanourValue(e.target.value);
 
     if (e.target.value) {
-      const listCriminal = criminals.filter((criminal: Criminal, i) => {
-        const { misdemeanour } = criminal.misdemeanours;
-        const crime = misdemeanour + " " + MisdemeanourEmoji(misdemeanour);
-        return crime === e.target.value;
-      });
+      console.log(misdemeanants);
+      const filteredMisdemeanantList = misdemeanants.filter(
+        (misdemeanant: Misdemeanant, i) => {
+          const { misdemeanour } = misdemeanant.misdemeanours;
+          const crime = misdemeanour + " " + MisdemeanourEmoji(misdemeanour);
+          return crime === e.target.value;
+        }
+      );
 
-      setFilteredCriminals(listCriminal);
+      setFilteredMisdemeanants(filteredMisdemeanantList);
     } else {
-      setFilteredCriminals(criminals);
+      setFilteredMisdemeanants(misdemeanants);
     }
   };
 

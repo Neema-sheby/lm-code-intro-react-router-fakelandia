@@ -1,5 +1,5 @@
 import { screen, render, within } from "@testing-library/react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import Nav from "./Navigation";
 

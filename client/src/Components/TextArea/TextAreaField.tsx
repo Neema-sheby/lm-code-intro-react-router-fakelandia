@@ -1,5 +1,4 @@
 import React from "react";
-import { ConfessionFormProperties } from "../../Pages/Confession/Confession.types";
 import ErrorComponent from "../ErrorHandler/ErrorComponent";
 import { ErrorMsg } from "../ErrorHandler/ErrorMessages";
 
@@ -7,7 +6,7 @@ interface TextAreaFieldProp {
   ContainerClassName: string;
   id: string;
   label: string;
-  value: string | ConfessionFormProperties["text"];
+  value: string;
   placeholder: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onValidation: Array<ErrorMsg>;

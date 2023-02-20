@@ -12,7 +12,7 @@ export type JustTalk = typeof JUST_TALK;
 export type Misdemeanour = {
   citizenId: number;
   misdemeanour: MisdemeanourKind;
-  date: string; // we'll stringify this for easy sending via HTTP rather than storing the full Date object
+  date: string;
 };
 
 export const defaultMisdemeanour: Misdemeanour = {
@@ -21,7 +21,7 @@ export const defaultMisdemeanour: Misdemeanour = {
   date: "",
 };
 
-export type Criminal = {
+export type Misdemeanant = {
   misdemeanours: Misdemeanour;
   punishment: {
     src: string;
