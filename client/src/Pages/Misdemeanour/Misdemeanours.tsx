@@ -31,6 +31,7 @@ const Misdemeanours: React.FC = () => {
   const getMisdemeanours = async () => {
     setError("");
     setIsLoading(true);
+
     const misdemeanourFetchData:
       | { misdemeanours: Array<Misdemeanour> }
       | undefined = await fetchData(
@@ -52,6 +53,7 @@ const Misdemeanours: React.FC = () => {
               src: `https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}?random&cb=${i}`,
               alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
             },
+            selfConfession: false,
           };
         });
       setMisdemeanants(dataArr);
@@ -83,6 +85,7 @@ const Misdemeanours: React.FC = () => {
             src: `https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}`,
             alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
           },
+          selfConfession: true,
         },
         ...misdemeanants,
       ];
@@ -94,7 +97,7 @@ const Misdemeanours: React.FC = () => {
 
   //check number of confessions today
   const numConfessionsToday = () => {
-    return filteredMisdemeanants.filter((misdem, i) => {
+    return misdemeanants.filter((misdem, i) => {
       const {
         misdemeanours: { date },
       } = misdem;
@@ -127,8 +130,16 @@ const Misdemeanours: React.FC = () => {
             {filteredMisdemeanants.map((misdem, i) => {
               const { citizenId, date, misdemeanour } = misdem.misdemeanours;
               const { src, alt } = misdem.punishment;
+              const { selfConfession } = misdem;
               return (
-                <tr key={i + "midemeanour"} className="table__row">
+                <tr
+                  key={i + "midemeanour"}
+                  className={
+                    selfConfession
+                      ? "table__row table__self-confession"
+                      : "table__row"
+                  }
+                >
                   <td>{citizenId}</td>
                   <td>{date}</td>
                   <td>

@@ -27,4 +27,5 @@ export type Misdemeanant = {
     src: string;
     alt: string;
   };
+  selfConfession: boolean;
 };
