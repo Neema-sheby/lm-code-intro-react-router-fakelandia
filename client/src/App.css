@@ -134,6 +134,8 @@ body {
     font-size: inherit;
     color: #bf9e66;
     z-index: -1; }
+  .table__self-confession {
+    background-color: rgba(16, 172, 133, 0.6); }
 
 .footer {
   width: 100%;
