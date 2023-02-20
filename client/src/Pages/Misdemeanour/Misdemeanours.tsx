@@ -64,10 +64,10 @@ const Misdemeanours: React.FC = () => {
 
   // updates list of misdemeanours after user adds new misdemeanour data from confession page
   const updateListOfMisdemeanants = (
-    misdamenours: Misdemeanour,
+    misdemeanours: Misdemeanour,
     misdemeanants: Array<Misdemeanant>
   ) => {
-    const { citizenId, misdemeanour, date } = misdamenours;
+    const { citizenId, misdemeanour, date } = misdemeanours;
 
     if (citizenId && misdemeanour && date) {
       let newListOfMisdemeanants: Array<Misdemeanant> = [];
@@ -92,8 +92,19 @@ const Misdemeanours: React.FC = () => {
     }
   };
 
+  //check number of confessions today
+  const numConfessionsToday = () => {
+    return filteredMisdemeanants.filter((misdem, i) => {
+      const {
+        misdemeanours: { date },
+      } = misdem;
+      return date === new Date().toLocaleDateString("en-US");
+    }).length;
+  };
+
   return (
     <MisdemeanourContext.Provider value={misdemeanants}>
+      <h1 className="heading__table">{`Total confessions today : ${numConfessionsToday()}`}</h1>
       <div className="table__container" aria-label="misdemeanour-page">
         <table className="table">
           <thead className="table__header">
@@ -146,4 +157,4 @@ const Misdemeanours: React.FC = () => {
   );
 };
 
-export default Misdemeanours;
+export default React.memo(Misdemeanours);
