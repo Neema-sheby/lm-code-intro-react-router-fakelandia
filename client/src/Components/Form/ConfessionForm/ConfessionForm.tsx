@@ -22,6 +22,7 @@ import {
 } from "../../../Pages/Misdemeanour/Misdemeanours.types";
 
 import { getNumber } from "../../ErrorHandler/ErrorValidation";
+import { MISDEMEANOUR_NUM } from "../../../Configuration/Config";
 
 const defaultErrorLog: ErrorLogs = {
   subject: [],
@@ -63,7 +64,9 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
     ) {
       if (isMisdemeanour(value.reason)) {
         const newMisdamenourData: Misdemeanour = {
-          citizenId: getNumber(value.details),
+          citizenId: Math.floor(
+            MISDEMEANOUR_NUM + Math.random() * 37 * (Math.random() * 967)
+          ),
           misdemeanour: value.reason,
           date: new Date().toLocaleDateString("en-US"),
         };
