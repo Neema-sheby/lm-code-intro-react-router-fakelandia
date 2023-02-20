@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import Option from "../Option/Option";
 import ErrorComponent from "../ErrorHandler/ErrorComponent";
 import { ErrorMsg } from "../ErrorHandler/ErrorMessages";
@@ -6,7 +6,6 @@ import {
   MISDEMEANOURS,
   MisdemeanourKind,
 } from "../../Pages/Misdemeanour/Misdemeanours.types";
-import { MisdemeanourEmoji } from "../../Pages/Misdemeanour/MisdemeanourEmoji";
 
 interface ConfessionSelectProp {
   value: string | MisdemeanourKind | "I just want to talk";
