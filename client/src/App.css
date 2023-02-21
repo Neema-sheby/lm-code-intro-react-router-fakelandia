@@ -69,7 +69,7 @@ body {
       color: #828181; }
     .table__row td,
     .table__row th {
-      width: 25%;
+      width: 20%;
       text-align: left;
       font-size: 1.1rem; }
       .table__row td:not(:last-child),

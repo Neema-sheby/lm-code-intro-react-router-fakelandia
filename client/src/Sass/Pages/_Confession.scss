@@ -1,0 +1,39 @@
+.confession {
+  width: 90%;
+  font-size: 1.2rem;
+  background-color: $color-black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 4rem;
+  border-radius: $border-radius--small;
+  -webkit-border-radius: $border-radius--small;
+  -moz-border-radius: $border-radius--small;
+  -ms-border-radius: $border-radius--small;
+  -o-border-radius: $border-radius--small;
+  box-shadow: $box-shadow--medium;
+  margin: 3rem 0 6rem 0;
+  background: $bg-confession;
+
+  &__text {
+    width: 40%;
+    padding-right: 3rem;
+    display: flex;
+    flex-direction: column;
+    font-weight: 200;
+    font-size: 1.1rem;
+
+    &:first-child {
+      align-items: center;
+    }
+    p {
+      border-top: 0.5px solid grey;
+      padding: 4rem 0;
+
+      &:first-of-type {
+        margin-top: 4rem;
+      }
+    }
+  }
+}

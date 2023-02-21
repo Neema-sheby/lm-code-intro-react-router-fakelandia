@@ -1,0 +1,17 @@
+.icon,
+.icon__opacity--medium {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+}
+
+.icon {
+  fill: currentColor;
+}
+
+.icon__opacity--medium {
+  width: 5rem;
+  height: 5rem;
+  fill: $color-white;
+  opacity: 0.3;
+}
