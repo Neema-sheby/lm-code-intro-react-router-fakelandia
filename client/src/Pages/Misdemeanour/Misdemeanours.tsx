@@ -58,7 +58,7 @@ const Misdemeanours: React.FC = () => {
               alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
             },
             selfConfession: false,
-            confessionDetails: "",
+            confessionDetails: "none",
           };
         });
       setMisdemeanants(dataArr);
@@ -148,15 +148,25 @@ const Misdemeanours: React.FC = () => {
                       : "table__row"
                   }
                 >
-                  <td>{citizenId}</td>
-                  <td>{date}</td>
+                  <td>
+                    <span className="table__label">Citizen Id :</span>
+                    {citizenId}
+                  </td>
+                  <td>
+                    <span className="table__label">Date :</span>
+                    {date}
+                  </td>
                   <td>
                     {misdemeanour + " " + MisdemeanourEmoji(misdemeanour)}
                   </td>
                   <td>
+                    <span className="table__label">Punishment Idea :</span>
                     <img src={src} alt={alt} />
                   </td>
-                  <td>{confessionDetails}</td>
+                  <td>
+                    <span className="table__label">Confession Details :</span>
+                    {confessionDetails}
+                  </td>
                 </tr>
               );
             })}
