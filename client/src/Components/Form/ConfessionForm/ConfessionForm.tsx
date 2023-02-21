@@ -95,7 +95,7 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
   };
 
   return (
-    <>
+    <div className="form__container">
       <form className="form" aria-label="form-confession" onSubmit={onSubmit}>
         <InputField
           id="confession-subject"
@@ -105,6 +105,7 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
           placeholder="Enter your subject"
           onChange={(e) => {
             setSubmitted(false);
+            setPostResponseError("");
             setError({ ...error, subject: validateSubject(e.target.value) });
             setValue({ ...value, subject: e.target.value });
           }}
@@ -115,13 +116,15 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
           label="Reason : "
           value={value.reason}
           placeholder="Enter reason for confession"
-          onClick={() =>
+          onClick={() => {
+            setPostResponseError("");
             setError({
               ...error,
               reason: validateReasonSelection(value.reason),
-            })
-          }
+            });
+          }}
           onChange={(e) => {
+            setPostResponseError("");
             setSubmitted(false);
             setError({
               ...error,
@@ -160,10 +163,12 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
         />
       </form>
       <div className="form__submitted-msg">
-        {submitted && <div>Message Send</div>}
-        {postResponseError && <div>{postResponseError}</div>}
+        {submitted && <div className="form__sendMsg"> ✅ Message Send !</div>}
+        {postResponseError && (
+          <div className="form__err-server">⛔️ {postResponseError}</div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

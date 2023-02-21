@@ -1,5 +1,5 @@
 .form {
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   background-color: $color-green;
@@ -9,6 +9,11 @@
   -moz-border-radius: $border-radius--small;
   -ms-border-radius: $border-radius--small;
   -o-border-radius: $border-radius--small;
+
+  &__container {
+    width: 60%;
+    padding: 2rem 0 2rem 2rem;
+  }
 
   &__select-container,
   &__input-container {
@@ -54,7 +59,7 @@
     }
 
     &::placeholder {
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-family: inherit;
       color: $color-white--light;
     }
@@ -73,5 +78,19 @@
     margin: 1rem 0;
     font-size: 1rem;
     color: $color-error;
+  }
+
+  &__sendMsg {
+    font-size: 1.4rem;
+    margin: -7rem 0 0 2rem;
+    color: $color-green--dark;
+  }
+
+  &__err-server {
+    width: 100%;
+    margin-top: -3rem;
+    margin-right: 50%;
+    color: $color-error;
+    text-align: center;
   }
 }

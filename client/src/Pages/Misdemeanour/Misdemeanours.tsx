@@ -114,7 +114,7 @@ const Misdemeanours: React.FC = () => {
 
   return (
     <MisdemeanourContext.Provider value={misdemeanants}>
-      <h1 className="heading__table">{`Total confessions today : ${numConfessionsToday()}`}</h1>
+      <h1 className="heading--table">{`Total confessions today : ${numConfessionsToday()}`}</h1>
       <div className="table__container" aria-label="misdemeanour-page">
         <table className="table">
           <thead className="table__header">
@@ -173,12 +173,12 @@ const Misdemeanours: React.FC = () => {
           </tbody>
         </table>
         {isLoading && (
-          <div className="table_loading" aria-label="misdemeanour-loading">
+          <div className="table__loading" aria-label="misdemeanour-loading">
             Loading ...
           </div>
         )}
         {error && (
-          <div className="table_error" aria-label="misdemeanour-error">
+          <div className="table__error" aria-label="misdemeanour-error">
             {error}
           </div>
         )}
