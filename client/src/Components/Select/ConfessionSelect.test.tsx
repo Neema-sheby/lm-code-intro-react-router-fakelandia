@@ -6,7 +6,10 @@ import { errMsgReason } from "../ErrorHandler/ErrorMessages";
 it("is rendered in the document", () => {
   render(
     <ConfessionSelect
+      id="confession-reason"
       value="rudeness"
+      label="Reason : "
+      placeholder="Enter reason for confession"
       onClick={() => {}}
       onChange={(e) => {}}
       onValidation={[]}
@@ -21,7 +24,10 @@ it("is rendered in the document", () => {
 it("displays the value passed through props", () => {
   render(
     <ConfessionSelect
+      id="confession-reason"
       value="rudeness"
+      label="Reason : "
+      placeholder="Enter reason for confession"
       onClick={() => {}}
       onChange={() => {}}
       onValidation={[]}
@@ -38,7 +44,10 @@ it("calls it's onChange function", async () => {
 
   render(
     <ConfessionSelect
+      id="confession-reason"
       value=""
+      label="Reason : "
+      placeholder="Enter reason for confession"
       onClick={() => {}}
       onChange={mock}
       onValidation={[]}
@@ -61,7 +70,10 @@ it("calls it's onClick function", async () => {
 
   render(
     <ConfessionSelect
+      id="confession-reason"
       value="rudeness"
+      label="Reason : "
+      placeholder="Enter reason for confession"
       onClick={mock}
       onChange={() => {}}
       onValidation={[]}
@@ -82,7 +94,10 @@ it("calls it's onClick function", async () => {
 it("displays the error message passed through props", () => {
   render(
     <ConfessionSelect
+      id="confession-reason"
       value=""
+      label="Reason : "
+      placeholder="Enter reason for confession"
       onClick={() => {}}
       onChange={() => {}}
       onValidation={[errMsgReason.errNotSelected]}

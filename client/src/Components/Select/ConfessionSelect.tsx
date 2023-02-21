@@ -8,30 +8,41 @@ import {
 } from "../../Pages/Misdemeanour/Misdemeanours.types";
 
 interface ConfessionSelectProp {
+  id: string;
   value: string | MisdemeanourKind | "I just want to talk";
+  label: string;
+  placeholder: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onClick: () => void;
   onValidation: Array<ErrorMsg>;
 }
 
 const ConfessionSelect: React.FC<ConfessionSelectProp> = ({
+  id,
   value,
+  label,
   onChange,
+  placeholder,
   onClick,
   onValidation,
 }) => {
   return (
     <>
-      <div className="select__dropdown-container">
+      <div className="form__select-container">
+        <label htmlFor={id} className="form__label">
+          {label}
+        </label>
         <select
-          className="select__dropdown"
+          id={id}
+          className="form__select"
           value={value}
+          placeholder={placeholder}
           onChange={onChange}
           onClick={onClick}
         >
           {
             <>
-              <Option value="" label="Select" />
+              <Option value="" label="Select reason for confession" />
               {MISDEMEANOURS.map((misdemeanour, i) => (
                 <Option
                   key={i + misdemeanour}

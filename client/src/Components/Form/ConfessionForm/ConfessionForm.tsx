@@ -99,10 +99,10 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
       <form className="form" aria-label="form-confession" onSubmit={onSubmit}>
         <InputField
           id="confession-subject"
-          ContainerClassName="input__confession-container"
-          label="subject"
+          ContainerClassName="form__input-container"
+          label="subject :"
           value={value.subject}
-          placeholder="Input"
+          placeholder="Enter your subject"
           onChange={(e) => {
             setSubmitted(false);
             setError({ ...error, subject: validateSubject(e.target.value) });
@@ -111,7 +111,10 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
           onValidation={error.subject}
         />
         <ConfessionSelect
+          id="confession-reason"
+          label="Reason : "
           value={value.reason}
+          placeholder="Enter reason for confession"
           onClick={() =>
             setError({
               ...error,
@@ -130,10 +133,10 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
         />
         <TextareaField
           id="confession-textarea"
-          ContainerClassName="=textarea__confession-container"
+          ContainerClassName="=form__textarea-container"
           label=""
           value={value.details}
-          placeholder="textarea"
+          placeholder="Enter your confession details"
           onChange={(e) => {
             setSubmitted(false);
             setError({ ...error, details: validateTextArea(e.target.value) });
@@ -142,7 +145,7 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
           onValidation={error.details}
         />
         <Button
-          className="button__form"
+          className="button--form"
           name="Confess"
           disabled={
             value.subject &&
