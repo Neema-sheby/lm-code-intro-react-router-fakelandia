@@ -10,12 +10,18 @@ body {
 }
 
 .heading {
-  &__table {
+  &--table {
     width: 100%;
     text-align: center;
     background-color: $color-brown--dark;
     box-shadow: $box-shadow--small;
     padding: 1.5rem 0;
     margin-bottom: 3rem;
+  }
+
+  &--form {
+    width: 100%;
+    text-align: center;
+    margin-top: 4rem;
   }
 }

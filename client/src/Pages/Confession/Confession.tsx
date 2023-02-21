@@ -10,6 +10,7 @@ const Confession: React.FC<ConfessionProp> = ({
         <svg className="icon__opacity--medium icon-file-text2">
           <use xlinkHref="../../public/Svg/file-text2.svg#icon-file-text2"></use>
         </svg>
+        <h1 className="heading--form">Confession Form</h1>
         <p>
           It's very difficult to catch people committing misdemeanours so we
           appreciate it when citizens confess to us directly.
