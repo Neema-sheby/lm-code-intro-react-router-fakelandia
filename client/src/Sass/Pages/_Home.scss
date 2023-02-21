@@ -4,21 +4,23 @@
   flex-direction: column;
   gap: 4rem;
   background: $bg-home;
-  background-position: center;
-  background-size: cover;
+  background-position: right;
+  background-size: contain;
   background-repeat: no-repeat;
-  padding: 12rem;
+  padding: 15rem 6rem;
   border-radius: $border-radius;
   -webkit-border-radius: $border-radius;
   -moz-border-radius: $border-radius;
   -ms-border-radius: $border-radius;
   -o-border-radius: $border-radius;
   h1 {
-    font-size: 3.5rem;
-    color: $color-white;
+    width: 75%;
+    font-size: 2.5rem;
+    color: $color-white--light;
     justify-self: center;
   }
   p {
-    font-size: 1.2rem;
+    width: 65%;
+    font-size: 1rem;
   }
 }
