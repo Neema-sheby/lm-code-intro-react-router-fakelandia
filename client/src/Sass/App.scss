@@ -4,6 +4,10 @@
 @import "Base/Reset";
 @import "Base/Typography";
 
+@import "Components/Button";
+@import "Components/Dropdown";
+@import "Components/Form";
+@import "Components/Icons";
 @import "Components/Table";
 
 @import "Layout/Footer";
@@ -11,5 +15,4 @@
 @import "Layout/Navigation";
 
 @import "Pages/Home";
-
-@import "Vendors/icons";
+@import "Pages/Confession";
