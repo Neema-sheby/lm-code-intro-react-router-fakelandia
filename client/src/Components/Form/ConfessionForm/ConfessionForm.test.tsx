@@ -57,10 +57,10 @@ it("have one input field, one select field, one text area and a button", () => {
   const selectField = screen.getByRole("combobox");
   const button = screen.getByRole("button");
 
-  expect(textBoxes[0]).toHaveClass("input");
-  expect(textBoxes[1]).toHaveClass("textarea");
-  expect(selectField).toHaveClass("select__dropdown");
-  expect(button).toHaveClass("button__form");
+  expect(textBoxes[0]).toHaveClass("form__input");
+  expect(textBoxes[1]).toHaveClass("form__textarea");
+  expect(selectField).toHaveClass("form__select");
+  expect(button).toHaveClass("button--form");
 });
 
 it("calls the addNewMisdemeanourData function and also has inputfield, selectfield and textarea set to default values after submitting form", async () => {

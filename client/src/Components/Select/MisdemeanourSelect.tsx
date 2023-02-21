@@ -42,9 +42,9 @@ const MisdemeanourSelect: React.FC<SelectProp> = ({
   };
 
   return (
-    <div className="table__dropdown-container">
+    <div className="dropdown-container">
       <select
-        className="table__dropdown"
+        className="dropdown"
         value={misdemeanourValue}
         onChange={onChange}
       >

@@ -24,12 +24,12 @@ const TextareaField: React.FC<TextAreaFieldProp> = ({
   return (
     <>
       <div className={ContainerClassName}>
-        <label htmlFor={id} className="textarea__label">
+        <label htmlFor={id} className="form__label">
           {label}
         </label>
         <textarea
           id={id}
-          className="textarea"
+          className="form__textarea"
           value={value}
           placeholder={placeholder}
           onChange={onChange}

@@ -24,12 +24,12 @@ const InputField: React.FC<InputFieldProp> = ({
   return (
     <>
       <div className={ContainerClassName}>
-        <label htmlFor={id} className="input__label">
+        <label htmlFor={id} className="form__label">
           {label}
         </label>
         <input
           id={id}
-          className="input"
+          className="form__input"
           value={value}
           placeholder={placeholder}
           onChange={onChange}
