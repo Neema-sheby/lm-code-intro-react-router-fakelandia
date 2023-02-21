@@ -58,7 +58,7 @@ const Misdemeanours: React.FC = () => {
               alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
             },
             selfConfession: false,
-            confessionDetails: "none",
+            selfConfessionDetails: "none",
           };
         });
       setMisdemeanants(dataArr);
@@ -71,10 +71,11 @@ const Misdemeanours: React.FC = () => {
 
   // updates list of misdemeanours after user adds new misdemeanour data from confession page
   const updateListOfMisdemeanants = (
-    misdemeanours: SelfConfessionMisdemeanour,
+    selfConfessionMisdemeanour: SelfConfessionMisdemeanour,
     misdemeanants: Array<Misdemeanant>
   ) => {
-    const { misdemeanourInfo, confessionDetails } = misdemeanours;
+    const { misdemeanourInfo, selfConfession, selfConfessionDetails } =
+      selfConfessionMisdemeanour;
     const { citizenId, misdemeanour, date } = misdemeanourInfo;
 
     if (citizenId && misdemeanour && date) {
@@ -91,8 +92,8 @@ const Misdemeanours: React.FC = () => {
             src: `https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}`,
             alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
           },
-          selfConfession: true,
-          confessionDetails: confessionDetails,
+          selfConfession: selfConfession,
+          selfConfessionDetails: selfConfessionDetails,
         },
         ...misdemeanants,
       ];
@@ -102,86 +103,112 @@ const Misdemeanours: React.FC = () => {
     }
   };
 
-  //check number of confessions today
-  const numConfessionsToday = () => {
-    return misdemeanants.filter((misdem, i) => {
-      const {
-        misdemeanours: { date },
-      } = misdem;
-      return date === new Date().toLocaleDateString("en-US");
-    }).length;
+  //check number of misdemeanours today
+  const totalMisdemeanoursToday = () => {
+    return (
+      "Total Misdemeanours Today :" +
+      " " +
+      misdemeanants.filter((misdem, i) => {
+        const {
+          misdemeanours: { date },
+        } = misdem;
+        return date === new Date().toLocaleDateString("en-US");
+      }).length
+    );
+  };
+
+  //check number of self confessions today
+  const totalSelfConfessionsToday = () => {
+    return (
+      "Total Self Confessions Today :" +
+      " " +
+      misdemeanants.filter((misdem, i) => {
+        const { selfConfession } = misdem;
+        return selfConfession === true;
+      }).length
+    );
   };
 
   return (
     <MisdemeanourContext.Provider value={misdemeanants}>
-      <h1 className="heading--table">{`Total confessions today : ${numConfessionsToday()}`}</h1>
-      <div className="table__container" aria-label="misdemeanour-page">
-        <table className="table">
-          <thead className="table__header">
-            <tr className="table__header-row">
-              <th>Citizen Id</th>
-              <th>Date</th>
-              <th>
-                <p> Misdemeanour </p>
-
-                <MisdemeanourSelect
-                  setFilteredMisdemeanants={(data) => {
-                    setFilteredMisdemeanants(data);
-                  }}
-                />
-              </th>
-              <th>Punishment Idea</th>
-              <th>Confession Details</th>
-            </tr>
-          </thead>
-          <tbody className="table__body">
-            {filteredMisdemeanants.map((misdem, i) => {
-              const { citizenId, date, misdemeanour } = misdem.misdemeanours;
-              const { src, alt } = misdem.punishment;
-              const { selfConfession, confessionDetails } = misdem;
-              return (
-                <tr
-                  key={i + "midemeanour"}
-                  className={
-                    selfConfession
-                      ? "table__row table__self-confession"
-                      : "table__row"
-                  }
-                >
-                  <td>
-                    <span className="table__label">Citizen Id :</span>
-                    {citizenId}
-                  </td>
-                  <td>
-                    <span className="table__label">Date :</span>
-                    {date}
-                  </td>
-                  <td>
-                    {misdemeanour + " " + MisdemeanourEmoji(misdemeanour)}
-                  </td>
-                  <td>
-                    <span className="table__label">Punishment Idea :</span>
-                    <img src={src} alt={alt} />
-                  </td>
-                  <td>
-                    <span className="table__label">Confession Details :</span>
-                    {confessionDetails}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        {isLoading && (
-          <div className="table__loading" aria-label="misdemeanour-loading">
-            Loading ...
+      <div className="misdemeanour">
+        <div className="misdemeanour__sidebar">
+          <div className="misdemeanour__sidebar-heading">
+            <svg className="icon--small icon-stats-dots">
+              <use xlinkHref="../../public/Svg/stats-dots.svg#icon-stats-dots"></use>
+            </svg>
+            <h3>Misdemeanours Data Table</h3>
           </div>
-        )}
-        {error && (
-          <div className="table__error" aria-label="misdemeanour-error">
-            {error}
-          </div>
-        )}
+          <p>{totalMisdemeanoursToday()}</p>
+          <p>{totalSelfConfessionsToday()}</p>
+        </div>
+        <div className="misdemeanour__table" aria-label="misdemeanour-page">
+          <table className="table">
+            <thead className="table__header">
+              <tr className="table__header-row">
+                <th>Citizen Id</th>
+                <th>Date</th>
+                <th>
+                  <p> Misdemeanour </p>
+                  <MisdemeanourSelect
+                    setFilteredMisdemeanants={(data) => {
+                      setFilteredMisdemeanants(data);
+                    }}
+                  />
+                </th>
+                <th>Punishment Idea</th>
+                <th>Confession Details</th>
+              </tr>
+            </thead>
+            <tbody className="table__body">
+              {filteredMisdemeanants.map((misdem, i) => {
+                const { citizenId, date, misdemeanour } = misdem.misdemeanours;
+                const { src, alt } = misdem.punishment;
+                const { selfConfession, selfConfessionDetails } = misdem;
+                return (
+                  <tr
+                    key={i + "midemeanour"}
+                    className={
+                      selfConfession
+                        ? "table__row table__self-confession"
+                        : "table__row"
+                    }
+                  >
+                    <td>
+                      <span className="table__label">Citizen Id :</span>
+                      {citizenId}
+                    </td>
+                    <td>
+                      <span className="table__label">Date :</span>
+                      {date}
+                    </td>
+                    <td>
+                      {misdemeanour + " " + MisdemeanourEmoji(misdemeanour)}
+                    </td>
+                    <td>
+                      <span className="table__label">Punishment Idea :</span>
+                      <img src={src} alt={alt} />
+                    </td>
+                    <td>
+                      <span className="table__label">Confession Details :</span>
+                      {selfConfessionDetails}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {isLoading && (
+            <div className="table__loading" aria-label="misdemeanour-loading">
+              Loading ...
+            </div>
+          )}
+          {error && (
+            <div className="table__error" aria-label="misdemeanour-error">
+              {error}
+            </div>
+          )}
+        </div>
       </div>
     </MisdemeanourContext.Provider>
   );

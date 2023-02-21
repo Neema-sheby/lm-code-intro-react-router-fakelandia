@@ -28,12 +28,13 @@ export type Misdemeanant = {
     alt: string;
   };
   selfConfession: boolean;
-  confessionDetails: string;
+  selfConfessionDetails: string;
 };
 
 export type SelfConfessionMisdemeanour = {
   misdemeanourInfo: Misdemeanour;
-  confessionDetails: string;
+  selfConfession: boolean;
+  selfConfessionDetails: string;
 };
 
 export const defaultSelfConfessionMisdemeanour: SelfConfessionMisdemeanour = {
@@ -42,5 +43,6 @@ export const defaultSelfConfessionMisdemeanour: SelfConfessionMisdemeanour = {
     misdemeanour: "rudeness",
     date: "",
   },
-  confessionDetails: "",
+  selfConfession: true,
+  selfConfessionDetails: "",
 };

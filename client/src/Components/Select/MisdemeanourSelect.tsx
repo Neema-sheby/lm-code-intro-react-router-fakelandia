@@ -26,7 +26,6 @@ const MisdemeanourSelect: React.FC<SelectProp> = ({
     setMisdemeanourValue(e.target.value);
 
     if (e.target.value) {
-      console.log(misdemeanants);
       const filteredMisdemeanantList = misdemeanants.filter(
         (misdemeanant: Misdemeanant, i) => {
           const { misdemeanour } = misdemeanant.misdemeanours;
