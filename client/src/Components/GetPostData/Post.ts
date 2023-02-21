@@ -23,18 +23,18 @@ export const postData = async (
     const response = await fetch(url, postRequestOptions);
 
     if (!response.ok) {
-      if (response.status === 500)
-        throw new Error(`${ErrorMessagesAPI.error500}`);
+      if (response.status === 500) throw new Error(ErrorMessagesAPI.error500);
       else if (response.status === 418)
-        throw new Error(`${ErrorMessagesAPI.error418}`);
+        throw new Error(ErrorMessagesAPI.error418);
       else if (response.status === 404)
-        throw new Error(`${ErrorMessagesAPI.error404}`);
+        throw new Error(ErrorMessagesAPI.error404);
       else {
-        throw new Error(`${ErrorMessagesAPI.errorFetch}`);
+        throw new Error(ErrorMessagesAPI.errorFetch);
       }
     }
 
     const data = await response.json();
+    callbackError("");
     return data;
   } catch (err: unknown) {
     let message: string = "unknown error";
