@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import { ErrorMessagesAPI } from "../ErrorHandler/ErrorMessages";
 import { fetchData } from "./Fetch";
 
 const handlers = [
@@ -47,5 +48,5 @@ it(`calls the error callback function on error`, async () => {
 
   expect(mock).toHaveBeenCalled();
   expect(mock).toHaveBeenCalledTimes(1);
-  expect(response).toBeUndefined();
+  expect(mock).toBeCalledWith(ErrorMessagesAPI.error404);
 });

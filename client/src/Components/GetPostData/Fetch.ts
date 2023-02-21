@@ -24,6 +24,7 @@ export const fetchData = async <T>(
     }
 
     const result = await response.json();
+    callbackError("");
     return result;
   } catch (err: unknown) {
     let message: string = "unknown error";
