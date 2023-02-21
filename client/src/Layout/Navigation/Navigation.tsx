@@ -19,7 +19,11 @@ const Nav: React.FC = () => {
           ariaLabel="misdemeanours"
           content="Misdemeanours"
         />
-        <NavItem to="/confession" ariaLabel="confession" content="Confession" />
+        <NavItem
+          to="/confession"
+          ariaLabel="confession"
+          content="Confess To Us"
+        />
       </ul>
     </nav>
   );
