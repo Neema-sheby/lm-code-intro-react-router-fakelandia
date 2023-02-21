@@ -7,7 +7,7 @@ import {
 } from "./ConfessionFormDataType.types";
 import TextareaField from "../../TextArea/TextAreaField";
 import Button from "../../Button/ButtonForm";
-import { ErrorLogs } from "../../ErrorHandler/ErrorMessages";
+import { ErrorLogs, ErrorMessagesAPI } from "../../ErrorHandler/ErrorMessages";
 import {
   validateSubject,
   validateReasonSelection,
@@ -70,11 +70,14 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
             misdemeanour: value.reason,
             date: new Date().toLocaleDateString("en-US"),
           },
-          confessionDetails: value.details,
+          selfConfession: true,
+          selfConfessionDetails: value.details,
         };
         setSubmitted(true);
         setNewMisdemeanourOfMisdemeanant(newMisdamenourData);
       }
+    } else if (postResponse && postResponse.success === false) {
+      setPostResponseError(ErrorMessagesAPI.errUnsuccessful);
     } else {
       setSubmitted(false);
       setNewMisdemeanourOfMisdemeanant(defaultSelfConfessionMisdemeanour);

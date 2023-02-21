@@ -321,7 +321,7 @@ it("has button disabled if data entered in all the fields has errors", async () 
   expect(errorMsgItem[0]).toHaveTextContent(errMsgSubject.errCharCount);
   expect(errorMsgItem[1]).toHaveTextContent(errMsgReason.errNotSelected);
   expect(errorMsgItem[2]).toHaveTextContent(errMsgTextArea.errCharCount);
-  // screen.debug();
+
   expect(button).toBeDisabled();
 });
 

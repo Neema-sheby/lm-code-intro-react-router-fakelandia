@@ -46,4 +46,5 @@ export const ErrorMessagesAPI = {
   error500: "⛔️ Error: 500 🤕",
   error418: "⛔️ Error: 418 😁",
   errorFetch: "⛔️ Error: Oops... something went wrong in fetching data 🤕",
+  errUnsuccessful: "⛔️ Unsuccessful 🤕",
 };
