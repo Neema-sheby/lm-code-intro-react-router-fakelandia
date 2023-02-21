@@ -4,11 +4,18 @@ const Footer = () => {
   return (
     <footer className="footer">
       <NavLink className="footer_nav" to="/">
-        <img
-          className="footer__img"
-          src="../../public/Images/logo.jpg"
-          alt="Justice Department of Fakelandia Logo"
-        />
+        <div className="header__img-box">
+          <img
+            className="footer__img--small"
+            src="../../public/Images/justice.png"
+            alt="Justice Department of Fakelandia Logo"
+          />
+          <img
+            className="footer__img"
+            src="../../public/Images/fakelandiaLogo1.png"
+            alt="Justice Department of Fakelandia Logo"
+          />
+        </div>
       </NavLink>
 
       <p>

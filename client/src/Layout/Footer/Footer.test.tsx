@@ -24,8 +24,9 @@ it("contains logo which is the link to home page", () => {
   const footer = screen.getByRole("contentinfo");
   const navLink = within(footer).getByRole("link");
 
-  const logo = within(navLink).getByRole("img");
+  const logo = screen.getAllByRole("img");
 
   expect(navLink).toBeInTheDocument();
-  expect(logo).toBeInTheDocument();
+  expect(logo[0]).toBeInTheDocument();
+  expect(logo[1]).toBeInTheDocument();
 });
