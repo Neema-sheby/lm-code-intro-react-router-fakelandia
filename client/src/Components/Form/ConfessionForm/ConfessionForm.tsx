@@ -163,9 +163,15 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
         />
       </form>
       <div className="form__submitted-msg">
-        {submitted && <div className="form__sendMsg"> ✅ Message Send !</div>}
+        {submitted && (
+          <div role="alert" className="form__sendMsg">
+            ✅ Message Send !
+          </div>
+        )}
         {postResponseError && (
-          <div className="form__err-server">⛔️ {postResponseError}</div>
+          <div role="alert" className="form__err-server">
+            {postResponseError}
+          </div>
         )}
       </div>
     </div>

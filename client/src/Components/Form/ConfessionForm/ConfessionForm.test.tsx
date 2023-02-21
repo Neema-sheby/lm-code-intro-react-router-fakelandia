@@ -7,6 +7,7 @@ import {
   errMsgSubject,
   errMsgReason,
   errMsgTextArea,
+  ErrorMessagesAPI,
 } from "../../ErrorHandler/ErrorMessages";
 
 const handlers = [
@@ -342,4 +343,81 @@ it("has button enabled if the data entered in all the fields has no errors", asy
   await user.type(textBoxes[1], testData1.details);
 
   expect(button).not.toBeDisabled();
+});
+
+it("shows send message after receiving response fron server", async () => {
+  const user = userEvent.setup();
+  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+  const selectField = screen.getByRole("combobox");
+  const button = screen.getByRole("button");
+
+  //user types in input field
+  await user.type(textBoxes[0], testData1.subject);
+
+  //user selects from select field
+  await user.selectOptions(selectField, testData1.reason);
+
+  //user types in textarea
+  await user.type(textBoxes[1], testData1.details);
+
+  //user clicks button
+  await user.click(button);
+
+  jest.mock("../../GetPostData/Post.ts", () => ({
+    fetchSomeData: jest.fn(
+      () =>
+        new Promise((resolve) =>
+          setTimeout(
+            () =>
+              resolve({
+                success: true,
+                justTalked: false,
+                message: "Confession received.",
+              }),
+            1000
+          )
+        )
+    ),
+  }));
+
+  await screen.findByText("✅ Message Send !");
+  const msgSend = screen.getByRole("alert");
+
+  expect(msgSend).toHaveTextContent("✅ Message Send !");
+});
+
+it("calls the error callback function on error from server and displays error message", async () => {
+  const user = userEvent.setup();
+
+  server.use(
+    rest.post("http://localhost:8080/api/confess", (req, res, ctx) => {
+      return res(ctx.status(404));
+    })
+  );
+
+  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+
+  const textBoxes = screen.getAllByRole("textbox");
+  const selectField = screen.getByRole("combobox");
+  const button = screen.getByRole("button");
+
+  //user types in input field
+  await user.type(textBoxes[0], testData1.subject);
+
+  //user selects from select field
+  await user.selectOptions(selectField, testData1.reason);
+
+  //user types in textarea
+  await user.type(textBoxes[1], testData1.details);
+
+  //user clicks button
+  await user.click(button);
+
+  await screen.findByText(ErrorMessagesAPI.error404);
+
+  const errorMsg = screen.getByRole("alert");
+
+  expect(errorMsg).toHaveTextContent(ErrorMessagesAPI.error404);
 });
