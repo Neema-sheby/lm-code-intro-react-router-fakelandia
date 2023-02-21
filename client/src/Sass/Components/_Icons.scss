@@ -7,6 +7,12 @@
 
 .icon {
   fill: currentColor;
+  &--small {
+    fill: $color-white;
+    width: 3rem;
+    height: 3rem;
+    opacity: 0.3;
+  }
 }
 
 .icon__opacity--medium {
