@@ -6,14 +6,17 @@
   padding: 0 5rem;
   margin-top: 2rem;
 
+  &__img-box {
+    display: flex;
+    align-items: center;
+  }
+
   &__img {
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    box-shadow: $box-shadow--medium;
+    width: 21rem;
+
+    &--small {
+      width: 4rem;
+      margin-right: 0.5rem;
+    }
   }
 }
