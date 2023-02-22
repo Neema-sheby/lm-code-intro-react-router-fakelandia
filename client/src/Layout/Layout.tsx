@@ -16,11 +16,3 @@ const Layout: React.FC = () => {
 };
 
 export default Layout;
-
-{
-  /* <nav>
-<NavLink to="/">Home</NavLink>
-<NavLink to="misdemeanours">Misdemeanours</NavLink>
-<NavLink to="confession">Confession</NavLink>
-</nav> */
-}
