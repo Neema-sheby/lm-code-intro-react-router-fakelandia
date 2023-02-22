@@ -8,6 +8,10 @@
   }
 
   @include respond(large-tab) {
+    width: 100%;
+  }
+
+  @include respond(large-tab) {
     display: none;
     visibility: hidden;
     opacity: 0;
@@ -23,12 +27,14 @@
   }
 
   &--small-devices {
+    width: 0;
+    height: 0;
     position: absolute;
     top: 0;
     right: 0;
     width: 5rem;
     height: 5rem;
-    background-color: red;
+    background-color: $color-green--dark;
     z-index: 1;
     transition: 0.2s all ease-in-out;
     -webkit-transition: 0.2s all ease-in-out;
@@ -43,8 +49,35 @@
     justify-content: space-around;
     align-items: center;
 
+    @include respond(large-tab) {
+      width: 85%;
+      margin-top: 3rem;
+    }
+    @include respond(small-tab-portrait) {
+      width: 78%;
+      margin-top: 2rem;
+    }
+    @include respond(phone) {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 1rem;
+      margin-left: 1.5rem;
+    }
+
     li {
       list-style: none;
+
+      &:not(:first-of-type) {
+        @include respond(phone) {
+          padding: 0.7rem;
+        }
+      }
+      @include respond(phone) {
+        width: 100%;
+        border-bottom: 0.5px solid $color-white--light;
+      }
     }
   }
   &__item {
@@ -62,6 +95,17 @@
     -moz-transition: 0.2s all;
     -ms-transition: 0.2s all;
     -o-transition: 0.2s all;
+
+    @include respond(large-tab) {
+      color: $color-white;
+    }
+    @include respond(small-tab-portrait) {
+      font-size: 1rem;
+    }
+
+    @include respond(phone) {
+      padding: 1rem 0;
+    }
 
     &::after {
       content: "";
@@ -87,6 +131,9 @@
         width: 100%;
         height: 2px;
         background-color: $color-brown--medium;
+        @include respond(phone) {
+          display: none;
+        }
       }
     }
 
@@ -98,6 +145,10 @@
       -moz-border-radius: $border-radius--small;
       -ms-border-radius: $border-radius--small;
       -o-border-radius: $border-radius--small;
+      @include respond(phone) {
+        padding: 0;
+        margin: o;
+      }
 
       &:hover {
         box-shadow: $box-shadow--btn;
@@ -107,6 +158,10 @@
 }
 .active {
   color: $color-brown--medium;
+
+  @include respond(large-tab) {
+    color: $color-black--light;
+  }
 }
 
 //show hidden navigaion
@@ -117,6 +172,17 @@
   -moz-transform: scale(10);
   -ms-transform: scale(10);
   -o-transform: scale(10);
+
+  @include respond(large-tab) {
+    width: 100%;
+    height: 2rem;
+  }
+  @include respond(small-tab-portrait) {
+    height: 1.5rem;
+  }
+  @include respond(phone) {
+    height: 2.5rem;
+  }
 }
 
 .navbtn:checked ~ .nav {

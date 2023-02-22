@@ -28,6 +28,17 @@
       align-items: center;
     }
 
+    @include respond(small-tab-portrait) {
+      right: 1.5rem;
+    }
+
+    @include respond(phone) {
+      right: 1rem;
+    }
+    @include respond(small-phone) {
+      right: 0;
+    }
+
     &:hover > &__hamburger::after {
       transform: translateY(-0.2rem);
       -webkit-transform: translateY(-0.2rem);
@@ -81,7 +92,7 @@
     height: 0;
   }
   &:checked + &__hamburger-box {
-    background-color: $color-green;
+    background-color: $color-black--light;
   }
 
   &:checked + &__hamburger-box > &__hamburger::before {
@@ -90,6 +101,7 @@
     -moz-transform: translateY(0.8rem) rotate(315deg);
     -ms-transform: translateY(0.8rem) rotate(315deg);
     -o-transform: translateY(0.8rem) rotate(315deg);
+    background-color: $color-white--light;
   }
   &:checked + &__hamburger-box > &__hamburger::after {
     transform: translateY(-0.8rem) rotate(-315deg);
@@ -97,6 +109,7 @@
     -moz-transform: translateY(-0.8rem) rotate(-315deg);
     -ms-transform: translateY(-0.8rem) rotate(-315deg);
     -o-transform: translateY(-0.8rem) rotate(-315deg);
+    background-color: $color-white--light;
   }
 }
 
