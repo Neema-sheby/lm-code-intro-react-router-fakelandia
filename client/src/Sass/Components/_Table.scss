@@ -118,7 +118,7 @@
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        padding: 0 0.5rem;
+        padding: 0.5rem;
 
         @include respond(large-tab) {
           text-align: left;
