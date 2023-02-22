@@ -16,6 +16,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @include respond(small-phone) {
+    justify-content: space-evenly;
+    gap: 3rem;
+  }
 }
 
 .main {
@@ -24,4 +29,8 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 3rem;
+
+  @include respond(large-tab) {
+    margin-top: 1rem;
+  }
 }

@@ -1,5 +1,4 @@
 .dropdown-container {
-  width: 75%;
   position: relative;
   display: block;
   margin: 0 auto;
@@ -20,7 +19,7 @@
   -ms-border-radius: 0;
   -o-border-radius: 0;
   width: 100%;
-  padding: 1rem 3rem 1rem 1rem;
+  padding: 0.5rem;
   font-size: inherit;
   color: $color-brown--dark;
 }

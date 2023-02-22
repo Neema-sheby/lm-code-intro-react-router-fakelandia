@@ -1,18 +1,13 @@
-.navbtn__container {
+.navbtn {
   width: 3rem;
   height: 3rem;
-}
-
-.navbtn {
-  width: 100%;
-  height: 100%;
-  display: none;
   text-align: center;
+  display: none;
 
   &__hamburger-box {
     display: block;
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     position: relative;
     top: 0;
     cursor: pointer;
@@ -26,6 +21,12 @@
     -moz-transition: all 0.5s;
     -ms-transition: all 0.5s;
     -o-transition: all 0.5s;
+    z-index: 1000;
+
+    @include respond(large-tab) {
+      display: flex;
+      align-items: center;
+    }
 
     &:hover > &__hamburger::after {
       transform: translateY(-0.2rem);
@@ -36,7 +37,7 @@
   }
 
   &__hamburger {
-    width: 60%;
+    width: 2.5rem;
     height: 0.2rem;
     position: absolute;
     top: 50%;
@@ -74,13 +75,6 @@
       -ms-transform: translateY(-0.2rem);
       -o-transform: translateY(-0.2rem);
     }
-
-    // &:hover::after {
-    //   transform: translateY(-0.2rem);
-    //   -webkit-transform: translateY(-0.2rem);
-    //   -moz-transform: translateY(-0.2rem);
-    //   -ms-transform: translateY(-0.2rem);
-    // }
   }
 
   &:checked + &__hamburger-box > &__hamburger {

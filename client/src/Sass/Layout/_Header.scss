@@ -6,6 +6,15 @@
   padding: 0 5rem;
   margin-top: 2rem;
 
+  @include respond(small-tab) {
+    padding: 0 2rem;
+  }
+
+  @include respond(phone) {
+    padding: 0 1rem;
+    justify-content: space-around;
+  }
+
   &__img-box {
     display: flex;
     align-items: center;
@@ -14,9 +23,30 @@
   &__img {
     width: 21rem;
 
+    @include respond(small-tab) {
+      width: 18rem;
+    }
+
+    @include respond(phone) {
+      width: 16rem;
+    }
+    @include respond(phone) {
+      width: 14rem;
+    }
+    @include respond(small-phone) {
+      width: 12rem;
+    }
+
     &--small {
       width: 4rem;
       margin-right: 0.5rem;
+
+      @include respond(small-tab) {
+        width: 3rem;
+      }
+      @include respond(phone) {
+        width: 2.5rem;
+      }
     }
   }
 }

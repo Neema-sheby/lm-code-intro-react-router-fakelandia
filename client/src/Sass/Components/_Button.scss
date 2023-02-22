@@ -45,5 +45,8 @@
     background-color: $color-black--light;
     align-self: flex-end;
     border: none;
+    @include respond(small-tab) {
+      width: 100%;
+    }
   }
 }

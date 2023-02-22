@@ -38,6 +38,20 @@ $bg-home: linear-gradient(
   ),
   url(../../../public/Images/backgroundImg-1.jpg);
 
+$bg-misdemeamour: linear-gradient(
+    90deg,
+    $color-brown--light 5%,
+    hsla(0, 0%, 0%, 1) 80%
+  ),
+  url(../../../public/Images/backgroundImg-1.jpg);
+
+$bg-home--phone: linear-gradient(
+    270deg,
+    $color-brown--light 5%,
+    hsla(0, 0%, 0%, 1) 80%
+  ),
+  url(../../../public/Images/backgroundImg-1-phone-1.jpg);
+
 $bg-confession: linear-gradient(
   360deg,
   $color-black--light 5%,

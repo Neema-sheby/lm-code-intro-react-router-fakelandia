@@ -10,6 +10,19 @@
   color: $color-grey;
   font-size: 0.9rem;
 
+  @include respond(large-tab) {
+    margin-top: 4rem;
+    padding: 2rem 5rem;
+  }
+
+  @include respond(small-tab-portrait) {
+    margin-top: 0;
+  }
+
+  @include respond(phone) {
+    padding: 2rem;
+  }
+
   &__img-box {
     display: flex;
     align-items: center;
@@ -17,10 +30,30 @@
 
   &__img {
     width: 21rem;
+    @include respond(small-tab) {
+      width: 18rem;
+    }
+
+    @include respond(phone) {
+      width: 16rem;
+    }
+    @include respond(phone) {
+      width: 14rem;
+    }
+    @include respond(small-phone) {
+      width: 12rem;
+    }
 
     &--small {
       width: 4rem;
       margin-right: 0.5rem;
+
+      @include respond(small-tab) {
+        width: 3rem;
+      }
+      @include respond(phone) {
+        width: 2.5rem;
+      }
     }
   }
 
@@ -31,5 +64,8 @@
   p {
     width: 100%;
     text-align: center;
+    @include respond(small-tab) {
+      font-size: 0.75rem;
+    }
   }
 }

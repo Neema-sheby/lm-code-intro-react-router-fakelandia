@@ -13,14 +13,78 @@
   -moz-border-radius: $border-radius;
   -ms-border-radius: $border-radius;
   -o-border-radius: $border-radius;
+
+  @include respond(large-tab) {
+    padding: 12rem 3rem;
+  }
+  @include respond(small-tab) {
+    padding: 7rem 3rem;
+  }
+  @include respond(small-tab-portrait) {
+    gap: 2rem;
+  }
+  @include respond(phone) {
+    width: 100%;
+    background: $bg-home--phone;
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+  }
+  @include respond(small-tab-portrait) {
+    padding: 7rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @include respond(small-phone) {
+    margin-top: -2rem;
+  }
+
   h1 {
     width: 75%;
     font-size: 2.5rem;
     color: $color-white--light;
     justify-self: center;
+
+    @include respond(large-tab) {
+      font-size: 2rem;
+    }
+
+    @include respond(small-tab) {
+      font-size: 1.8rem;
+    }
+    @include respond(small-tab-portrait) {
+      width: 75%;
+      font-size: 1.4rem;
+    }
+
+    @include respond(small-phone) {
+      width: 100%;
+    }
   }
   p {
     width: 65%;
     font-size: 1rem;
+    @include respond(large-tab) {
+      font-size: 0.9rem;
+    }
+
+    @include respond(small-tab-portrait) {
+      width: 80%;
+      font-size: 0.8rem;
+    }
+
+    @include respond(phone) {
+      width: 90%;
+      font-size: 0.8rem;
+    }
+
+    @include respond(small-phone) {
+      width: 100%;
+    }
   }
 }

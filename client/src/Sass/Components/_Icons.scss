@@ -20,4 +20,9 @@
   height: 5rem;
   fill: $color-white;
   opacity: 0.3;
+
+  @include respond(phone) {
+    width: 4rem;
+    height: 4rem;
+  }
 }

@@ -3,10 +3,28 @@
   display: grid;
   grid-template-columns: 25% 1fr;
   margin-top: 2rem;
-  background: $bg-home;
+  background: $bg-misdemeamour;
   background-position: top;
   background-size: contain;
   background-repeat: repeat;
+
+  @include respond(desktop) {
+    width: 100%;
+  }
+
+  @include respond(large-tab) {
+    font-size: 0.9rem;
+  }
+
+  @include respond(small-tab) {
+    display: grid;
+    grid-template-row: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  @include respond(small-phone) {
+    margin-top: -2rem;
+  }
 
   &__sidebar {
     width: 100%;
@@ -41,5 +59,13 @@
     border-bottom-right-radius: $border-radius--small;
     background-color: $color-white--lighter;
     padding: 3rem;
+
+    @include respond(small-tab) {
+      padding: 1.5rem;
+    }
+
+    @include respond(small-phone) {
+      padding: 0.5rem;
+    }
   }
 }
