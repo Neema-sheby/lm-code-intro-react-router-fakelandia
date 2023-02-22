@@ -101,7 +101,7 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   align-self: flex-end;
   border: none; }
-  @media only screen and (max-width: 50em) {
+  @media only screen and (max-width: 64em) {
     .button--form, .button--form:disabled {
       width: 100%; } }
 
@@ -193,6 +193,9 @@ body {
     font-family: inherit;
     background-color: rgba(255, 255, 255, 0.2);
     color: #ffffff; }
+    @media only screen and (max-width: 50em) {
+      .form__input, .form__select, .form__textarea {
+        width: 100%; } }
     .form__input:focus, .form__input:active, .form__select:focus, .form__select:active, .form__textarea:focus, .form__textarea:active {
       outline: none;
       border: 2px solid rgba(255, 255, 255, 0.7); }
@@ -343,7 +346,7 @@ body {
   .table__header {
     background-color: rgba(16, 172, 133, 0.3);
     color: rgba(255, 255, 255, 0.7);
-    padding: 2rem 0; }
+    padding: 2rem; }
     @media only screen and (max-width: 37.5em) {
       .table__header {
         padding: 1rem; } }
@@ -772,7 +775,7 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 4rem;
+  padding: 0 2rem;
   border-radius: 0.3rem;
   -webkit-border-radius: 0.3rem;
   -moz-border-radius: 0.3rem;
@@ -781,12 +784,6 @@ body {
   box-shadow: 0 0 0.7rem 0.2rem rgba(0, 0, 0, 0.8);
   margin: 3rem 0;
   background: linear-gradient(360deg, rgba(0, 0, 0, 0.6) 5%, black 80%); }
-  @media only screen and (max-width: 80em) {
-    .confession {
-      padding: 3rem; } }
-  @media only screen and (max-width: 64em) {
-    .confession {
-      padding: 2rem; } }
   @media only screen and (max-width: 50em) {
     .confession {
       width: 100%;
@@ -812,10 +809,10 @@ body {
         padding-right: 0; } }
     @media only screen and (max-width: 37.5em) {
       .confession__text {
-        width: 100%; } }
+        width: 100%;
+        padding: 2rem; } }
     @media only screen and (max-width: 30em) {
       .confession__text {
-        padding: 2rem;
         font-size: 0.9rem; } }
     .confession__text:first-child {
       align-items: center; }

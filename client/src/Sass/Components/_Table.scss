@@ -13,7 +13,7 @@
   &__header {
     background-color: $color-green;
     color: $color-white--light;
-    padding: 2rem 0;
+    padding: 2rem;
 
     @include respond(small-tab-portrait) {
       padding: 1rem;

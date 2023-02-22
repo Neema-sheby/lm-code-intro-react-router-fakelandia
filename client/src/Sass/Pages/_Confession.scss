@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 4rem;
+  padding: 0 2rem;
   border-radius: $border-radius--small;
   -webkit-border-radius: $border-radius--small;
   -moz-border-radius: $border-radius--small;
@@ -16,12 +16,6 @@
   margin: 3rem 0;
   background: $bg-confession;
 
-  @include respond(desktop) {
-    padding: 3rem;
-  }
-  @include respond(large-tab) {
-    padding: 2rem;
-  }
   @include respond(small-tab) {
     width: 100%;
     margin: 2rem 0 0 0;
@@ -51,10 +45,10 @@
 
     @include respond(small-tab-portrait) {
       width: 100%;
+      padding: 2rem;
     }
 
     @include respond(phone) {
-      padding: 2rem;
       font-size: 0.9rem;
     }
 
