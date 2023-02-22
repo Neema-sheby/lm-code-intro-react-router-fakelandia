@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import NavItem from "./NavItem";
 
 const Nav: React.FC = () => {
+  const [clicked, setIsClicked] = useState<boolean>(false);
+
   return (
     <>
-      <div className="navbtn__container">
-        <input id="closeButton" type="checkbox" className="navbtn" />
-        <label htmlFor="closeButton" className="navbtn__hamburger-box">
-          <span className="navbtn__hamburger"></span>
-        </label>
-      </div>
+      <input id="closeButton" type="checkbox" className="navbtn" />
+      <label
+        htmlFor="closeButton"
+        className="navbtn__hamburger-box"
+        onClick={() => setIsClicked(!clicked)}
+      >
+        <span className="navbtn__hamburger"></span>
+      </label>
+      <div className={clicked ? "nav--small-devices" : "hidden"}></div>
       <nav className="nav">
         <ul className="nav__list">
           <NavItem

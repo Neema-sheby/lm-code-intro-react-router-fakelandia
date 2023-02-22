@@ -16,7 +16,7 @@
     padding: 2rem 0;
 
     @include respond(small-tab-portrait) {
-      display: none;
+      padding: 1rem;
     }
   }
 
@@ -50,6 +50,20 @@
       @include respond(large-tab) {
         height: 4rem;
         font-size: 0.9rem;
+      }
+      &:not(:nth-of-type(3)) {
+        @include respond(small-tab-portrait) {
+          display: none;
+        }
+      }
+      &:nth-of-type(3) {
+        @include respond(small-tab-portrait) {
+          width: 100%;
+          select {
+            height: 2.5rem;
+            font-size: 1rem;
+          }
+        }
       }
     }
   }
@@ -171,20 +185,5 @@
 
   &__error {
     color: $color-error;
-  }
-
-  // For devices less than 600px
-  &__header--phone {
-    display: none;
-    background-color: $color-green;
-    color: $color-white--light;
-    padding: 2rem;
-    select {
-      height: 3rem;
-    }
-    @include respond(small-tab-portrait) {
-      display: block;
-      width: 100%;
-    }
   }
 }

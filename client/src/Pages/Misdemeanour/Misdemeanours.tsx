@@ -144,13 +144,6 @@ const Misdemeanours: React.FC = () => {
         </div>
         <div className="misdemeanour__table" aria-label="misdemeanour-page">
           <table className="table">
-            <thead className="table__header--phone">
-              <MisdemeanourSelect
-                setFilteredMisdemeanants={(data) => {
-                  setFilteredMisdemeanants(data);
-                }}
-              />
-            </thead>
             <thead className="table__header">
               <tr className="table__header-row">
                 <th>Citizen Id</th>

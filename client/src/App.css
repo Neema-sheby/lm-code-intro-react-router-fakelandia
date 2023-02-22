@@ -227,7 +227,7 @@ body {
   text-align: center;
   display: none; }
   .navbtn__hamburger-box {
-    display: block;
+    display: none;
     width: 3rem;
     height: 3rem;
     position: relative;
@@ -304,6 +304,9 @@ body {
     -ms-transform: translateY(-0.8rem) rotate(-315deg);
     -o-transform: translateY(-0.8rem) rotate(-315deg); }
 
+.hidden {
+  display: none; }
+
 .icon,
 .icon__opacity--medium {
   display: inline-block;
@@ -343,7 +346,7 @@ body {
     padding: 2rem 0; }
     @media only screen and (max-width: 37.5em) {
       .table__header {
-        display: none; } }
+        padding: 1rem; } }
   .table__row, .table__header-row {
     display: flex;
     justify-content: space-between;
@@ -371,6 +374,15 @@ body {
         .table__row th, .table__header-row th {
           height: 4rem;
           font-size: 0.9rem; } }
+      @media only screen and (max-width: 37.5em) {
+        .table__row th:not(:nth-of-type(3)), .table__header-row th:not(:nth-of-type(3)) {
+          display: none; } }
+      @media only screen and (max-width: 37.5em) {
+        .table__row th:nth-of-type(3), .table__header-row th:nth-of-type(3) {
+          width: 100%; }
+          .table__row th:nth-of-type(3) select, .table__header-row th:nth-of-type(3) select {
+            height: 2.5rem;
+            font-size: 1rem; } }
   .table__row {
     background-color: rgba(255, 255, 255, 0.7); }
     .table__row:nth-child(even) {
@@ -472,17 +484,6 @@ body {
     padding: 1rem 2rem; }
   .table__error {
     color: #f44336; }
-  .table__header--phone {
-    display: none;
-    background-color: rgba(16, 172, 133, 0.3);
-    color: rgba(255, 255, 255, 0.7);
-    padding: 2rem; }
-    .table__header--phone select {
-      height: 3rem; }
-    @media only screen and (max-width: 37.5em) {
-      .table__header--phone {
-        display: block;
-        width: 100%; } }
 
 .footer {
   width: 100%;
