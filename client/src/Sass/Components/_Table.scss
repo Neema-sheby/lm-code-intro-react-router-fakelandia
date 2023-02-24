@@ -194,6 +194,7 @@
   }
 
   &__error {
+    width: 100%;
     background-color: $color-black--light;
     padding: 1rem;
     color: $color-error;
@@ -202,5 +203,6 @@
     -moz-border-radius: $border-radius;
     -ms-border-radius: $border-radius;
     -o-border-radius: $border-radius;
+    text-align: center;
   }
 }
