@@ -183,13 +183,6 @@
   &__error {
     align-self: center;
     margin: 3rem 0;
-    font-size: 2rem;
-    @include respond(large-tab) {
-      font-size: 1.4rem;
-    }
-    @include respond(small-phone) {
-      font-size: 1rem;
-    }
   }
 
   &__loading {

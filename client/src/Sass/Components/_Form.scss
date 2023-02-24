@@ -127,9 +127,16 @@
 
   &__err-server {
     width: 100%;
-    margin-top: -3rem;
     margin-right: 50%;
     color: $color-error;
     text-align: center;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: $color-black--light;
+    border-radius: $border-radius;
+    -webkit-border-radius: $border-radius;
+    -moz-border-radius: $border-radius;
+    -ms-border-radius: $border-radius;
+    -o-border-radius: $border-radius;
   }
 }

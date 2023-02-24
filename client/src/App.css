@@ -229,10 +229,17 @@ body {
         font-size: 1rem; } }
   .form__err-server {
     width: 100%;
-    margin-top: -3rem;
     margin-right: 50%;
     color: #f44336;
-    text-align: center; }
+    text-align: center;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem; }
 
 .icon,
 .icon__opacity--medium {
@@ -425,14 +432,7 @@ body {
         color: #8d7966d4; } }
   .table__loading, .table__error {
     align-self: center;
-    margin: 3rem 0;
-    font-size: 2rem; }
-    @media only screen and (max-width: 64em) {
-      .table__loading, .table__error {
-        font-size: 1.4rem; } }
-    @media only screen and (max-width: 22.5em) {
-      .table__loading, .table__error {
-        font-size: 1rem; } }
+    margin: 3rem 0; }
   .table__loading {
     color: #ffffff;
     animation: flashing 1s linear infinite forwards;
@@ -571,8 +571,8 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    animation: moveLeft 1s forwards;
-    -webkit-animation: moveLeft 1s forwards; }
+    animation: moveLeft 0.2s forwards;
+    -webkit-animation: moveLeft 0.2s forwards; }
   .nav__menu {
     display: none; }
     @media only screen and (max-width: 64em) {
@@ -732,7 +732,7 @@ body {
       -o-border-radius: 0; } }
   @media only screen and (max-width: 37.5em) {
     .home {
-      padding: 7rem 2rem;
+      padding: 7rem 3rem;
       margin-bottom: 2rem; } }
   @media only screen and (max-width: 22.5em) {
     .home {
@@ -750,11 +750,8 @@ body {
         font-size: 1.8rem; } }
     @media only screen and (max-width: 37.5em) {
       .home h1 {
-        width: 75%;
+        width: 100%;
         font-size: 1.4rem; } }
-    @media only screen and (max-width: 22.5em) {
-      .home h1 {
-        width: 100%; } }
   .home p {
     width: 65%;
     font-size: 1rem; }

@@ -29,7 +29,7 @@ export const postData = async (
       else if (response.status === 404)
         throw new Error(ErrorMessagesAPI.error404);
       else {
-        throw new Error(ErrorMessagesAPI.errorFetch);
+        throw new Error(ErrorMessagesAPI.errorPost);
       }
     }
 
