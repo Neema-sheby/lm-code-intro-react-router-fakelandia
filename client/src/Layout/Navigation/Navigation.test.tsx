@@ -10,8 +10,9 @@ it("is rendered in the document", () => {
     </BrowserRouter>
   );
 
-  const navigation = screen.getByRole("navigation");
-  expect(navigation).toBeInTheDocument();
+  const navigation = screen.getAllByRole("navigation");
+  expect(navigation[0]).toBeInTheDocument();
+  expect(navigation[1]).toBeInTheDocument();
 });
 
 it("it renders home page when user clicks on home navigation link and an `active` class name is added to the link when it is active", async () => {

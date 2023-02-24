@@ -1,7 +1,8 @@
 .misdemeanour {
   width: 90%;
   display: grid;
-  grid-template-columns: 25% 1fr;
+  grid-template-rows: min-content;
+  grid-template-columns: 25% 75%;
   background: $bg-misdemeamour;
   background-position: top;
   background-size: contain;
@@ -17,8 +18,8 @@
 
   @include respond(small-tab) {
     display: grid;
-    grid-template-row: 1fr 1fr;
-    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, min-content);
+    grid-template-columns: 100%;
   }
 
   @include respond(small-phone) {

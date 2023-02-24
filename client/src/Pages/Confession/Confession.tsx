@@ -1,6 +1,7 @@
 import React from "react";
 import ConfessionForm from "../../Components/Form/ConfessionForm/ConfessionForm";
 import { ConfessionProp } from "../../Components/Form/ConfessionForm/ConfessionFormDataType.types";
+import svg from "../../Svg/file-text2.svg";
 const Confession: React.FC<ConfessionProp> = ({
   setNewMisdemeanourOfMisdemeanant,
 }) => {
@@ -8,7 +9,7 @@ const Confession: React.FC<ConfessionProp> = ({
     <div aria-label="confession-page" className="confession">
       <div className="confession__text">
         <svg className="icon__opacity--medium icon-file-text2">
-          <use xlinkHref="../../public/Svg/file-text2.svg#icon-file-text2"></use>
+          <use xlinkHref={`${svg}#icon-file-text2`}></use>
         </svg>
         <h1 className="heading--form">Confession Form</h1>
         <p>

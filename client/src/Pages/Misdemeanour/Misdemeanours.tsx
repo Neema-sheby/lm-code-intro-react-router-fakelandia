@@ -15,6 +15,7 @@ import {
   IMAGE_WIDTH,
   IMAGE_HEIGHT,
 } from "../../Configuration/Config";
+import svg from "../../Svg/stats-dots.svg";
 
 const Misdemeanours: React.FC = () => {
   const [misdemeanants, setMisdemeanants] = useState<Array<Misdemeanant>>([]);
@@ -135,7 +136,7 @@ const Misdemeanours: React.FC = () => {
         <div className="misdemeanour__sidebar">
           <div className="misdemeanour__sidebar-heading">
             <svg className="icon--small icon-stats-dots">
-              <use xlinkHref="../../public/Svg/stats-dots.svg#icon-stats-dots"></use>
+              <use xlinkHref={`${svg}#icon-stats-dots`}></use>
             </svg>
             <h3>Misdemeanours Data Table</h3>
           </div>
@@ -192,7 +193,9 @@ const Misdemeanours: React.FC = () => {
                     </td>
                     <td>
                       <span className="table__label">Confession Details :</span>
-                      {selfConfessionDetails}
+                      <span className="table__label-detail">
+                        {selfConfessionDetails}
+                      </span>
                     </td>
                   </tr>
                 );

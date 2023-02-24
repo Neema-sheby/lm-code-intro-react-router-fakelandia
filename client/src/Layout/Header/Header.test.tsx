@@ -22,8 +22,8 @@ it("contains navigation bar", () => {
   );
 
   const header = screen.getByRole("banner");
-  const navBar = within(header).getByRole("navigation");
+  const navBar = within(header).getAllByRole("navigation");
 
-  expect(navBar).toBeInTheDocument();
-  expect(navBar).toHaveClass("nav");
+  expect(navBar[1]).toBeInTheDocument();
+  expect(navBar[1]).toHaveClass("nav");
 });

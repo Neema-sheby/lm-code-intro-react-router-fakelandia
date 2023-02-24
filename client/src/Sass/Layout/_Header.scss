@@ -16,7 +16,7 @@
 
   @include respond(phone) {
     padding: 0 1rem;
-    justify-content: space-around;
+    justify-content: flex-start;
   }
 
   &__img-box {

@@ -5,9 +5,10 @@ interface NavProp {
   to: string;
   ariaLabel: string;
   content: React.ReactNode;
+  onClick: () => void;
 }
 
-const NavItem: React.FC<NavProp> = ({ to, ariaLabel, content }) => {
+const NavItem: React.FC<NavProp> = ({ to, ariaLabel, content, onClick }) => {
   return (
     <li>
       <NavLink
@@ -16,6 +17,7 @@ const NavItem: React.FC<NavProp> = ({ to, ariaLabel, content }) => {
         }
         to={to}
         aria-label={ariaLabel}
+        onClick={onClick}
       >
         {content}
       </NavLink>

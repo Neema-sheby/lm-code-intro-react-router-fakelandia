@@ -8,40 +8,47 @@
   }
 
   @include respond(large-tab) {
-    width: 100%;
+    display: none;
   }
 
-  @include respond(large-tab) {
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.2s all linear;
-    -webkit-transition: 0.2s all linear;
-    -moz-transition: 0.2s all linear;
-    -ms-transition: 0.2s all linear;
-    -o-transition: 0.2s all linear;
+  &__menuBar {
+    width: 100%;
+    background-color: $color-green--dark;
+    transition: 1s all linear;
+    -webkit-transition: 1s all linear;
+    -moz-transition: 1s all linear;
+    -ms-transition: 1s all linear;
+    -o-transition: 1s all linear;
     z-index: 100;
     position: absolute;
     top: 0;
     right: 0;
+    animation: moveLeft 1s forwards;
+    -webkit-animation: moveLeft 1s forwards;
   }
 
-  &--small-devices {
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 5rem;
-    height: 5rem;
-    background-color: $color-green--dark;
-    z-index: 1;
-    transition: 0.2s all ease-in-out;
-    -webkit-transition: 0.2s all ease-in-out;
-    -moz-transition: 0.2s all ease-in-out;
-    -ms-transition: 0.2s all ease-in-out;
-    -o-transition: 0.2s all ease-in-out;
-    box-shadow: 0 0 0.05rem 0.05rem rgba(0, 0, 0, 0.5);
+  &__menu {
+    display: none;
+    @include respond(large-tab) {
+      display: block;
+      position: absolute;
+      top: 4rem;
+      right: 2rem;
+      z-index: 500;
+    }
+
+    @include respond(small-tab-portrait) {
+      top: 3.4rem;
+    }
+
+    @include respond(phone) {
+      top: 2.5rem;
+    }
+
+    @include respond(small-phone) {
+      top: 2.7rem;
+      right: 1rem;
+    }
   }
 
   &__list {
@@ -52,7 +59,7 @@
 
     @include respond(large-tab) {
       width: 85%;
-      margin-top: 3rem;
+      padding: 1.5rem 0;
     }
     @include respond(small-tab-portrait) {
       width: 78%;
@@ -91,14 +98,14 @@
     -moz-border-radius: 0.5rem;
     -ms-border-radius: 0.5rem;
     -o-border-radius: 0.5rem;
-    transition: 0.2s all;
-    -webkit-transition: 0.2s all;
-    -moz-transition: 0.2s all;
-    -ms-transition: 0.2s all;
-    -o-transition: 0.2s all;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -o-transition: 0.5s all;
 
     @include respond(large-tab) {
-      color: $color-white;
+      color: $color-black--light;
     }
     @include respond(small-tab-portrait) {
       font-size: 1rem;
@@ -161,43 +168,10 @@
   color: $color-brown--medium;
 
   @include respond(large-tab) {
-    color: $color-black--light;
+    color: $color-white;
   }
 }
 
-//show hidden navigaion
-
-.navbtn:checked ~ .nav--small-devices {
-  display: block;
-  transform: scale(10);
-  -webkit-transform: scale(10);
-  -moz-transform: scale(10);
-  -ms-transform: scale(10);
-  -o-transform: scale(10);
-
-  @include respond(desktop) {
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  @include respond(large-tab) {
-    display: block;
-    visibility: visible;
-    opacity: 1;
-    width: 100%;
-    height: 2rem;
-  }
-  @include respond(small-tab-portrait) {
-    height: 1.5rem;
-  }
-  @include respond(phone) {
-    height: 2.5rem;
-  }
-}
-
-.navbtn:checked ~ .nav {
-  display: block;
-  visibility: visible;
-  opacity: 1;
+.hidden {
+  display: none;
 }

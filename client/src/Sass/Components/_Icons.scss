@@ -18,16 +18,33 @@
     height: 3rem;
     opacity: 0.3;
   }
-}
 
-.icon__opacity--medium {
-  width: 5rem;
-  height: 5rem;
-  fill: $color-white;
-  opacity: 0.3;
+  &__opacity--medium {
+    width: 5rem;
+    height: 5rem;
+    fill: $color-white;
+    opacity: 0.3;
 
-  @include respond(phone) {
+    @include respond(phone) {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  &__menu {
+    display: block;
     width: 4rem;
     height: 4rem;
+    fill: $color-brown--dark;
+
+    @include respond(phone) {
+      width: 3rem;
+      height: 4rem;
+    }
+
+    @include respond(small-phone) {
+      width: 3rem;
+      height: 3rem;
+    }
   }
 }

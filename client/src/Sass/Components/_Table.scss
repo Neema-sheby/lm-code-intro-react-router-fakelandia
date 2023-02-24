@@ -19,25 +19,20 @@
       padding: 1rem;
     }
   }
-  &__body {
-    @include respond(small-tab-portrait) {
-      display: none;
-    }
-  }
 
   &__row,
   &__header-row {
     display: flex;
     justify-content: space-between;
     color: $color-brown--dark;
-    padding: 1.5rem 0;
+    padding: 1.5rem;
     font-weight: 600;
 
     @include respond(small-tab-portrait) {
       display: grid;
-      grid-template-rows: repeat(3, 15%) 40% 15%;
+      grid-template-rows: repeat(5, max-content);
       grid-template-columns: 100%;
-      padding: 0;
+      padding: 0 1.5rem;
       margin-bottom: 1rem;
     }
 
@@ -99,10 +94,11 @@
 
       &:not(:nth-child(4)) {
         padding: 1rem 0;
-        border-bottom: 1.5px solid $color-brown--dark;
-        border-top: 1.5px solid $color-brown--dark;
+        border-bottom: 0.5px solid $color-brown--dark;
+        border-top: 0.5px solid $color-brown--dark;
         font-size: 1rem;
         text-align: left;
+        align-self: center;
         @include respond(large-tab) {
           font-size: 0.9rem;
         }
@@ -118,7 +114,7 @@
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        padding: 0.5rem;
+        margin-left: 0.5rem;
 
         @include respond(large-tab) {
           text-align: left;
@@ -148,6 +144,7 @@
       -moz-border-radius: $border-radius--small;
       -ms-border-radius: $border-radius--small;
       -o-border-radius: $border-radius--small;
+      margin: 0.5rem 0;
 
       @include respond(small-tab-portrait) {
         width: 35%;
@@ -164,13 +161,21 @@
     font-weight: 400;
 
     @include respond(small-tab-portrait) {
-      width: 50%;
-      display: block;
-      margin-left: 2rem;
-      color: $color-black;
+      width: 55%;
+      display: inline-block;
+      color: $color-brown--dark;
     }
     @include respond(small-phone) {
-      margin-left: 1rem;
+      width: 100%;
+    }
+  }
+
+  &__label-detail {
+    font-weight: 400;
+
+    @include respond(small-tab-portrait) {
+      display: inline;
+      color: $color-brown--dark;
     }
   }
 
