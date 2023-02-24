@@ -36,7 +36,7 @@
     -o-border-radius: 0;
   }
   @include respond(small-tab-portrait) {
-    padding: 7rem 2rem;
+    padding: 7rem 3rem;
     margin-bottom: 2rem;
   }
 
@@ -58,12 +58,8 @@
       font-size: 1.8rem;
     }
     @include respond(small-tab-portrait) {
-      width: 75%;
-      font-size: 1.4rem;
-    }
-
-    @include respond(small-phone) {
       width: 100%;
+      font-size: 1.4rem;
     }
   }
   p {
