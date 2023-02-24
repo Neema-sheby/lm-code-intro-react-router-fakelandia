@@ -13,6 +13,7 @@ it("renders home navigation link", () => {
             <use xlinkHref="../../public/Svg/home-outline.svg#icon-home-outline"></use>
           </svg>
         }
+        onClick={() => {}}
       />
     </BrowserRouter>
   );
