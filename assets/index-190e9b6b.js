@@ -10198,9 +10198,9 @@ const gu = E.createContext({
         children: n,
       }),
     }),
-  Fs = "./home-outline-8ed9d0e3.svg",
-  Xh = "./menu-faba4d2c.svg",
-  Gh = "./x-circle-eee4620e.svg",
+  Fs = "./assets/home-outline-8ed9d0e3.svg",
+  Xh = "./assets/menu-faba4d2c.svg",
+  Gh = "./assets/x-circle-eee4620e.svg",
   Jh = () => {
     const [e, t] = E.useState(!1),
       [n, r] = E.useState(!1);
@@ -10293,8 +10293,8 @@ const gu = E.createContext({
       ],
     });
   },
-  lf = "./justice-e0a6e74e.png",
-  of = "./fakelandiaLogo1-f5686c28.png",
+  lf = "./assets/justice-e0a6e74e.png",
+  of = "./assets/fakelandiaLogo1-f5686c28.png",
   Zh = () =>
     M("header", {
       className: "header",
@@ -10466,7 +10466,7 @@ const gu = E.createContext({
   om = 30,
   im = 20,
   um = 100,
-  sm = "./stats-dots-755675a4.svg",
+  sm = "./assets/stats-dots-755675a4.svg",
   am = () => {
     const [e, t] = E.useState([]),
       [n, r] = E.useState(e),
@@ -10945,7 +10945,7 @@ const gu = E.createContext({
       ],
     });
   },
-  Sm = "./file-text2-1212dc30.svg",
+  Sm = "./assets/file-text2-1212dc30.svg",
   km = () =>
     M("div", {
       "aria-label": "confession-page",
