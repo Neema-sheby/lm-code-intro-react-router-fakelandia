@@ -3,14 +3,14 @@ import { createContext } from "react";
 import {
   SelfConfessionMisdemeanour,
   defaultSelfConfessionMisdemeanour,
-} from "../../Pages/Misdemeanour/Misdemeanours.types";
+} from "../../../Pages/Misdemeanour/Misdemeanours.types";
 
-interface FakeLandiaContext {
+interface ConfessionContext {
   selfConfessedMisdemeanour: Array<SelfConfessionMisdemeanour>;
   setSelfConfessedMisdemeanour: (T: Array<SelfConfessionMisdemeanour>) => void;
 }
 
-export const fakelandiaContext = createContext<FakeLandiaContext>({
+export const ConfessionContext = createContext<ConfessionContext>({
   selfConfessedMisdemeanour: [],
   setSelfConfessedMisdemeanour: () => {},
 });

@@ -1,15 +1,15 @@
 import React, { useState, createContext } from "react";
-import { fakelandiaContext } from "./fakeLandiaContext";
+import { ConfessionContext } from "./ConfessionContext";
 import {
   SelfConfessionMisdemeanour,
   defaultSelfConfessionMisdemeanour,
-} from "../../Pages/Misdemeanour/Misdemeanours.types";
+} from "../../../Pages/Misdemeanour/Misdemeanours.types";
 
-interface ProviderProp {
+interface ConfessionProviderProp {
   children: React.ReactNode;
 }
 
-const Provider: React.FC<ProviderProp> = ({ children }) => {
+const ConfessionProvider: React.FC<ConfessionProviderProp> = ({ children }) => {
   const [selfConfessedMisdemeanour, setSelfConfessedMisdemeanour] = useState<
     Array<SelfConfessionMisdemeanour>
   >([]);
@@ -20,10 +20,10 @@ const Provider: React.FC<ProviderProp> = ({ children }) => {
   };
 
   return (
-    <fakelandiaContext.Provider value={sharedState}>
+    <ConfessionContext.Provider value={sharedState}>
       {children}
-    </fakelandiaContext.Provider>
+    </ConfessionContext.Provider>
   );
 };
 
-export default Provider;
+export default ConfessionProvider;

@@ -19,7 +19,7 @@ import {
 } from "../../../Pages/Misdemeanour/Misdemeanours.types";
 
 import { MISDEMEANOUR_NUM } from "../../../Configuration/Config";
-import { fakelandiaContext } from "../../Provider/fakeLandiaContext";
+import { ConfessionContext } from "../../ContextProviders/Confession/ConfessionContext";
 import { useContext } from "react";
 
 const defaultErrorLog: ErrorLogs = {
@@ -38,7 +38,7 @@ const ConfessionForm: React.FC = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const { selfConfessedMisdemeanour, setSelfConfessedMisdemeanour } =
-    useContext(fakelandiaContext);
+    useContext(ConfessionContext);
 
   //typeguard
   const isMisdemeanour = (value: string): value is MisdemeanourKind => {
@@ -56,6 +56,8 @@ const ConfessionForm: React.FC = () => {
       value,
       setPostResponseError
     );
+
+    console.log(postResponse);
 
     if (
       postResponse &&
@@ -75,10 +77,14 @@ const ConfessionForm: React.FC = () => {
           selfConfessionDetails: value.details,
         };
         setSubmitted(true);
-        selfConfessedMisdemeanour.push(newMisdamenourData);
-        setSelfConfessedMisdemeanour(selfConfessedMisdemeanour);
+
+        setSelfConfessedMisdemeanour([
+          newMisdamenourData,
+          ...selfConfessedMisdemeanour,
+        ]);
       }
     } else if (postResponse && postResponse.success === false) {
+      console.log("hi");
       setPostResponseError(ErrorMessagesAPI.errUnsuccessful);
     } else {
       setSubmitted(false);

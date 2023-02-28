@@ -8,7 +8,7 @@ import {
 import { MisdemeanourEmoji } from "./MisdemeanourEmoji";
 import { fetchData } from "../../Components/GetPostData/Fetch";
 import MisdemeanourSelect from "../../Components/Select/MisdemeanourSelect";
-import { fakelandiaContext } from "../../Components/Provider/fakeLandiaContext";
+import { ConfessionContext } from "../../Components/ContextProviders/Confession/ConfessionContext";
 
 import {
   MISDEMEANOUR_NUM,
@@ -25,7 +25,7 @@ const Misdemeanours: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Add the confession data to the list of misdemeanourse
-  const { selfConfessedMisdemeanour } = useContext(fakelandiaContext);
+  const { selfConfessedMisdemeanour } = useContext(ConfessionContext);
 
   useEffect(() => {
     getMisdemeanours();
@@ -72,26 +72,28 @@ const Misdemeanours: React.FC = () => {
   // updates list of misdemeanours after user adds new misdemeanour data from confession page
   const newListOfMisdemeanants = (misdem: Array<Misdemeanant>) => {
     if (selfConfessedMisdemeanour.length !== 0) {
-      const newMisdemeanantArray = selfConfessedMisdemeanour.map((misdem) => {
-        const { misdemeanourInfo, selfConfession, selfConfessionDetails } =
-          misdem;
+      const newMisdemeanantArray = selfConfessedMisdemeanour.map(
+        (misdem, i) => {
+          const { misdemeanourInfo, selfConfession, selfConfessionDetails } =
+            misdem;
 
-        const { citizenId, misdemeanour, date } = misdemeanourInfo;
+          const { citizenId, misdemeanour, date } = misdemeanourInfo;
 
-        return {
-          misdemeanours: {
-            citizenId: citizenId,
-            misdemeanour: misdemeanour,
-            date: date,
-          },
-          punishment: {
-            src: `https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}`,
-            alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
-          },
-          selfConfession: selfConfession,
-          selfConfessionDetails: selfConfessionDetails,
-        };
-      });
+          return {
+            misdemeanours: {
+              citizenId: citizenId,
+              misdemeanour: misdemeanour,
+              date: date,
+            },
+            punishment: {
+              src: `https://picsum.photos/${IMAGE_WIDTH}/${IMAGE_HEIGHT}?random&cb=${i}`,
+              alt: `Some Random image from Lorem Picsum of width:${IMAGE_WIDTH} and height:${IMAGE_HEIGHT}`,
+            },
+            selfConfession: selfConfession,
+            selfConfessionDetails: selfConfessionDetails,
+          };
+        }
+      );
       setMisdemeanants([...newMisdemeanantArray, ...misdem]);
       setFilteredMisdemeanants([...newMisdemeanantArray, ...misdem]);
     }
