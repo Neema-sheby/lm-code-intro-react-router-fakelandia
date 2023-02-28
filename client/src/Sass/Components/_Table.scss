@@ -153,7 +153,8 @@
   }
 
   &__self-confession {
-    background-color: $color-black;
+    background-color: $color-black !important;
+    color: $color-brown--dark !important;
   }
 
   &__label {
