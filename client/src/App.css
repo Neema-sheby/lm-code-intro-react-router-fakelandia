@@ -412,7 +412,8 @@ body {
         .table td img {
           width: 35%; } }
   .table__self-confession {
-    background-color: #000; }
+    background-color: #000 !important;
+    color: #8d7966d4 !important; }
   .table__label {
     display: none;
     font-weight: 400; }

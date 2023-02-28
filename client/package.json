@@ -2,7 +2,7 @@
   "name": "client",
   "private": true,
   "version": "0.0.0",
-  "homepage": "http://Neema-sheby.github.io/lm-code-intro-react-router-fakelandia",
+  "homepage": "http://Neema-sheby.github.io/lm-code-intro-react-router-fakelandia/",
   "type": "module",
   "scripts": {
     "dev": "vite",

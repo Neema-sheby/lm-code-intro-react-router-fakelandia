@@ -1,9 +1,5 @@
 import { ErrorMessagesAPI } from "../ErrorHandler/ErrorMessages";
 
-const getErrorMessage = ({ message }: { message: string }) => {
-  console.error(message);
-};
-
 export const fetchData = async <T>(
   url: string,
   callbackError: (T: string) => void
@@ -29,7 +25,6 @@ export const fetchData = async <T>(
   } catch (err: unknown) {
     let message: string = "unknown error";
     if (err instanceof Error) message = err.message;
-    getErrorMessage({ message });
     callbackError(message);
   }
 };

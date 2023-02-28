@@ -1,10 +1,8 @@
 import React from "react";
 import ConfessionForm from "../../Components/Form/ConfessionForm/ConfessionForm";
-import { ConfessionProp } from "../../Components/Form/ConfessionForm/ConfessionFormDataType.types";
+
 import svg from "../../Svg/file-text2.svg";
-const Confession: React.FC<ConfessionProp> = ({
-  setNewMisdemeanourOfMisdemeanant,
-}) => {
+const Confession: React.FC = () => {
   return (
     <div aria-label="confession-page" className="confession">
       <div className="confession__text">
@@ -22,9 +20,7 @@ const Confession: React.FC<ConfessionProp> = ({
         </p>
       </div>
 
-      <ConfessionForm
-        setNewMisdemeanourOfMisdemeanant={setNewMisdemeanourOfMisdemeanant}
-      />
+      <ConfessionForm />
     </div>
   );
 };

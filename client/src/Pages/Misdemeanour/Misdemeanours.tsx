@@ -8,7 +8,7 @@ import {
 import { MisdemeanourEmoji } from "./MisdemeanourEmoji";
 import { fetchData } from "../../Components/GetPostData/Fetch";
 import MisdemeanourSelect from "../../Components/Select/MisdemeanourSelect";
-import { HomeRouterContext } from "../../Router/HomeRouterContext";
+import { fakelandiaContext } from "../../Components/Provider/fakeLandiaContext";
 
 import {
   MISDEMEANOUR_NUM,
@@ -19,18 +19,17 @@ import svg from "../../Svg/stats-dots.svg";
 
 const Misdemeanours: React.FC = () => {
   const [misdemeanants, setMisdemeanants] = useState<Array<Misdemeanant>>([]);
-  const [filteredMisdemeanants, setFilteredMisdemeanants] = useState<
-    Array<Misdemeanant>
-  >([]);
+  const [filteredMisdemeanants, setFilteredMisdemeanants] =
+    useState<Array<Misdemeanant>>(misdemeanants);
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Add the confession data to the list of misdemeanourse
-  const newMisdemeanourOfMisdemeanant = useContext(HomeRouterContext);
+  const { selfConfessedMisdemeanour } = useContext(fakelandiaContext);
 
   useEffect(() => {
     getMisdemeanours();
-  }, []);
+  }, [selfConfessedMisdemeanour]);
 
   //get Misdemeanours data fron API
   const getMisdemeanours = async () => {
@@ -64,26 +63,22 @@ const Misdemeanours: React.FC = () => {
         });
       setMisdemeanants(dataArr);
       setFilteredMisdemeanants(dataArr);
-      updateListOfMisdemeanants(newMisdemeanourOfMisdemeanant, dataArr);
+      newListOfMisdemeanants(dataArr);
     } else {
       setIsLoading(false);
     }
   };
 
   // updates list of misdemeanours after user adds new misdemeanour data from confession page
-  const updateListOfMisdemeanants = (
-    selfConfessionMisdemeanour: SelfConfessionMisdemeanour,
-    misdemeanants: Array<Misdemeanant>
-  ) => {
-    const { misdemeanourInfo, selfConfession, selfConfessionDetails } =
-      selfConfessionMisdemeanour;
-    const { citizenId, misdemeanour, date } = misdemeanourInfo;
+  const newListOfMisdemeanants = (misdem: Array<Misdemeanant>) => {
+    if (selfConfessedMisdemeanour.length !== 0) {
+      const newMisdemeanantArray = selfConfessedMisdemeanour.map((misdem) => {
+        const { misdemeanourInfo, selfConfession, selfConfessionDetails } =
+          misdem;
 
-    if (citizenId && misdemeanour && date) {
-      let newListOfMisdemeanants: Array<Misdemeanant> = [];
+        const { citizenId, misdemeanour, date } = misdemeanourInfo;
 
-      newListOfMisdemeanants = [
-        {
+        return {
           misdemeanours: {
             citizenId: citizenId,
             misdemeanour: misdemeanour,
@@ -95,12 +90,10 @@ const Misdemeanours: React.FC = () => {
           },
           selfConfession: selfConfession,
           selfConfessionDetails: selfConfessionDetails,
-        },
-        ...misdemeanants,
-      ];
-      console.log(newListOfMisdemeanants);
-      setMisdemeanants(newListOfMisdemeanants);
-      setFilteredMisdemeanants(newListOfMisdemeanants);
+        };
+      });
+      setMisdemeanants([...newMisdemeanantArray, ...misdem]);
+      setFilteredMisdemeanants([...newMisdemeanantArray, ...misdem]);
     }
   };
 
@@ -170,7 +163,7 @@ const Misdemeanours: React.FC = () => {
                   <tr
                     key={i + "midemeanour"}
                     className={
-                      selfConfession
+                      selfConfession === true
                         ? "table__row table__self-confession"
                         : "table__row"
                     }

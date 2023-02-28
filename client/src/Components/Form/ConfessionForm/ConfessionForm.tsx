@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import InputField from "../../Input/InputField";
 import ConfessionSelect from "../../Select/ConfessionSelect";
-import {
-  ConfessionFormDataType,
-  ConfessionProp,
-} from "./ConfessionFormDataType.types";
+import { ConfessionFormDataType } from "./ConfessionFormDataType.types";
 import TextareaField from "../../TextArea/TextAreaField";
 import Button from "../../Button/ButtonForm";
 import { ErrorLogs, ErrorMessagesAPI } from "../../ErrorHandler/ErrorMessages";
@@ -22,6 +19,8 @@ import {
 } from "../../../Pages/Misdemeanour/Misdemeanours.types";
 
 import { MISDEMEANOUR_NUM } from "../../../Configuration/Config";
+import { fakelandiaContext } from "../../Provider/fakeLandiaContext";
+import { useContext } from "react";
 
 const defaultErrorLog: ErrorLogs = {
   subject: [],
@@ -29,15 +28,17 @@ const defaultErrorLog: ErrorLogs = {
   details: [],
 };
 
-const ConfessionForm: React.FC<ConfessionProp> = ({
-  setNewMisdemeanourOfMisdemeanant,
-}) => {
+const ConfessionForm: React.FC = () => {
   const [value, setValue] = useState<ConfessionFormDataType>(
     defaultConfessionFormData
   );
+
   const [error, setError] = useState<ErrorLogs>(defaultErrorLog);
   const [postResponseError, setPostResponseError] = useState<string>("");
   const [submitted, setSubmitted] = useState<boolean>(false);
+
+  const { selfConfessedMisdemeanour, setSelfConfessedMisdemeanour } =
+    useContext(fakelandiaContext);
 
   //typeguard
   const isMisdemeanour = (value: string): value is MisdemeanourKind => {
@@ -74,13 +75,13 @@ const ConfessionForm: React.FC<ConfessionProp> = ({
           selfConfessionDetails: value.details,
         };
         setSubmitted(true);
-        setNewMisdemeanourOfMisdemeanant(newMisdamenourData);
+        selfConfessedMisdemeanour.push(newMisdamenourData);
+        setSelfConfessedMisdemeanour(selfConfessedMisdemeanour);
       }
     } else if (postResponse && postResponse.success === false) {
       setPostResponseError(ErrorMessagesAPI.errUnsuccessful);
     } else {
       setSubmitted(false);
-      setNewMisdemeanourOfMisdemeanant(defaultSelfConfessionMisdemeanour);
     }
   };
 

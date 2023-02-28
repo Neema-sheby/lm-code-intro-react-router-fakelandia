@@ -45,14 +45,14 @@ const testData1 = {
 //-------------------
 
 it("is rendered in the document", () => {
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const form = screen.getByRole("form", { name: /form-confession/i });
   expect(form).toHaveClass("form");
 });
 
 it("have one input field, one select field, one text area and a button", () => {
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
   const selectField = screen.getByRole("combobox");
@@ -64,10 +64,10 @@ it("have one input field, one select field, one text area and a button", () => {
   expect(button).toHaveClass("button--form");
 });
 
-it("calls the addNewMisdemeanourData function and also has inputfield, selectfield and textarea set to default values after submitting form", async () => {
+it("it has inputfield, selectfield and textarea set to default values after submitting form", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={mock} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
   const selectField = screen.getByRole("combobox");
@@ -85,12 +85,6 @@ it("calls the addNewMisdemeanourData function and also has inputfield, selectfie
   //user clicks on button
   await user.click(button);
 
-  // wait to recieve response from server after posting data
-  await waitFor(() => {
-    expect(mock).toBeCalled();
-    expect(mock).toBeCalledTimes(1);
-  });
-
   expect(textBoxes[0]).toHaveValue("");
   expect(selectField).toHaveValue("");
   expect(textBoxes[1]).toHaveValue("");
@@ -101,7 +95,7 @@ it("calls the addNewMisdemeanourData function and also has inputfield, selectfie
 it("displays error message for typing less than 10 characters subject field", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
 
@@ -116,7 +110,7 @@ it("displays error message for typing less than 10 characters subject field", as
 it("displays error message for typing more than 30 characters in the subject field", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
 
@@ -134,7 +128,7 @@ it("displays error message for typing more than 30 characters in the subject fie
 it("displays error messages for clearing the subject field after typing", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
 
@@ -153,7 +147,7 @@ it("displays error messages for clearing the subject field after typing", async 
 it("displays error message for typing back slash in the subject field", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
 
@@ -168,7 +162,7 @@ it("displays error message for typing back slash in the subject field", async ()
 it("has button disabled for errors in subject field or leaving the field empty", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
 
@@ -187,7 +181,7 @@ it("has button disabled for errors in subject field or leaving the field empty",
 it("displays error message for not selecting an option", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
 
@@ -207,7 +201,7 @@ it("displays error message for not selecting an option", async () => {
 it("has button disabled for not selecting an option", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const selectField = screen.getByRole("combobox");
 
@@ -228,7 +222,7 @@ it("has button disabled for not selecting an option", async () => {
 it("displays error message for typing less than 20 characters in the textarea", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
 
@@ -243,7 +237,7 @@ it("displays error message for typing less than 20 characters in the textarea", 
 it("displays error message for typing more than 100 characters in the textarea", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
 
@@ -261,7 +255,7 @@ it("displays error message for typing more than 100 characters in the textarea",
 it("displays error messages for clearing the textarea after typing", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
 
@@ -280,7 +274,7 @@ it("displays error messages for clearing the textarea after typing", async () =>
 it("has button disabled if textarea values has errors", async () => {
   const user = userEvent.setup();
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
 
@@ -298,7 +292,7 @@ it("has button disabled if textarea values has errors", async () => {
 // //-------------------All fields
 it("has button disabled if data entered in all the fields has errors", async () => {
   const user = userEvent.setup();
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
   const selectField = screen.getByRole("combobox");
@@ -327,7 +321,7 @@ it("has button disabled if data entered in all the fields has errors", async () 
 
 it("has button enabled if the data entered in all the fields has no errors", async () => {
   const user = userEvent.setup();
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
   const selectField = screen.getByRole("combobox");
@@ -347,7 +341,7 @@ it("has button enabled if the data entered in all the fields has no errors", asy
 
 it("shows send message after receiving response fron server", async () => {
   const user = userEvent.setup();
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
   const selectField = screen.getByRole("combobox");
@@ -397,7 +391,7 @@ it("calls the error callback function on error from server and displays error me
     })
   );
 
-  render(<ConfessionForm setNewMisdemeanourOfMisdemeanant={() => {}} />);
+  render(<ConfessionForm />);
 
   const textBoxes = screen.getAllByRole("textbox");
   const selectField = screen.getByRole("combobox");

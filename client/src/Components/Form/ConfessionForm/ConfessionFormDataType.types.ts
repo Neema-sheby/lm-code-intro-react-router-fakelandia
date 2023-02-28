@@ -16,6 +16,6 @@ export type ConfessionFormDataType = {
   details: string;
 };
 
-export interface ConfessionProp {
-  setNewMisdemeanourOfMisdemeanant: (T: SelfConfessionMisdemeanour) => void;
-}
+// export interface ConfessionProp {
+//   setNewMisdemeanourOfMisdemeanant: (T: SelfConfessionMisdemeanour) => void;
+// }
